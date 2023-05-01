@@ -1,0 +1,8 @@
+[user]
+	email = ismailmn05@gmail.com
+	name = Ismail Fahmy
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[status]
+	showUntrackedFiles = no

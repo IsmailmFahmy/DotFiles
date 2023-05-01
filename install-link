@@ -1,0 +1,6 @@
+#!/bin/sh
+sudo ln -s ~/.config/logols/logo-ls /usr/bin/
+mv ~/.config/fonts/* /etc/fonts/
+ln -s ~/.config/zsh/.zshrc ~/.zshrc
+source ~/.config/zsh/.zshrc
+
