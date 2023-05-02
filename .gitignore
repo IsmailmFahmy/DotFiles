@@ -1,0 +1,5 @@
+#ignore .zcomet files (they will auto download)
+zsh/.zcomet/
+
+#-------------------
+nvim.prime
