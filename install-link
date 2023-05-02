@@ -1,17 +1,18 @@
 #!/bin/sh
 con=~/.config
+date=$(date +%d-%m-%Y)
 git submodule update --init --recursive
 
 #move files into .config
 if [[ $con/nvim ]]; then 
-  mv $con/nvim $con/nvim.old
+  mv $con/nvim $con/nvim.old-$date
   mv nvim $con/
 else
   mv nvim $con/
 fi
 
 if [[ ~/.zshrc]]; then 
-  mv ~/.zshrc ~/.zshrc.old
+  mv ~/.zshrc ~/.zshrc.old-$date
   mv zsh $con/
   ln -s $con/zsh/.zshrc ~/.zshrc
   source $con/zsh/.zshrc
@@ -22,14 +23,14 @@ else
 fi
 
 if [[ $con/gh]]; then 
-  mv $con/gh $con/gh.old
+  mv $con/gh $con/gh.old-$date
   mv gh $con/
 else
   mv gh $con/
 fi
 
 if [[ $con/powerlevel10k]]; then 
-  mv $con/powerlevel10k $con/powerlevel10k.old
+  mv $con/powerlevel10k $con/powerlevel10k.old-$date
   mv powerlevel10k $con/
 else
   mv powerlevel10k $con/
@@ -37,7 +38,7 @@ fi
 
 
 if [[ $con/kitty ]]; then 
-  mv $con/kitty $con/kitty.old
+  mv $con/kitty $con/kitty.old-$date
   mv kitty $con/
 else
   mv kitty $con/
