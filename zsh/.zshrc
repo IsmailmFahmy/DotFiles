@@ -52,7 +52,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 if [[ ! -f ${ZDOTDIR:-${HOME}/.config/zsh}/.zcomet/bin/zcomet.zsh ]]; then
   command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}/.config/zsh}/.zcomet/bin
 fi
-source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
+source ${ZDOTDIR:-${HOME}/zsh}/.zcomet/bin/zcomet.zsh
 
 zcomet load "esc/conda-zsh-completion"
 zcomet load "zsh-users/zsh-autosuggestions"
