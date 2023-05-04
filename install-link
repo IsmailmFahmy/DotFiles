@@ -44,6 +44,9 @@ else
   mv kitty $con/
 fi
 
-sudo ln -s ~/.config/logols/logo-ls /usr/bin/
-sudo mv fonts/* /etc/fonts/
+sudo mv NerdFonts /etc/fonts/
+
+sudo mv logo-ls-files usr/bin/
+sudo ln -s /usr/bin/logo-ls-files/logo-ls /usr/bin/logo-ls
+
 
