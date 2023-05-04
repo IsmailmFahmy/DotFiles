@@ -44,10 +44,9 @@ else
   mv kitty $con/
 fi
 
-sudo mv SymbolsNerdFont /etc/fonts/
-sudo mv Caskaydia-Cove /etc/fonts/
-sudo mv Boon /etc/fonts/
-sudo mv JetBrainsMono /etc/fonts/
+sudo mv Caskaydia-Cove /usr/share/fonts/
+sudo mv Boon /usr/share/fonts/
+sudo mv JetBrainsMono /usr/share/fonts/
 
 
 
