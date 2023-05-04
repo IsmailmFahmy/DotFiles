@@ -44,7 +44,12 @@ else
   mv kitty $con/
 fi
 
-sudo mv NerdFonts /etc/fonts/
+sudo mv SymbolsNerdFonts /etc/fonts/
+sudo mv Caskaydia-Cove /etc/fonts/
+sudo mv Boon /etc/fonts/
+sudo mv JetBrainsMono /etc/fonts/
+
+
 
 sudo mv logo-ls-files usr/bin/
 sudo ln -s /usr/bin/logo-ls-files/logo-ls /usr/bin/logo-ls
