@@ -6,51 +6,51 @@ git submodule update --init --recursive
 #move files into .config
 if [[ $con/nvim ]]; then 
   mv $con/nvim $con/nvim.old-$date
-  mv nvim $con/
+  cp -r nvim $con/
 else
-  mv nvim $con/
+  cp -r nvim $con/
 fi
 
-if [[ ~/.zshrc ]]; then 
+if [[ "~/.zshrc" ]]; then 
   mv ~/.zshrc ~/.zshrc.old-$date
-  mv zsh $con/
+  cp -r zsh $con/
   ln -s $con/zsh/.zshrc ~/.zshrc
   source $con/zsh/.zshrc
 else
-  mv zsh $con/
+  cp -r zsh $con/
   ln -s $con/zsh/.zshrc ~/.zshrc
   source $con/zsh/.zshrc
 fi
 
-if [[ $con/gh ]]; then 
+if [[ "$con/gh" ]]; then 
   mv $con/gh $con/gh.old-$date
-  mv gh $con/
+  cp -r gh $con/
 else
-  mv gh $con/
+  cp -r gh $con/
 fi
 
-if [[ $con/powerlevel10k ]]; then 
+if [[ "$con/powerlevel10k" ]]; then 
   mv $con/powerlevel10k $con/powerlevel10k.old-$date
-  mv powerlevel10k $con/
+  cp -r powerlevel10k $con/
 else
-  mv powerlevel10k $con/
+  cp -r powerlevel10k $con/
 fi
 
 
-if [[ $con/kitty ]]; then 
+if [[ "$con/kitty" ]]; then 
   mv $con/kitty $con/kitty.old-$date
-  mv kitty $con/
+  cp -r kitty $con/
 else
-  mv kitty $con/
+  cp -r kitty $con/
 fi
 
-sudo mv Caskaydia-Cove /usr/share/fonts/
-sudo mv Boon /usr/share/fonts/
-sudo mv JetBrainsMono /usr/share/fonts/
+sudo cp -r Caskaydia-Cove /usr/share/fonts/
+sudo cp -r Boon /usr/share/fonts/
+sudo cp -r JetBrainsMono /usr/share/fonts/
 
 
 
-sudo mv logo-ls-files usr/bin/
+sudo cp -r logo-ls-files usr/bin/
 sudo ln -s /usr/bin/logo-ls-files/logo-ls /usr/bin/logo-ls
 
 
