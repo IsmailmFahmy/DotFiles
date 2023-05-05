@@ -48,9 +48,9 @@ sudo cp -r Caskaydia-Cove /usr/share/fonts/
 sudo cp -r Boon /usr/share/fonts/
 sudo cp -r JetBrainsMono /usr/share/fonts/
 
-
-
-sudo cp -r logo-ls-files usr/bin/
-sudo ln -s /usr/bin/logo-ls-files/logo-ls /usr/bin/logo-ls
+if [[ ! "/usr/share/" ]]; then 
+  sudo cp -r logo-ls-files usr/share/
+  sudo ln -s /usr/share/logo-ls-files/logo-ls /usr/bin/logo-ls
+fi
 
 
