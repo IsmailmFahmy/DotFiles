@@ -1,17 +1,12 @@
 #!/bin/sh
+
 # zmodload zsh/zprof    # startup time test
+
+export EDITOR="nvim"
+export VISUAL="nvim"
 export GIT_CONFIG_GLOBAL=~/.config/gh/.gitconfig
 export ZDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/zsh
 export ZSH_COMPDUMP=$HOME/.config/zsh/.zcompdump
-#======================================= ALIASES ============================================
-
-alias vim='nvim'
-alias ls='logo-ls'
-alias la='logo-ls -a'
-alias ll='logo-ls -la'
-# alias rc='vim ${XDG_CONFIG_HOME:-$HOME/.config/zsh}/.zshrc'
-alias p10k='vim ~/.config/powerlevel10k/.p10k.zsh'
-alias dot="/usr/bin/git --git-dir=$HOME --work-tree=$HOME"
 
 ### SETTING OTHER ENVIRONMENT VARIABLES
 if [ -z "$XDG_CONFIG_HOME" ] ; then
@@ -24,12 +19,23 @@ if [ -z "$XDG_CACHE_HOME" ] ; then
     export XDG_CACHE_HOME="$HOME/.cache"
 fi
 
+#======================================= ALIASES ============================================
+
+alias vim='nvim'
+alias ls='logo-ls'
+alias la='logo-ls -a'
+alias ll='logo-ls -la'
+alias p10k='vim ~/.config/powerlevel10k/.p10k.zsh'
+alias dot="/usr/bin/git --git-dir=$HOME --work-tree=$HOME"
+
 
 if test -f "$HOME/.config/zsh/.zshrc" ; then
   alias rc='vim $HOME/.config/zsh/.zshrc'
 else
   alias rc='vim $HOME/.zshrc'
 fi
+
+#============================================================================================
 
 ### ARCHIVE EXTRACTION
 # usage: ex <file>
@@ -79,17 +85,18 @@ export meow
 HISTFILE=$XDG_CACHE_HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-export EDITOR="nvim"
 
 
 
 # Enable colors and change prompt when p10k doesnt work
 autoload -U colors && colors && PS1="%B%{$fg[red]%}[%{$fg[green]%}%n %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}λ%b: "
 
-
+# Ignore case
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
 #============================================================================================
+
 if [[ ! -f ${ZDOTDIR:-${HOME}/.config/zsh}/.zcomet/bin/zcomet.zsh ]]; then
   command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}/.config/zsh}/.zcomet/bin
 fi
@@ -101,12 +108,15 @@ zcomet load "zsh-users/zsh-syntax-highlighting"
 
 
 #============================================================================================
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/powerlevel10k/.p10k.zsh ]] || source ~/.config/powerlevel10k/.p10k.zsh
+
 #============================================================================================
+
 source "$HOME/.cargo/env"
 # zprof    # startup time test
