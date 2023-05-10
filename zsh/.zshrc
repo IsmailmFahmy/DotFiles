@@ -8,6 +8,7 @@ export ZSH_COMPDUMP=$HOME/.config/zsh/.zcompdump
 alias vim='nvim'
 alias ls='logo-ls'
 alias la='logo-ls -a'
+alias ll='logo-ls -la'
 # alias rc='vim ${XDG_CONFIG_HOME:-$HOME/.config/zsh}/.zshrc'
 alias p10k='vim ~/.config/powerlevel10k/.p10k.zsh'
 alias dot="/usr/bin/git --git-dir=$HOME --work-tree=$HOME"
@@ -75,15 +76,16 @@ echo "　＼二つ"
 
 export meow
 
-HISTFILE=~/.cache/.zsh_history
+HISTFILE=$XDG_CACHE_HOME/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 export EDITOR="nvim"
 
 
 
-# Enable colors and change prompt:
-#autoload -U colors && colors && PS1="%B%{$fg[red]%}[%{$fg[green]%}%n %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}λ%b: "
+# Enable colors and change prompt when p10k doesnt work
+autoload -U colors && colors && PS1="%B%{$fg[red]%}[%{$fg[green]%}%n %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}λ%b: "
+
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
