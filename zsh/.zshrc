@@ -31,8 +31,10 @@ alias dot="/usr/bin/git --git-dir=$HOME --work-tree=$HOME"
 
 if test -f "$HOME/.config/zsh/.zshrc" ; then
   alias rc='vim $HOME/.config/zsh/.zshrc'
+  export zsh=$HOME/.config/zsh/.zshrc
 else
   alias rc='vim $HOME/.zshrc'
+  export zsh=$HOME/.zshrc
 fi
 
 #============================================================================================
@@ -109,13 +111,13 @@ zcomet load "zsh-users/zsh-syntax-highlighting"
 
 #============================================================================================
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.config/powerlevel10k/.p10k.zsh ]] || source ~/.config/powerlevel10k/.p10k.zsh
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+# source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+# [[ ! -f ~/.config/powerlevel10k/.p10k.zsh ]] || source ~/.config/powerlevel10k/.p10k.zsh
 
+eval "$(starship init zsh)"
 #============================================================================================
 
 source "$HOME/.cargo/env"

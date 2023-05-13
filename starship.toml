@@ -1,0 +1,69 @@
+#
+format = """
+$os\
+$username\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$docker_context\
+$container\
+$sudo\
+$character
+"""
+
+right_format = """$time"""
+
+[aws]
+style = "bold #ffb86c"
+
+[character]
+error_symbol = "[λ](bold #ff5555)"
+success_symbol = "[λ](bold #50fa7b)"
+
+[cmd_duration]
+disabled = true
+style = "bold #f1fa8c"
+
+[directory]
+style = "bold #50fa7b"
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+style = "bold #ff79c6"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+format = '[\[$untracked$deleted$renamed$modified$staged$conflicted \]$up_to_date ](fg:#ffffff)'
+conflicted = '[$count  ](fg:ff5555)'
+up_to_date = '[✓](green)'
+untracked = '[$countU ](fg:#DC143C)'
+stashed = '📦'
+modified = '[$count ](fg:#A9A9A9)'
+staged = '[$count[S](fg:#6495ED) ](fg:#6495ED)'
+renamed = '[$count➜ ]'
+deleted = '[$count ]'
+ahead = '${count}⇡' 
+diverged = '${ahead_count}⇕⇡${behind_count}⇣'
+behind = '${count}⇣'
+
+
+[hostname]
+style = "bold #bd93f9"
+
+[username]
+format = "[$user]($style) "
+style_user = "bold #8be9fd"
+
+[time]
+disabled = false
+format = '[  $time]($style) '
+time_format = '%R'
+style = "bold #6495ED"
