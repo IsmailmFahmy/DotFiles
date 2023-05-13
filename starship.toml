@@ -1,11 +1,9 @@
-#
 format = """
 $os\
 $username\
 $directory\
 $git_branch\
 $git_commit\
-$git_state\
 $git_status\
 $docker_context\
 $container\
@@ -26,11 +24,13 @@ success_symbol = "[λ](bold #50fa7b)"
 disabled = true
 style = "bold #f1fa8c"
 
-[directory]
+[directory] 
+truncation_length = 8
+truncation_symbol = "…/"
 style = "bold #50fa7b"
 
 [directory.substitutions]
-"Documents" = " "
+"Documents" = "󰈙 "
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
@@ -41,19 +41,20 @@ style = "bold #ff79c6"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-format = '[\[$untracked$deleted$renamed$modified$staged$conflicted$ahead$behind$diverged \]$up_to_date ](fg:#ffffff)'
-conflicted = '[$count  ](fg:ff5555)'
-up_to_date = '[✓](green)'
-untracked = '[$countU ](fg:#DC143C)'
+format = '[\[$untracked$deleted$renamed$modified$staged$conflicted$ahead_behind\] ](fg:#ffffff)'
+conflicted = '[$count  ](fg:#ff5555)'
+untracked = '[$count[U](fg:#DC143C) ](fg:#DC143C)'
 stashed = '📦'
 modified = '[$count ](fg:#A9A9A9)'
 staged = '[$count[S](fg:#6495ED) ](fg:#6495ED)'
 renamed = '[$count➜ ]'
 deleted = '[$count ]'
-ahead = '[$count⇡ ]'
-diverged = '${ahead_count}⇕⇡${behind_count}⇣'
-behind = '${count}⇣'
+ahead = '[$count⇡](fg:#008000)'
+behind = '[$count⇣](fg:#008000)'
 
+
+[docker_context]
+format = 'via [🐋 $context](blue bold)'
 
 [hostname]
 style = "bold #bd93f9"
@@ -64,6 +65,7 @@ style_user = "bold #8be9fd"
 
 [time]
 disabled = false
-format = '[  $time]($style) '
-time_format = '%R'
+format = '[  $time ]($style)'
+time_format = "%R" # Hour:Minute Format
 style = "bold #6495ED"
+
