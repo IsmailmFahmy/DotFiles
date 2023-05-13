@@ -41,7 +41,7 @@ style = "bold #ff79c6"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-format = '[\[$untracked$deleted$renamed$modified$staged$conflicted \]$up_to_date ](fg:#ffffff)'
+format = '[\[$untracked$deleted$renamed$modified$staged$conflicted$ahead$behind$diverged \]$up_to_date ](fg:#ffffff)'
 conflicted = '[$count  ](fg:ff5555)'
 up_to_date = '[✓](green)'
 untracked = '[$countU ](fg:#DC143C)'
@@ -50,7 +50,7 @@ modified = '[$count ](fg:#A9A9A9)'
 staged = '[$count[S](fg:#6495ED) ](fg:#6495ED)'
 renamed = '[$count➜ ]'
 deleted = '[$count ]'
-ahead = '${count}⇡' 
+ahead = '[$count⇡ ]'
 diverged = '${ahead_count}⇕⇡${behind_count}⇣'
 behind = '${count}⇣'
 
