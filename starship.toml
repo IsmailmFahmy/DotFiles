@@ -38,7 +38,7 @@ style = "bold #50fa7b"
 [git_branch]
 symbol = ""
 style = "bold #ff79c6"
-format = '[ $symbol $branch ]($style)'
+format = '[$symbol $branch ]($style)'
 
 [git_status]
 format = '[\[$untracked$deleted$renamed$modified$staged$conflicted$ahead_behind\] ](fg:#ffffff)'
