@@ -45,7 +45,7 @@ else
 fi
 
 sudo cp -r Caskaydia-Cove /usr/share/fonts/
-sudo cp -r Boon /usr/share/fonts/
+sudo cp -r NerdFontsSymbols /usr/share/fonts/
 sudo cp -r JetBrainsMono /usr/share/fonts/
 
 if [[ ! "/usr/share/" ]]; then 
