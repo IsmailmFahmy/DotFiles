@@ -44,6 +44,13 @@ else
   cp -r kitty $con/
 fi
 
+if [[ "$con/starship.toml" ]]; then 
+  mv $con/starship.toml $con/starship.toml.old-$date
+  cp -r starship.toml $con/
+else
+  cp -r starship.toml $con/
+fi
+
 sudo cp -r Caskaydia-Cove /usr/share/fonts/
 sudo cp -r NerdFontsSymbols /usr/share/fonts/
 sudo cp -r JetBrainsMono /usr/share/fonts/
