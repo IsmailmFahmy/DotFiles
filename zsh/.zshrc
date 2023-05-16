@@ -120,3 +120,5 @@ eval "$(starship init zsh)"
 
 source "$HOME/.cargo/env"
 # zprof    # startup time test
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
