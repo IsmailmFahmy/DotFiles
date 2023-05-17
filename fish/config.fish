@@ -6,20 +6,21 @@ set -gx GIT_CONFIG_GLOBAL ~/.config/gh/.gitconfig
 
 ### SETTING OTHER ENVIRONMENT VARIABLES
 if [ -z "$XDG_CONFIG_HOME" ] ; 
-    export XDG_CONFIG_HOME="$HOME/.config"
+    set -gx XDG_CONFIG_HOME "$HOME/.config"
 end
 if [ -z "$XDG_DATA_HOME" ] ; 
-    export XDG_DATA_HOME="$HOME/.local/share"
+    set -gx XDG_DATA_HOME "$HOME/.local/share"
 end
 if [ -z "$XDG_CACHE_HOME" ] ; 
-    export XDG_CACHE_HOME="$HOME/.cache"
+    set -gx XDG_CACHE_HOME "$HOME/.cache"
 end
 
 #======================================= ALIASES ============================================
 
-alias vim='nvim'
-alias conf='nvim ~/.config/fish/config.fish'
+abbr conf 'nvim ~/.config/fish/config.fish'
+abbr Sconf 'source ~/.config/fish/config.fish'
 
+alias vim='nvim'
 # Changing "ls" to "exa"
 alias ls='exa -al --color=always --group-directories-first' # my preferred listing
 alias la='exa -a --color=always --group-directories-first'  # all files and dirs
@@ -35,7 +36,7 @@ echo "              ＿＿"
 echo "　　　　　🌸＞　　フ"
 echo "　　　　　| 　_　 _ l"
 echo "　 　　　／\`  ミ＿xノ"
-echo "　　 　 /　　　 　 |     Nyā "
+echo "　　 　 /　　　 　 |     Nyā 󰄛"
 echo "　　　 /　 ヽ　　 ﾉ"
 echo "　 　 │　　|　|　|"
 echo "　／￣|　　 |　|　|"
@@ -49,4 +50,3 @@ starship init fish | source
 #============================================================================================
 
 # source "$HOME/.cargo/env"
-#!/bin/sh
