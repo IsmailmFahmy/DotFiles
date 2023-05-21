@@ -1,0 +1,42 @@
+Name                                     Id                                        Version            Available  Source
+-----------------------------------------------------------------------------------------------------------------------
+TranslucentTB                            28017CharlesMilette.TranslucentTB_v826wpΓÇª 2022.1.0.0                    
+WhatsApp                                 5319275A.WhatsAppDesktop_cv1g1gvanyjgm    2.2311.3.0                    
+7-Zip 22.01 (x64)                        7zip.7zip                                 22.01                         winget
+ShareX                                   ShareX.ShareX                             15.0.0                        winget
+Canon Laser Printer/Scanner/Fax 
+CrystalDiskInfo 8.17.14                  CrystalDewWorld.CrystalDiskInfo           8.17.14                       winget
+Discord                                  Discord.Discord                           1.0.9011           1.0.9013   winget
+Everything 1.4.1.1022 (x64)              voidtools.Everything                      1.4.1.1022         1.4.1.1023 winget
+Git                                      Git.Git                                   2.40.0             2.40.1     winget
+HandBrake 1.6.1                          HandBrake.HandBrake                       1.6.1                         winget
+K-Lite Codec Pack 17.4.0 Standard        CodecGuide.K-LiteCodecPack.Standard       17.4.0             17.5.2     winget
+MKVToolNix 75.0.0 (64-bit)               // Change Video resolutions
+HEVC Video Extensions 		   	        Microsoft.HEVCVideoExtension_8wekyb3d8bbΓÇª 2.0.60091.0                   
+Windows Terminal                         Microsoft.WindowsTerminal                 1.16.10261.0                  winget
+Mozilla Firefox (x64 en-US)              Mozilla.Firefox                           113.0.1                       winget
+Notepad++ (64-bit x64)                   Notepad++.Notepad++                       8.5                8.5.3      winget
+OBS Studio                               OBSProject.OBSStudio                      29.0.2             29.1.1     winget
+Adobe Photoshop 2023                     PHSP_24_1_1                               24.1.1.238                    
+Microsoft Office LTSC Professional Plus 
+PyCharm Community Edition 2022.3.2       PyCharm Community Edition 2022.3.2        223.8617.48                   
+Rustup: the Rust toolchain installer     Rustlang.Rustup                           Unknown            1.26.0     winget
+Spotify                                  Spotify.Spotify                           1.2.11.916.geb595ΓÇª            winget
+Steam                                    Valve.Steam                               2.10.91.91                    winget
+Team Fortress 2                          Steam App 440                             Unknown                       
+Counter-Strike: Global Offensive         Steam App 730                             Unknown                       
+kdenlive                                 KDE.Kdenlive                              23.04.0-1          23.04.1    winget
+qBittorrent                              qBittorrent.qBittorrent                   4.5.2                         winget
+VEGAS Pro 16.0                           {0A119E00-A098-11E8-A73C-00155D6302F2}    16.0.248                      
+Malwarebytes version 4.5.26.259          Malwarebytes.Malwarebytes                 4.5.26.259         4.5.29.268 winget
+Minecraft Launcher                       Mojang.MinecraftLauncher                  2.0.0.0                       winget
+Telegram Desktop                         Telegram.TelegramDesktop                  4.8.1                         winget
+ImageGlass                               DuongDieuPhap.ImageGlass                  8.7.11.6           8.8.4.4    winget
+Google Drive                             Google.Drive                              74.0.3.0                      winget
+GitHub CLI                               GitHub.cli                                2.25.1             2.29.0     winget
+VMware Workstation                       VMware.WorkstationPro                     17.0.2                        winget
+MPC-BE x64 1.6.6                         MPC-BE.MPC-BE                             1.6.6              1.6.7      winget
+Foxit PDF Editor                         Foxit.PhantomPDF                          12.0.2.12465       12.1.2.15ΓÇª winget
+Python 3.11.3 (64-bit)                   {c6a7d2cb-61ea-4f5e-bc56-95faa938bacf}    3.11.3150.0                   
+osu!                                     Peppy.Osu!                                latest                        winget
+Neovim
