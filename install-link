@@ -1,70 +1,89 @@
 #!/bin/sh
 con=~/.config
-date=$(date +%d-%m-%Y)
-git submodule update --init --recursive
+date=$(date +%d-%m)
+
+function backup {
+    if [[ ! -d $con/BackupOf$date ]]; then
+        mkdir $conf/BackupOf$date > /dev/null
+        echo "Created $conf/BackupOf$date"
+    fi
+    mv $1 $con/BackupOf$date/ > /dev/null
+    echo "Moved $1 into $con/BackupOf$date"
+}
+
+{
+git submodule update --init --recursive > /dev/null & echo "Updating submodules"
+}||{
+    echo "Error updating submodules"
+}
 
 #move files into .config
-if [[ $con/nvim ]]; then 
-  mv $con/nvim $con/nvim.old-$date
-  cp -r nvim $con/
-else
-  cp -r nvim $con/
-fi
-
-# if [[ "~/.zshrc" ]]; then 
-#   mv ~/.zshrc ~/.zshrc.old-$date
-#   cp -r zsh $con/
-#   ln -s $con/zsh/.zshrc ~/.zshrc
-#   source $con/zsh/.zshrc
-# else
-#   cp -r zsh $con/
-#   ln -s $con/zsh/.zshrc ~/.zshrc
-#   source $con/zsh/.zshrc
-# fi
-
-if [[ "$con/fish" ]]; then 
-  mv $con/fish $con/fish.old-$date
-  cp -r fish $con/
-else
-  cp -r fish $con/
-fi
-
-if [[ "$con/gh" ]]; then 
-  mv $con/gh $con/gh.old-$date
-  cp -r gh $con/
-else
-  cp -r gh $con/
-fi
-
-if [[ "$con/powerlevel10k" ]]; then 
-  mv $con/powerlevel10k $con/powerlevel10k.old-$date
-  cp -r powerlevel10k $con/
-else
-  cp -r powerlevel10k $con/
-fi
+{
+    if [[ -d $con/nvim ]]; then 
+        backup "nvim"
+    fi
+    cp -r nvim $con/ > /dev/null
+    echo "Copied nvim"
+} || {
+    echo "Error copying nvim"
+}
 
 
-if [[ "$con/kitty" ]]; then 
-  mv $con/kitty $con/kitty.old-$date
-  cp -r kitty $con/
-else
-  cp -r kitty $con/
-fi
-
-if [[ "$con/starship.toml" ]]; then 
-  mv $con/starship.toml $con/starship.toml.old-$date
-  cp -r starship.toml $con/
-else
-  cp -r starship.toml $con/
-fi
-
-sudo cp -r Caskaydia-Cove /usr/share/fonts/
-sudo cp -r NerdFontsSymbols /usr/share/fonts/
-sudo cp -r JetBrainsMono /usr/share/fonts/
-
-if [[ ! "/usr/share/" ]]; then 
-  sudo cp -r logo-ls-files usr/share/
-  sudo ln -s /usr/share/logo-ls-files/logo-ls /usr/bin/logo-ls
-fi
+{
+    if [[ -d "$conf/qtile" ]]; then
+        backup "qtile"
+    fi
+    cp -r qtile $conf/ > /dev/null
+    echo "Copied qtile"
+} || {
+    echo "Error copying qtile"
+}
 
 
+{
+    if [[ -d "$conf/fish" ]]; then
+        backup "fish"
+    fi
+    cp -r fish $conf/ > /dev/null
+    echo "Copied fish"
+} || {
+    echo "Error copying fish"
+}
+
+
+{
+    if [[ -d "$conf/gh" ]]; then
+        backup "gh"
+    fi
+    cp -r gh $conf/ > /dev/null
+    echo "Copied gh"
+} || {
+    echo "Error copying gh"
+}
+
+{
+    if [[ -d "$conf/kitty" ]]; then
+        backup "kitty"
+    fi
+    cp -r kitty $conf/ > /dev/null
+    echo "Copied kitty"
+} || {
+    echo "Error copying kitty"
+}
+
+{
+    if [[ -d "$conf/starship.toml" ]]; then
+        backup "starship.toml"
+    fi
+    cp -r starship.toml $conf/ > /dev/null
+    echo "Copied starship.toml"
+} || {
+    echo "Error copying starship.toml"
+}
+
+{
+    sudo cp -rf Fonts/* /usr/share/fonts/ > /dev/null
+    echo "Copied fonts to /usr/share/fonts"
+} || {
+    echo "Error copying fonts to /usr/share/fonts"
+}
