@@ -1,28 +1,35 @@
 #!/bin/sh
-con=~/.config
+User_Home=$(eval echo ~${SUDO_USER})
+conf=$User_Home/.config
 date=$(date +%d-%m)
 
-function backup {
-    if [[ ! -d $con/BackupOf$date ]]; then
-        mkdir $conf/BackupOf$date > /dev/null
-        echo "Created $conf/BackupOf$date"
-    fi
-    mv $1 $con/BackupOf$date/ > /dev/null
-    echo "Moved $1 into $con/BackupOf$date"
-}
-
 {
-git submodule update --init --recursive > /dev/null & echo "Updating submodules"
-}||{
+    git submodule update --init --recursive > /dev/null & echo "Updating submodules"
+} || {
     echo "Error updating submodules"
 }
 
+function backup {
+    if [[ ! -d "$conf/BackupOf-$date" ]]; then
+        mkdir $conf/BackupOf-$date > /dev/null
+        echo "Created $conf/BackupOf-$date"
+    fi
+    {
+        mv $conf/$1 "$conf/BackupOf-$date/" > /dev/null
+        echo "Moved $1 to BackupOf-$date"
+    } || {
+	echo "Error moving $1 to BackupOf-$date"
+    }
+}
+
+
 #move files into .config
+
 {
-    if [[ -d $con/nvim ]]; then 
+    if [[ -d $conf/nvim ]]; then 
         backup "nvim"
     fi
-    cp -r nvim $con/ > /dev/null
+    cp -r nvim $conf/ > /dev/null
     echo "Copied nvim"
 } || {
     echo "Error copying nvim"
@@ -30,7 +37,7 @@ git submodule update --init --recursive > /dev/null & echo "Updating submodules"
 
 
 {
-    if [[ -d "$conf/qtile" ]]; then
+    if [[ -d $conf/qtile ]]; then
         backup "qtile"
     fi
     cp -r qtile $conf/ > /dev/null
@@ -41,7 +48,7 @@ git submodule update --init --recursive > /dev/null & echo "Updating submodules"
 
 
 {
-    if [[ -d "$conf/fish" ]]; then
+    if [[ -d $conf/fish ]]; then
         backup "fish"
     fi
     cp -r fish $conf/ > /dev/null
@@ -52,7 +59,7 @@ git submodule update --init --recursive > /dev/null & echo "Updating submodules"
 
 
 {
-    if [[ -d "$conf/gh" ]]; then
+    if [[ -d $conf/gh ]]; then
         backup "gh"
     fi
     cp -r gh $conf/ > /dev/null
@@ -62,7 +69,7 @@ git submodule update --init --recursive > /dev/null & echo "Updating submodules"
 }
 
 {
-    if [[ -d "$conf/kitty" ]]; then
+    if [[ -d $conf/kitty ]]; then
         backup "kitty"
     fi
     cp -r kitty $conf/ > /dev/null
@@ -72,7 +79,7 @@ git submodule update --init --recursive > /dev/null & echo "Updating submodules"
 }
 
 {
-    if [[ -d "$conf/starship.toml" ]]; then
+    if [[ -d $conf/starship.toml ]]; then
         backup "starship.toml"
     fi
     cp -r starship.toml $conf/ > /dev/null
@@ -87,3 +94,4 @@ git submodule update --init --recursive > /dev/null & echo "Updating submodules"
 } || {
     echo "Error copying fonts to /usr/share/fonts"
 }
+
