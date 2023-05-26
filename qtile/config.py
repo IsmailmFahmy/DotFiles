@@ -5,6 +5,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+wallpaper_image = '~/Downloads/wallpaperflare.com_wallpaper.jpg'
 mod = "mod4"
 browser = "firefox"
 terminal = guess_terminal()
@@ -51,7 +52,7 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
@@ -122,6 +123,8 @@ screens = [
             border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             border_color=["000000", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
+        # wallpaper = wallpaper_image,
+        # wallpaper_mode = 'fill',
     ),
 ]
 

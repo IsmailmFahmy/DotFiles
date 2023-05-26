@@ -6,3 +6,7 @@
 	helper = !/usr/bin/gh auth git-credential
 [status]
 	showUntrackedFiles = no
+[sendpack]
+	sideband = false
+[http]
+	postBuffer = 524288000

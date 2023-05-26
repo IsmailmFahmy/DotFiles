@@ -14,7 +14,12 @@ end
 if [ -z "$XDG_CACHE_HOME" ] ; 
     set -gx XDG_CACHE_HOME "$HOME/.cache"
 end
-
+#======================================= Profile ============================================
+if status is-login
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        exec startx -- -keeptty
+    end
+end
 #======================================= ALIASES ============================================
 
 abbr conf 'nvim ~/.config/fish/config.fish'
@@ -30,13 +35,12 @@ alias l.='exa -a | egrep "^\."'
 
 #============================================================================================
 
-
-function meow () 
+function meow 
 echo "              ＿＿"
-echo "　　　　　🌸＞　　フ"
+echo "　　　　　✿＞　　フ"
 echo "　　　　　| 　_　 _ l"
-echo "　 　　　／\`  ミ＿xノ"
-echo "　　 　 /　　　 　 |     Nyā 󰄛"
+echo "　 　　　／`  ミ＿xノ"
+echo "　　 　 /　　　 　 |     Nyā 󰄛 "
 echo "　　　 /　 ヽ　　 ﾉ"
 echo "　 　 │　　|　|　|"
 echo "　／￣|　　 |　|　|"
@@ -44,6 +48,10 @@ echo "　| (￣ヽ＿_ヽ_)__)"
 echo "　＼二つ"
 end
 export meow
+
+function chbg
+    feh --bg-scale $argv[1]
+end
 
 #============================================================================================
 starship init fish | source

@@ -57,6 +57,15 @@ function backup {
     echo "Error copying fish"
 }
 
+{
+    if [[ -d $User_Home/.xinitrc ]]; then
+        mv $User_Home/.xinitrc $conf/BackupOf-$date/ > /dev/null
+    fi
+    cp -r .xinitrc $User_Home/ > /dev/null
+    echo "Copied .xinitrc"
+} || {
+    echo "Error copying .xinitrc"
+}
 
 {
     if [[ -d $conf/gh ]]; then
