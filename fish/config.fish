@@ -1,6 +1,7 @@
 set fish_greeting
 export EDITOR="nvim"
 export VISUAL="nvim"
+fish_add_path -a /home/Fahmy/.cargo/bin
 set -gx GIT_CONFIG_GLOBAL ~/.config/gh/.gitconfig
 
 
@@ -51,6 +52,9 @@ export meow
 
 function chbg
     feh --bg-scale $argv[1]
+end
+function killtty
+    systemctl stop getty@tty$argv[1].service
 end
 
 #============================================================================================

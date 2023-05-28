@@ -1,21 +1,24 @@
 # Ismail Fahmy's Qtile config
 
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+screenshot = "maim -s | xclip -selection clipboard -t image/png"
 wallpaper_image = '~/Downloads/wallpaperflare.com_wallpaper.jpg'
 mod = "mod4"
 browser = "firefox"
 terminal = guess_terminal()
-
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
 
     # Open Browser
     Key([mod], "b", lazy.spawn(browser), desc="Open set browser"),
+    Key([mod, "shift"], "s", lazy.spawn(screenshot) , desc="Take a screenshot"),
+
+
 
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -37,6 +40,10 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "left", lazy.layout.grow_left(), desc="Grow window to the left"),
+    Key([mod, "control"], "right", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([mod, "control"], "down", lazy.layout.grow_down(), desc="Grow window down"),
+    Key([mod, "control"], "up", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
     # Toggle between split and unsplit sides of stack.
@@ -83,9 +90,16 @@ for i in groups:
             #     desc="move focused window to group {}".format(i.name)),
         ]
     )
+layout_theme = {"border_width": 2,
+                "margin": 8,
+                "border_focus": "e1acff",
+                "border_normal": "1D2330",
+                "font" : "JetBrainsMonoNerdFont"
+                }
+
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.Columns(**layout_theme),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -100,33 +114,70 @@ layouts = [
     # layout.Zoomy(),
 ]
 
+
+
+colors = [["#282c34", "#282c34"],
+          ["#1c1f24", "#1c1f24"],
+          ["#dfdfdf", "#dfdfdf"],
+          ["#ff6c6b", "#ff6c6b"],
+          ["#98be65", "#98be65"],
+          ["#da8548", "#da8548"],
+          ["#51afef", "#51afef"],
+          ["#c678dd", "#c678dd"],
+          ["#46d9ff", "#46d9ff"],
+          ["#a9a1e1", "#a9a1e1"]]
+
+
+
+
+
+
+# =================================== BAR ===================================  
 widget_defaults = dict(
-    font="Caskaydia Cove Nerd Font",
-    fontsize=12,
-    padding=3,
+    font="Caskaydia Cove Nerd Font Bold",
+    # font = "JetBrainsMonoNerdFont Bold",
+    fontsize=14,
+    padding=8,
+
 )
+
 extension_defaults = widget_defaults.copy()
 
 screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                # widget.TextBox("default config", name="default"),
-                widget.Systray(),
-                widget.Clock(format="󰃭 %d/%m/%Y   %H:%M"),
-            ],
-            24,
-            border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            border_color=["000000", "000000", "ff00ff", "000000"]  # Borders are magenta
-        ),
-        # wallpaper = wallpaper_image,
-        # wallpaper_mode = 'fill',
-    ),
-]
+        Screen(
+            top=bar.Bar(
+                [
+                    widget.GroupBox(),
+                    widget.Prompt(),
+                    widget.WindowName(
+                        format="{name}",
+                        max_chars=90,
+                        ),
+                    widget.Volume(
+                        fmt="\uf026 {}",
+                        mouse_callbacks={
+                            "Button3": lambda: qtile.cmd_spawn("pavucontrol")
+                            }
+                        ),
+                    widget.Systray(
+                        icon_size=22,
+                        margin=8,
+                        padding=8
+                        ),
+                    widget.Clock(format="󰃭 %d/%m/%Y   %H:%M"),
+
+                    # widget.CurrentLayout(),
+                    # widget.WindowName(),
+                    # widget.TextBox("default config", name="default"),
+                    ],
+                24,
+                border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+                border_color=["000000", "000000", "ff00ff", "000000"]  # Borders are magenta
+                ),
+            # wallpaper = wallpaper_image,
+            # wallpaper_mode = 'fill',
+            ),
+        ]
 
 # Drag floating layouts.
 mouse = [
