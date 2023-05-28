@@ -98,6 +98,16 @@ function backup {
 }
 
 {
+    if [[ -d $conf/picom.conf ]]; then 
+        backup "picom.conf"
+    fi
+    cp -r picom.conf $conf/ > /dev/null
+    echo "Copied picom.conf"
+} || {
+    echo "Error copying picom.conf"
+}
+
+{
     sudo cp -rf Fonts/* /usr/share/fonts/ > /dev/null
     echo "Copied fonts to /usr/share/fonts"
 } || {
