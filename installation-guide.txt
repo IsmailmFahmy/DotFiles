@@ -67,11 +67,15 @@ umount -r /mnt
 git clone https://aur.archlinux.org/yay.git
 makepkg PKGBUILD -si
 
-sudo pacman -S cargo rustup xclip maim npm firefox neofetch python3 python-pip 
-yay -S spotify discord ranger fzf 
-pip install Pillow
+
 
 # login to github
 gh auth login
 gh repo clone ismailmfahmy/DotFiles
 # install DotFiles
+
+sudo pacman -S $(cat pacman.txt)
+
+sudo pacman -S cargo rustup xclip maim npm firefox neofetch python3 python-pip 
+yay -S spotify discord ranger fzf 
+pip install Pillow

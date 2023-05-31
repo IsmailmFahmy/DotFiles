@@ -10,7 +10,7 @@ fzf
 github-cli
 grub
 kitty
-linux
+linux-firmware
 maim
 mtools
 ncmpcpp
@@ -21,7 +21,6 @@ nitrogen
 npm
 ntp
 os-prober
-p7zip
 pavucontrol
 picom
 pulsemixer
@@ -32,6 +31,7 @@ rofi
 rustup
 starship
 unclutter
+p7zip
 unzip
 vim
 xclip
