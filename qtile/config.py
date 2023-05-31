@@ -17,7 +17,7 @@ keys = [
 
     # Open Browser
     Key([mod], "b", lazy.spawn(browser), desc="Open set browser"),
-    Key([mod, "shift"], "s",lazy.spawn(screenshot)  ),
+    Key([mod, "shift"], "s",lazy.spawn(f"kitty ls"  )),
 
 
 
@@ -109,10 +109,31 @@ keys.extend([
     Key([mod], "m", lazy.group['scratchpad'].dropdown_toggle('mus')),
 ])
 
+colors = [["#91A2AA", "#91A2AA"], # 0
+          ["#E86864", "#E86864"], # 1
+          ["#282c34", "#282c34"], # 2
+          ["#1c1f24", "#1c1f24"], # 3
+          ["#dfdfdf", "#dfdfdf"], # 4
+          ["#ff6c6b", "#ff6c6b"], # 5
+          ["#98be65", "#98be65"], # 6
+          ["#da8548", "#da8548"], # 7
+          ["#51afef", "#51afef"], # 8
+          ["#c678dd", "#c678dd"], # 9
+          ["#46d9ff", "#46d9ff"], # 10
+          ["#a9a1e1", "#a9a1e1"], # 11
+          ["#282a36", "#282a36"], # 12
+          ["#434758", "#434758"], # 13
+          ["#ffffff", "#ffffff"], # 14
+          ["#ff5555", "#ff5555"], # 15
+          ["#8d62a9", "#8d62a9"], # 16
+          ["#668bd7", "#668bd7"], # 17
+          ["#e1acff", "#e1acff"]] # 18
+
+
 layout_theme = {"border_width": 2,
                 "margin": 8,
-                "border_focus": "e1acff",
-                "border_normal": "1D2330",
+                "border_focus": colors[6],
+                "border_normal": "#1D2330",
                 "font" : "JetBrainsMonoNerdFont"
                 }
 
@@ -135,16 +156,6 @@ layouts = [
 
 
 
-colors = [["#282c34", "#282c34"],
-          ["#1c1f24", "#1c1f24"],
-          ["#dfdfdf", "#dfdfdf"],
-          ["#ff6c6b", "#ff6c6b"],
-          ["#98be65", "#98be65"],
-          ["#da8548", "#da8548"],
-          ["#51afef", "#51afef"],
-          ["#c678dd", "#c678dd"],
-          ["#46d9ff", "#46d9ff"],
-          ["#a9a1e1", "#a9a1e1"]]
 
 
 
@@ -157,6 +168,7 @@ widget_defaults = dict(
     # font = "JetBrainsMonoNerdFont Bold",
     fontsize=14,
     padding=8,
+    background=colors[13],
 
 )
 
@@ -166,7 +178,25 @@ screens = [
         Screen(
             top=bar.Bar(
                 [
-                    widget.GroupBox(),
+                widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        ),
+               widget.GroupBox(font="Ubuntu Bold",
+                        fontsize = 10,
+                        margin_y = 1,
+                        margin_x = 0,
+                        padding_y = 5,
+                        padding_x = 5,
+                        borderwidth = 3,
+                        highlight_method = "line",
+                        this_current_screen_border=colors[1],
+                        ),
+                widget.Sep(
+                        linewidth = 0,
+                        padding = 6,
+                        ),
+
                     widget.Prompt(),
                     widget.WindowName(
                         format="{name}",
@@ -191,7 +221,7 @@ screens = [
                     ],
                 24,
                 border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-                border_color=["000000", "000000", "ff00ff", "000000"]  # Borders are magenta
+                border_color=["#000000", "#000000", "#E86864", "#000000"]  # Borders are magenta
                 ),
             # wallpaper = wallpaper_image,
             # wallpaper_mode = 'fill',
