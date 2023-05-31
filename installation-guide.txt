@@ -1,0 +1,77 @@
+lsblk // fdisk -l                # list partitions
+fdisk // cfdisk                  # to partition the drives
+# make a boot directory 350 MBs // change type to EFI or Boot
+# make a root partitions 20-30 GBs
+# make a home partitions using the rest of the space
+
+mkfs.ext4 *partitions*
+
+mkdir /mnt/boot
+mkdir /mnt/home
+mount *root partition* /mnt
+mount *boot partition* /mnt/boot
+mount *home partition* /mnt/home
+
+genfstab -U /mnt >> /mnt/etc/fstab
+
+
+arch-chroot /mnt
+
+ln -sf /usr/share/zoneinfo/Egypt /etc/localtime
+nvim /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" >> LANG=en_US.UTF-8 
+echo "Arch" >> /etc/hostname
+
+pacstrap -K /mnt base base-devel linux linux-firmware vim neovim grub
+
+
+sudo pacman -S xf86-video-intel
+sudo pacman -S xf86-video-amdgpu
+sudo pacman -S xf86-video-vesa         # generic drivers
+
+sudo pacman -S kitty efibootmgr networkmanager dosfstools mtools os-prober exa unzip winrar zip p7zip starship fish git github-cli xorg xorg-server xorg-xinit xorg-apps picom nitrogen unclutter pulseaudio pulsemixer alsa-utils
+
+systemctl enable NetworkManager
+passwd
+useradd -mG wheel Fahmy
+passwd Fahmy
+EDITOR="nvim"
+visudo
+
+
+# FOR UEFI
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+
+# FOR LEGACY BIOS
+grub-install --target=x86_64-efi --boot-directory=/boot --bootloader-id=GRUB
+
+# mount Windows boot directory if dual-booting
+
+grub-mkconfig -o /boot/grub/grub.cfg
+nvim /etc/default/grub
+# change the following
+{
+GRUB_SAVEDEFAULT=true
+GRUB_DEFAULT=saved
+GRUB_DISABLE_OS_PROBER=false
+# GRUB_THEME="/boot/grub/themes/Sekiro/theme.txt"
+}
+grub-mkconfig -o /boot/grub/grub.cfg
+
+exit
+umount -r /mnt
+
+
+# install the AUR
+git clone https://aur.archlinux.org/yay.git
+makepkg PKGBUILD -si
+
+sudo pacman -S cargo rustup xclip maim npm firefox neofetch python3 python-pip 
+yay -S spotify discord ranger fzf 
+pip install Pillow
+
+# login to github
+gh auth login
+gh repo clone ismailmfahmy/DotFiles
+# install DotFiles

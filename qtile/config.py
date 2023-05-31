@@ -1,10 +1,11 @@
 # Ismail Fahmy's Qtile config
 
 from libqtile import bar, layout, widget, qtile
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
-from libqtile.lazy import lazy
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
+from libqtile.lazy import lazy, LazyCall
 from libqtile.utils import guess_terminal
 
+powermenu = "rofi -show power-menu -modi power-menu:rofi-power-menu"
 screenshot = "maim -s | xclip -selection clipboard -t image/png"
 wallpaper_image = '~/Downloads/wallpaperflare.com_wallpaper.jpg'
 mod = "mod4"
@@ -16,7 +17,8 @@ keys = [
 
     # Open Browser
     Key([mod], "b", lazy.spawn(browser), desc="Open set browser"),
-    Key([mod, "shift"], "s", lazy.spawn(screenshot) , desc="Take a screenshot"),
+    Key([mod, "shift"], "s",lazy.spawn(screenshot)  ),
+
 
 
 
@@ -62,11 +64,14 @@ keys = [
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn("rofi -show run")),
+    Key([mod, "shift"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key(["control", "mod1"], "delete", lazy.spawn(powermenu)),
+
 ]
 
-groups = [Group(i) for i in "123456789"]
 
+groups = [Group(i) for i in "123456789"]
 for i in groups:
     keys.extend(
         [
@@ -84,12 +89,26 @@ for i in groups:
                 lazy.window.togroup(i.name, switch_group=True),
                 desc="Switch to & move focused window to group {}".format(i.name),
             ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
         ]
     )
+
+group_labels = ["", "", "", "", "﨣", "", "", ""]
+
+groups.append(ScratchPad("scratchpad", [
+    DropDown("term", "kitty --class=scratch", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95),
+    DropDown("ranger", "kitty --class=ranger -e ranger", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95),
+    DropDown("volume", "kitty --class=volume -e pulsemixer", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95),
+    DropDown("mus", "kitty --class=mus -e ncmpcpp", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95),
+
+]))
+
+keys.extend([
+    Key([mod], "t", lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([mod], "e", lazy.group['scratchpad'].dropdown_toggle('ranger')),
+    Key([mod], "v", lazy.group['scratchpad'].dropdown_toggle('volume')),
+    Key([mod], "m", lazy.group['scratchpad'].dropdown_toggle('mus')),
+])
+
 layout_theme = {"border_width": 2,
                 "margin": 8,
                 "border_focus": "e1acff",
