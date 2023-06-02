@@ -6,24 +6,38 @@ fdisk // cfdisk                  # to partition the drives
 
 mkfs.ext4 *partitions*
 
+mkfs.fat -F32 *EFI BOOT PARTITION*
+
 mkdir /mnt/boot
 mkdir /mnt/home
 mount *root partition* /mnt
 mount *boot partition* /mnt/boot
 mount *home partition* /mnt/home
 
+# FOR WIFI
+iwctl 
+    {
+    device list
+    station *device name* scan
+    station *device name* get-networks
+    station *device name* connect *network name*
+    exit
+    }
+
+mkdir /mnt/etc
 genfstab -U /mnt >> /mnt/etc/fstab
 
+pacstrap -K /mnt base base-devel linux linux-firmware vim neovim grub
 
 arch-chroot /mnt
+
 
 ln -sf /usr/share/zoneinfo/Egypt /etc/localtime
 nvim /etc/locale.gen
 locale-gen
-echo "LANG=en_US.UTF-8" >> LANG=en_US.UTF-8 
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 echo "Arch" >> /etc/hostname
 
-pacstrap -K /mnt base base-devel linux linux-firmware vim neovim grub
 
 
 sudo pacman -S xf86-video-intel
@@ -31,6 +45,8 @@ sudo pacman -S xf86-video-amdgpu
 sudo pacman -S xf86-video-vesa         # generic drivers
 
 sudo pacman -S kitty efibootmgr networkmanager dosfstools mtools os-prober exa unzip winrar zip p7zip starship fish git github-cli xorg xorg-server xorg-xinit xorg-apps picom nitrogen unclutter pulseaudio pulsemixer alsa-utils
+
+sudo pacman -S dialog netctl iw
 
 systemctl enable NetworkManager
 passwd
@@ -79,3 +95,4 @@ sudo pacman -S $(cat pacman.txt)
 sudo pacman -S cargo rustup xclip maim npm firefox neofetch python3 python-pip 
 yay -S spotify discord ranger fzf 
 pip install Pillow
+
