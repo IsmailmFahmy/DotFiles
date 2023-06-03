@@ -214,7 +214,7 @@ screens = [
                         format="{name}",
                         max_chars=90,
                         ),
-                    widget.Battery(charge_char="󰂄", discharge_char="󰂍", empty_char="󱃍", format="{percent:2.0% {char}}"),
+                    widget.Battery(charge_char="󰂄", discharge_char="󰂍", empty_char="󱃍", format="{percent:2.0%} {char}"),
                     widget.Wlan(disconnected_message="󰖪",format='{essid} {percent:2.0%}'),
                     widget.ThermalZone(),
                     widget.Volume(

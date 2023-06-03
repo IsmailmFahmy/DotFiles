@@ -93,6 +93,6 @@ gh repo clone ismailmfahmy/DotFiles
 sudo pacman -S $(cat pacman.txt)
 
 sudo pacman -S cargo rustup xclip maim npm firefox neofetch python3 python-pip 
-yay -S spotify discord ranger fzf 
-pip install Pillow
+yay -S spotify discord ranger fzf wireless_tools
+pip install Pillow iwlib
 
