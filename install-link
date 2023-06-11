@@ -60,6 +60,7 @@ function backup {
 
 {
     if [[ -d $User_Home/.xinitrc ]]; then
+        mkdir $conf/BackupOf-$date/ > /dev/null
         mv $User_Home/.xinitrc $conf/BackupOf-$date/ > /dev/null
     fi
     ln -rs .xinitrc $User_Home/ > /dev/null
