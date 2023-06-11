@@ -7,7 +7,8 @@ date=$(date +%d-%m)
     git submodule update --init --recursive > /dev/null & echo "Updating submodules"
 } || {
     echo "Error updating submodules"
-}
+
+} && {  # sync repos first
 
 function backup {
     if [[ ! -d "$conf/BackupOf-$date" ]]; then
@@ -29,7 +30,7 @@ function backup {
     if [[ -d $conf/nvim ]]; then 
         backup "nvim"
     fi
-    cp -r nvim $conf/ > /dev/null
+    ln -rs nvim $conf/ > /dev/null
     echo "Copied nvim"
 } || {
     echo "Error copying nvim"
@@ -40,7 +41,7 @@ function backup {
     if [[ -d $conf/qtile ]]; then
         backup "qtile"
     fi
-    cp -r qtile $conf/ > /dev/null
+    ln -rs qtile $conf/ > /dev/null
     echo "Copied qtile"
 } || {
     echo "Error copying qtile"
@@ -51,7 +52,7 @@ function backup {
     if [[ -d $conf/fish ]]; then
         backup "fish"
     fi
-    cp -r fish $conf/ > /dev/null
+    ln -rs fish $conf/ > /dev/null
     echo "Copied fish"
 } || {
     echo "Error copying fish"
@@ -61,7 +62,7 @@ function backup {
     if [[ -d $User_Home/.xinitrc ]]; then
         mv $User_Home/.xinitrc $conf/BackupOf-$date/ > /dev/null
     fi
-    cp -r .xinitrc $User_Home/ > /dev/null
+    ln -rs .xinitrc $User_Home/ > /dev/null
     echo "Copied .xinitrc"
 } || {
     echo "Error copying .xinitrc"
@@ -71,7 +72,7 @@ function backup {
     if [[ -d $conf/gh ]]; then
         backup "gh"
     fi
-    cp -r gh $conf/ > /dev/null
+    ln -rs gh $conf/ > /dev/null
     echo "Copied gh"
 } || {
     echo "Error copying gh"
@@ -81,7 +82,7 @@ function backup {
     if [[ -d $conf/kitty ]]; then
         backup "kitty"
     fi
-    cp -r kitty $conf/ > /dev/null
+    ln -rs kitty $conf/ > /dev/null
     echo "Copied kitty"
 } || {
     echo "Error copying kitty"
@@ -91,7 +92,7 @@ function backup {
     if [[ -d $conf/starship.toml ]]; then
         backup "starship.toml"
     fi
-    cp -r starship.toml $conf/ > /dev/null
+    ln -rs starship.toml $conf/ > /dev/null
     echo "Copied starship.toml"
 } || {
     echo "Error copying starship.toml"
@@ -101,7 +102,7 @@ function backup {
     if [[ -d $conf/picom.conf ]]; then 
         backup "picom.conf"
     fi
-    cp -r picom.conf $conf/ > /dev/null
+    ln -rs picom.conf $conf/ > /dev/null
     echo "Copied picom.conf"
 } || {
     echo "Error copying picom.conf"
@@ -114,3 +115,4 @@ function backup {
     echo "Error copying fonts to /usr/share/fonts"
 }
 
+}

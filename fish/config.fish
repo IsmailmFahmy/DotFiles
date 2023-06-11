@@ -37,13 +37,12 @@ alias l.='exa -a | egrep "^\."'
 #============================================================================================
 
 function meow 
-
-echo "              __"
+echo "              ＿＿"
 echo "　　　　　✿＞　　フ"
 echo "　　　　　| 　_　 _ l"
 echo "　 　　　／`  ミ＿xノ"
-echo "　　 　 /　　      |     Nyā 󰄛 "
-echo "　　　 /　         l"
+echo "　　 　 /　　　 　 |     Nyā 󰄛 "
+echo "　　　 /　 ヽ　　 ﾉ"
 echo "　 　 │　　|　|　|"
 echo "　／￣|　　 |　|　|"
 echo "　| (￣ヽ＿_ヽ_)__)"
@@ -52,15 +51,15 @@ end
 export meow
 
 function chbg
-    nitrogen --set-zoom-fill $argv[1]
+    feh --bg-scale $argv[1]
 end
-
 function killtty
     systemctl stop getty@tty$argv[1].service
 end
+
 function view
-    for image in $argv
-        kitty +kitten icat $image
+    for i in $argv
+        kitty +kitten icat $i
     end
 end
 
