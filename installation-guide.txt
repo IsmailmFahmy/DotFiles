@@ -35,8 +35,8 @@ arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/Egypt /etc/localtime
 nvim /etc/locale.gen
 locale-gen
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-echo "Arch" >> /etc/hostname
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "Arch" > /etc/hostname
 
 
 

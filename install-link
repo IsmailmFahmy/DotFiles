@@ -2,24 +2,27 @@
 User_Home=$(eval echo ~${SUDO_USER})
 conf=$User_Home/.config
 date=$(date +%d-%m)
-
 {
-    git submodule update --init --recursive > /dev/null & echo "Updating submodules"
+{
+    git submodule update --init --recursive >> /dev/null 2>&1 && echo "Updating submodules"
 } || {
     echo "Error updating submodules"
+}
 
 } && {  # sync repos first
 
 function backup {
     if [[ ! -d "$conf/BackupOf-$date" ]]; then
-        mkdir $conf/BackupOf-$date > /dev/null
+        mkdir $conf/BackupOf-$date >> /dev/null 2>&1
         echo "Created $conf/BackupOf-$date"
     fi
     {
-        mv $conf/$1 "$conf/BackupOf-$date/" > /dev/null
+        {
+        mv $conf/$1 "$conf/BackupOf-$date/" >> /dev/null 2>&1 &&
         echo "Moved $1 to BackupOf-$date"
+        }
     } || {
-	echo "Error moving $1 to BackupOf-$date"
+        echo "Error moving $1 to BackupOf-$date"
     }
 }
 
@@ -30,7 +33,7 @@ function backup {
     if [[ -d $conf/nvim ]]; then 
         backup "nvim"
     fi
-    ln -rs nvim $conf/ > /dev/null
+    ln -rs nvim $conf/ >> /dev/nul 2>&1 &&
     echo "Copied nvim"
 } || {
     echo "Error copying nvim"
@@ -41,7 +44,7 @@ function backup {
     if [[ -d $conf/qtile ]]; then
         backup "qtile"
     fi
-    ln -rs qtile $conf/ > /dev/null
+    ln -rs qtile $conf/ >> /dev/null 2>&1 &&
     echo "Copied qtile"
 } || {
     echo "Error copying qtile"
@@ -52,7 +55,7 @@ function backup {
     if [[ -d $conf/fish ]]; then
         backup "fish"
     fi
-    ln -rs fish $conf/ > /dev/null
+    ln -rs fish $conf/ >> /dev/null 2>&1 &&
     echo "Copied fish"
 } || {
     echo "Error copying fish"
@@ -60,10 +63,10 @@ function backup {
 
 {
     if [[ -d $User_Home/.xinitrc ]]; then
-        mkdir $conf/BackupOf-$date/ > /dev/null
-        mv $User_Home/.xinitrc $conf/BackupOf-$date/ > /dev/null
+        mkdir $conf/BackupOf-$date/ >> /dev/null 2>&1
+        mv $User_Home/.xinitrc $conf/BackupOf-$date/  >> /dev/null 2>&1
     fi
-    ln -rs .xinitrc $User_Home/ > /dev/null
+    ln -rs .xinitrc $User_Home/  >> /dev/null 2>&1 &&
     echo "Copied .xinitrc"
 } || {
     echo "Error copying .xinitrc"
@@ -73,7 +76,7 @@ function backup {
     if [[ -d $conf/gh ]]; then
         backup "gh"
     fi
-    ln -rs gh $conf/ > /dev/null
+    ln -rs gh $conf/  >> /dev/null 2>&1 &&
     echo "Copied gh"
 } || {
     echo "Error copying gh"
@@ -83,7 +86,7 @@ function backup {
     if [[ -d $conf/kitty ]]; then
         backup "kitty"
     fi
-    ln -rs kitty $conf/ > /dev/null
+    ln -rs kitty $conf/  >> /dev/null 2>&1 &&
     echo "Copied kitty"
 } || {
     echo "Error copying kitty"
@@ -93,7 +96,7 @@ function backup {
     if [[ -d $conf/starship.toml ]]; then
         backup "starship.toml"
     fi
-    ln -rs starship.toml $conf/ > /dev/null
+    ln -rs starship.toml $conf/  >> /dev/null 2>&1 &&
     echo "Copied starship.toml"
 } || {
     echo "Error copying starship.toml"
@@ -103,17 +106,20 @@ function backup {
     if [[ -d $conf/picom.conf ]]; then 
         backup "picom.conf"
     fi
-    ln -rs picom.conf $conf/ > /dev/null
+    ln -rs picom.conf $conf/  >> /dev/null 2>&1 &&
     echo "Copied picom.conf"
 } || {
     echo "Error copying picom.conf"
 }
 
 {
-    sudo cp -rf Fonts/* /usr/share/fonts/ > /dev/null
+    sudo cp -rf Fonts/* /usr/share/fonts/  >> /dev/null 2>&1 &&
     echo "Copied fonts to /usr/share/fonts"
 } || {
     echo "Error copying fonts to /usr/share/fonts"
 }
+
+sudo pacman -Syu --noconfirm 
+sudo pacman -S --needed --noconfirm - < pacman.txt
 
 }
