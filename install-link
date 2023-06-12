@@ -88,8 +88,8 @@ function backup {
     if [[ -e $conf/gh ]]; then
         backup "gh"
     fi
-    ln -rs gh $conf/  >> /dev/null 2>&1 &&
-    echo -e "Created link for ${File}gh${Color_Off}\n"
+    cp -r gh $conf/  >> /dev/null 2>&1 &&
+    echo -e "Copied ${File}gh${Color_Off}\n"
 } || {
     echo -e "${Error}Error copying ${File}gh${Color_Off}\n"
 }
