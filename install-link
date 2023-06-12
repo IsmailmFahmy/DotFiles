@@ -1,125 +1,162 @@
 #!/bin/sh
-User_Home=$(eval echo ~${SUDO_USER})
+User_Home=$(eval echo -e ~${SUDO_USER})
 conf=$User_Home/.config
 date=$(date +%d-%m)
+
+# Reset
+Color_Off='\033[0m'       # Text Reset
+
+# Regular Colors
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+Error='\033[0;31m'
+Success='\033[0;32m'
+File='\033[0;34m'
+
 {
 {
-    git submodule update --init --recursive >> /dev/null 2>&1 && echo "Updating submodules"
+    git submodule update --init --recursive && echo -e "${Success}Updating submodules${Color_Off}\n"
 } || {
-    echo "Error updating submodules"
+    echo -e "${Error}Error updating submodules\n"
 }
 
 } && {  # sync repos first
 
 function backup {
-    if [[ ! -d "$conf/BackupOf-$date" ]]; then
+
+    if [[ ! -e "$conf/BackupOf-$date" ]]; then
         mkdir $conf/BackupOf-$date >> /dev/null 2>&1
-        echo "Created $conf/BackupOf-$date"
+        echo -e "${Success}Created $conf/BackupOf-$date${Color_Off}\n"
     fi
-    {
+
+    
+    if [[ -e $conf/BackupOf-$date/$1 ]] ||[[ -L $conf/BackupOf-$date/$1 ]] ; then
+        echo -e "${File}$1 ${Error}is already backed up"
+    else
         {
-        mv $conf/$1 "$conf/BackupOf-$date/" >> /dev/null 2>&1 &&
-        echo "Moved $1 to BackupOf-$date"
+            mv $conf/$1 "$conf/BackupOf-$date/" >> /dev/null 2>&1 &&
+            echo -e "Moved ${File}$1 ${Color_Off}to BackupOf-$date"
+        } || {
+            echo -e "${Error}Error moving ${File}$1 ${Error}to BackupOf-$date"
         }
-    } || {
-        echo "Error moving $1 to BackupOf-$date"
-    }
+    fi
 }
 
 
 #move files into .config
 
 {
-    if [[ -d $conf/nvim ]]; then 
+    if [[ -e $conf/nvim ]]; then 
         backup "nvim"
     fi
-    ln -rs nvim $conf/ >> /dev/nul 2>&1 &&
-    echo "Copied nvim"
+    ln -rs nvim $conf/ >> /dev/null 2>&1 &&
+    echo -e "Created link for ${File}nvim${Color_Off}\n"
 } || {
-    echo "Error copying nvim"
+    echo -e "${Error}Error copying ${File}nvim${Color_Off}\n"
 }
 
 
 {
-    if [[ -d $conf/qtile ]]; then
+    if [[ -e $conf/qtile ]]; then
         backup "qtile"
     fi
     ln -rs qtile $conf/ >> /dev/null 2>&1 &&
-    echo "Copied qtile"
+    echo -e "Created link for ${File}qtile${Color_Off}\n"
 } || {
-    echo "Error copying qtile"
+    echo -e "${Error}Error copying ${File}qtile${Color_Off}\n"
 }
 
 
 {
-    if [[ -d $conf/fish ]]; then
+    if [[ -e $conf/fish ]]; then
         backup "fish"
     fi
     ln -rs fish $conf/ >> /dev/null 2>&1 &&
-    echo "Copied fish"
+    echo -e "Created link for ${File}fish${Color_Off}\n"
 } || {
-    echo "Error copying fish"
+    echo -e "${Error}Error copying ${File}fish${Color_Off}\n"
 }
 
-{
-    if [[ -d $User_Home/.xinitrc ]]; then
-        mkdir $conf/BackupOf-$date/ >> /dev/null 2>&1
-        mv $User_Home/.xinitrc $conf/BackupOf-$date/  >> /dev/null 2>&1
-    fi
-    ln -rs .xinitrc $User_Home/  >> /dev/null 2>&1 &&
-    echo "Copied .xinitrc"
-} || {
-    echo "Error copying .xinitrc"
-}
 
 {
-    if [[ -d $conf/gh ]]; then
+    if [[ -e $conf/gh ]]; then
         backup "gh"
     fi
     ln -rs gh $conf/  >> /dev/null 2>&1 &&
-    echo "Copied gh"
+    echo -e "Created link for ${File}gh${Color_Off}\n"
 } || {
-    echo "Error copying gh"
+    echo -e "${Error}Error copying ${File}gh${Color_Off}\n"
 }
 
 {
-    if [[ -d $conf/kitty ]]; then
+    if [[ -e $conf/kitty ]]; then
         backup "kitty"
     fi
     ln -rs kitty $conf/  >> /dev/null 2>&1 &&
-    echo "Copied kitty"
+    echo -e "Created link for ${File}kitty${Color_Off}\n"
 } || {
-    echo "Error copying kitty"
+    echo -e "${Error}Error copying ${File}kitty${Color_Off}\n"
 }
 
 {
-    if [[ -d $conf/starship.toml ]]; then
+    if [[ -e $conf/lf ]]; then
+        backup "lf"
+    fi
+    ln -rs lf $conf/  >> /dev/null 2>&1 &&
+    echo -e "Created link for ${File}lf${Color_Off}"
+} || {
+    echo -e "${Error}Error copying ${File}lf${Color_Off}\n"
+}
+
+{
+    if [[ -e $conf/starship.toml ]]; then
         backup "starship.toml"
     fi
     ln -rs starship.toml $conf/  >> /dev/null 2>&1 &&
-    echo "Copied starship.toml"
+    echo -e "Created link for ${File}starship.toml${Color_Off}\n"
 } || {
-    echo "Error copying starship.toml"
+    echo -e "${Error}Error copying ${File}starship.toml${Color_Off}\n"
 }
 
 {
-    if [[ -d $conf/picom.conf ]]; then 
+    if [[ -e $User_Home/.xinitrc ]]; then
+        mkdir $conf/BackupOf-$date/ >> /dev/null 2>&1
+        mv $User_Home/.xinitrc $conf/BackupOf-$date/  >> /dev/null 2>&1
+    fi &&
+    ln -rs .xinitrc $User_Home/  >> /dev/null 2>&1 &&
+    echo -e "Created link for ${File}.xinitrc${Color_Off}\n"
+} || {
+    echo -e "${Error}Error copying ${File}.xinitrc${Color_Off}\n"
+}
+
+{
+    if [[ -e $conf/picom.conf ]]; then 
         backup "picom.conf"
     fi
     ln -rs picom.conf $conf/  >> /dev/null 2>&1 &&
-    echo "Copied picom.conf"
+    echo -e "Created link for ${File}picom.conf${Color_Off}\n"
 } || {
-    echo "Error copying picom.conf"
+    echo -e "${Error}Error copying ${File}picom.conf${Color_Off}\n"
 }
 
 {
     sudo cp -rf Fonts/* /usr/share/fonts/  >> /dev/null 2>&1 &&
-    echo "Copied fonts to /usr/share/fonts"
+    echo -e "Copied ${File}fonts ${Color_Off}to /usr/share/fonts\n"
 } || {
-    echo "Error copying fonts to /usr/share/fonts"
+    echo -e "${Error}Error copying ${File}Fonts ${Error}to /usr/share/fonts${Green}\n"
 }
 
-sudo pacman -Syu --noconfirm 
-sudo pacman -S --needed --noconfirm - < pacman.txt
+read -n1 -rep 'Would you like to download the required packages? (y,N)' CFG
+if [[ $CFG == "Y" || $CFG == "y" ]]; then
+    sudo pacman -Syu --noconfirm 
+    sudo pacman -S --needed --noconfirm - < pacman.txt
+    pip install Pillow iwlib
+fi
 
 }
