@@ -83,6 +83,15 @@ function backup {
     echo -e "${Error}Error copying ${File}fish${Color_Off}\n"
 }
 
+{
+    if [[ -e $conf/rofi ]]; then
+        backup "rofi"
+    fi
+    ln -rs rofi $conf/ >> /dev/null 2>&1 &&
+    echo -e "Created link for ${File}rofi${Color_Off}\n"
+} || {
+    echo -e "${Error}Error copying ${File}rofi${Color_Off}\n"
+}
 
 {
     if [[ -e $conf/gh ]]; then

@@ -6,10 +6,11 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 powermenu = "rofi -show power-menu -modi power-menu:rofi-power-menu"
-screenshot = "maim -s | xclip -selection clipboard -t image/png"
+screenshot = "flameshot gui -s -c"
 wallpaper_image = '~/Downloads/wallpaperflare.com_wallpaper.jpg'
 mod = "mod4"
 browser = "firefox"
+whatsapp = 'firefox --new-window "https://web.whatsapp.com/"'
 terminal = guess_terminal()
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -17,7 +18,10 @@ keys = [
 
     # Open Browser
     Key([mod], "b", lazy.spawn(browser), desc="Open set browser"),
-    Key([mod, "shift"], "s",lazy.spawn(f"kitty ls"  )),
+    # Key([mod, "shift"], "s",lazy.spawn("coreshot -s")),
+    Key([mod, "shift"], "s",lazy.spawn(screenshot)),
+    Key([mod, "shift"], "w",lazy.spawn(whatsapp)),
+
 
 
 
@@ -98,11 +102,11 @@ for i in groups:
 group_labels = ["", "", "", "", "﨣", "", "", ""]
 
 groups.append(ScratchPad("scratchpad", [
-    DropDown("term", "kitty --class=scratch", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95),
-    DropDown("ranger", "kitty --class=ranger -e ranger", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95),
-    DropDown("volume", "kitty --class=volume -e pulsemixer", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95),
-    DropDown("mus", "kitty --class=mus -e ncmpcpp", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95),
-    # DropDown("htop", "kitty htop", width=0.7, height=0.7, x=0.1, y=0.1, opacity=0.95),
+    DropDown("term", "kitty --class=scratch", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("ranger", "kitty --class=ranger -e ranger", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("volume", "kitty --class=volume -e pulsemixer", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("mus", "kitty --class=mus -e ncmpcpp", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("htop", "kitty htop", width=0.7, height=0.7, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
 
 ]))
 
@@ -111,7 +115,7 @@ keys.extend([
     Key([mod], "e", lazy.group['scratchpad'].dropdown_toggle('ranger')),
     Key([mod], "v", lazy.group['scratchpad'].dropdown_toggle('volume')),
     Key([mod], "m", lazy.group['scratchpad'].dropdown_toggle('mus')),
-    # Key(["control", "shift"], "Esc", lazy.group['scratchpad'].dropdown_toggle('htop')),
+    Key(["control", "shift"], "Escape", lazy.group['scratchpad'].dropdown_toggle('htop')),
 ])
 
 colors = [["#91A2AA", "#91A2AA"], # 0
