@@ -93,7 +93,10 @@ function backup {
     echo -e "${Error}Error copying ${File}rofi${Color_Off}\n"
 }
 
+read -n1 -rep 'Would you like to change your gh folder' CFG
+if [[ $CFG == "Y" || $CFG == "y" ]]; then
 {
+
     if [[ -e $conf/gh ]]; then
         backup "gh"
     fi
@@ -102,6 +105,7 @@ function backup {
 } || {
     echo -e "${Error}Error copying ${File}gh${Color_Off}\n"
 }
+fi
 
 {
     if [[ -e $conf/kitty ]]; then
