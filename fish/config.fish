@@ -38,7 +38,7 @@ alias l.='exa -a | egrep "^\."'
 
 function meow 
 echo "              ＿＿"
-echo "　　　　　✿＞　　フ"
+echo "　　　　　✿ >　　   >"
 echo "　　　　　| 　_　 _ l"
 echo "　 　　　／`  ミ＿xノ"
 echo "　　 　 /　　　 　 |     Nyā 󰄛 "

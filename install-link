@@ -158,13 +158,6 @@ fi
     echo -e "${Error}Error copying ${File}picom.conf${Color_Off}\n"
 }
 
-{
-    sudo cp -rf Fonts/* /usr/share/fonts/  >> /dev/null 2>&1 &&
-    echo -e "Copied ${File}fonts ${Color_Off}to /usr/share/fonts\n"
-} || {
-    echo -e "${Error}Error copying ${File}Fonts ${Error}to /usr/share/fonts${Green}\n"
-}
-
 read -n1 -rep 'Would you like to download the required packages? (y,N) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     sudo pacman -Syu --noconfirm 
