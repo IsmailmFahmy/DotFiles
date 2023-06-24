@@ -1,8 +1,12 @@
 set fish_greeting
 export EDITOR="nvim"
 export VISUAL="nvim"
-fish_add_path -a /home/Fahmy/.cargo/bin
+fish_add_path -a ~/.cargo/bin
+fish_add_path -a ~/.local/bin
 set -gx GIT_CONFIG_GLOBAL ~/.config/gh/.gitconfig
+set -gx GTK2_RC_FILES ~/.config/.gtkrc-2.0
+set -gx XINITRC ~/.config/.xinitrc
+
 
 
 ### SETTING OTHER ENVIRONMENT VARIABLES
