@@ -3,7 +3,16 @@ application/xml=nvim.desktop
 text/plain=userapp-kitty nvim-5SMA71.desktop
 image/jpeg=sxiv.desktop
 inode/directory=thunar.desktop
+application/octet-stream=userapp-kitty nvim-5SMA71.desktop
 
 [Added Associations]
 application/xml=nvim.desktop;
 text/plain=userapp-kitty nvim-5SMA71.desktop;
+video/mp4=mpv.desktop;
+application/octet-stream=userapp-kitty nvim-5SMA71.desktop;
+application/x-shellscript=userapp-kitty nvim-5SMA71.desktop;
+image/webp=sxiv.desktop;
+application/pdf=org.pwmt.zathura-pdf-poppler.desktop;
+
+[Removed Associations]
+application/x-7z-compressed=org.freedesktop.Xwayland.desktop;

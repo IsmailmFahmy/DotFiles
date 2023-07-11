@@ -100,6 +100,10 @@ process "sxhkd"
 
 process "sxiv"
 
+process "mimeapps.list"
+
+process ".gtkrc-2.0"
+
 process "pavucontrol.ini"
 
 read -n1 -rep 'Would you like to download the required packages? (y,N) ' CFG
