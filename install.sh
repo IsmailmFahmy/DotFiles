@@ -21,7 +21,7 @@ File='\033[0;34m'
 
 {
 {
-    git submodule update --init --recursive && echo -e "${Success}Updating submodules${Color_Off}\n"
+    git submodule update --init && echo -e "${Success}Updating submodules${Color_Off}\n"
 } || {
     echo -e "${Error}Error updating submodules\n"
 }
@@ -89,6 +89,18 @@ process "starship.toml"
 process ".xinitrc"
 
 process "picom.conf"
+
+process "gtk-2.0"
+
+process "gtk-3.0"
+
+process "qt5ct"
+
+process "sxhkd"
+
+process "sxiv"
+
+process "pavucontrol.ini"
 
 read -n1 -rep 'Would you like to download the required packages? (y,N) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then

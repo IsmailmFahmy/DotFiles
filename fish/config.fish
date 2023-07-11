@@ -6,6 +6,7 @@ fish_add_path -a ~/.local/bin
 set -gx GIT_CONFIG_GLOBAL ~/.config/gh/.gitconfig
 set -gx GTK2_RC_FILES ~/.config/.gtkrc-2.0
 set -gx XINITRC ~/.config/.xinitrc
+set -g fish_prompt_suffix_root '#'
 
 
 
@@ -32,11 +33,11 @@ abbr Sconf 'source ~/.config/fish/config.fish'
 
 alias vim='nvim'
 # Changing "ls" to "exa"
-alias ls='exa -al --color=always --group-directories-first' # my preferred listing
-alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first'  # long format
-alias lt='exa -aT --color=always --group-directories-first' # tree listing
-alias l.='exa -a | egrep "^\."'
+alias ls='exa -al --color=always --group-directories-first --icons' # my preferred listing
+alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
+alias ll='exa -l --color=always --group-directories-first --icons'  # long format
+alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
+alias l.='exa -al --color=always --group-directories-first --icons | grep -E "\W\.\w" '
 
 #============================================================================================
 
@@ -67,8 +68,14 @@ function view
     end
 end
 
+function SObs
+     rsync -rau ~/Documents/Obsidian/ /run/media/Fahmy/4062/Documents/Obsidian/; and notify-send "RSYNC" "Local Obsidian synced with usb"; or notify-send "RSYNC" "Failed Sync"
+end
+
+
 #============================================================================================
 starship init fish | source
 #============================================================================================
 
 # source "$HOME/.cargo/env"
+

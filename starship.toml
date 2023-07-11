@@ -17,8 +17,10 @@ right_format = """$time"""
 style = "bold #ffb86c"
 
 [character]
-error_symbol = "[λ](bold #ff5555)"
-success_symbol = "[λ](bold #50fa7b)"
+# error_symbol = "[λ](bold #ff5555)"
+# success_symbol = "[λ](bold #50fa7b)"
+error_symbol = "[λ](bold #E1E1D9)"
+success_symbol = "[λ](bold #E1E1D9)"
 
 [cmd_duration]
 disabled = true
@@ -65,7 +67,11 @@ style_user = "bold #8be9fd"
 
 [time]
 disabled = false
-format = '[  $time ]($style)'
 time_format = "%R" # Hour:Minute Format
-style = "bold #6495ED"
+
+format = '[ $time ]($style)'
+style = "bold #E1E1D9"
+
+# format = '[  $time ]($style)'
+# style = "bold #6495ED"
 

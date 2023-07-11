@@ -1,0 +1,9 @@
+[Default Applications]
+application/xml=nvim.desktop
+text/plain=userapp-kitty nvim-5SMA71.desktop
+image/jpeg=sxiv.desktop
+inode/directory=thunar.desktop
+
+[Added Associations]
+application/xml=nvim.desktop;
+text/plain=userapp-kitty nvim-5SMA71.desktop;

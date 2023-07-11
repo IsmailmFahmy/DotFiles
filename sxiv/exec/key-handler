@@ -1,0 +1,34 @@
+#!/bin/sh
+
+while read -r file
+
+do
+    case "$1" in
+        "w") 
+            nitrogen --set-scaled $file &&
+                echo $file  |awk '{print $(NF)}'|xargs -I {} \
+                notify-send "Changed wallpaper to" -i "$(readlink -f "$file")" "{}" & ;;
+
+
+        "r")
+            convert -rotate 90 "$file" "$file" ;;
+
+        "R")
+            convert -rotate -90 "$file" "$file" ;;
+
+        "f")
+            convert -flop "$file" "$file" ;;
+
+        "y")
+          printf "%s" "$file" | tr -d '\n' | xclip -selection clipboard &&
+          notify-send -i "$(readlink -f "$file")" "$file copied to clipboard"  & ;;
+        "Y")
+            readlink -f "$file" | tr -d '\n' | xclip -selection clipboard &&
+            notify-send "$(readlink -f "$file") copied to clipboard" & ;;
+        "d")
+            trash-put "$file" && notify-send "$file sent to trash." ;;
+        "D")
+            echo '0' | trash-restore &&
+            notify-send "Image restored." || notify-send "Nothing restored." ;;
+    esac
+done

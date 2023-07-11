@@ -1,0 +1,56 @@
+super + shift + z
+    pkill -USR1 -x sxhkd && notify-send 'sxhkd' 'Reloaded config'
+
+super + b
+    firefox
+
+super + shift + s
+    maim -s | xclip -selection clipboard -t image/png && \
+    notify-send "Screenshot taken"
+
+control + alt + Delete
+    ~/.config/rofi/powermenu
+
+super + shift + w
+    firefox --new-window "https://web.whatsapp.com/"
+
+super + shift + e
+    thunar
+
+super + r
+    rofi -show run
+
+super + Return
+    kitty
+
+super + v
+    rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+# MEDIA KEYS
+XF86AudioPlay
+    playerctl play-pause
+
+XF86AudioNext
+    playerctl next
+
+XF86AudioPrev
+    playerctl previous
+
+XF86MonBrightnessUp
+    xbacklight -inc 10
+
+XF86MonBrightnessDown
+    xbacklight -dec 10
+
+XF86Sleep
+    systemctl suspend
+
+XF86AudioRaiseVolume
+    volume up
+XF86AudioLowerVolume
+    volume down
+XF86AudioMute
+    volume mute
+
+
+

@@ -5,7 +5,8 @@ set cleaner ~/.config/lf/lf_kitty_clean
 set hidden true
 set ignorecase true
 set icons true
-set colors true
+
+# set colors true
 
 # Custom Functions
 cmd mkdir ${{
@@ -21,18 +22,50 @@ cmd mkfile ${{
 }}
 
 cmd setwallpaper ${{
-    cp "$f" ~/.config/wall.jpg
-    xwallpaper --zoom "$f"
-    betterlockscreen -u "$f" --fx
+    nitrogen --set-scaled $f 
+    echo $f  |awk '{print $(NF)}'|xargs -I {} \
+    notify-send "Changed wallpaper to" -i "$f" "{}"
 }}
+
+cmd open ${{
+    case $(file --mime-type "$(readlink -f $f)" -b) in
+        application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
+        image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura "$fx" >/dev/null 2>&1 ;;
+        text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR $fx;;
+              image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+              image/svg+xml) display -- $f ;;
+              image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|avif\|tif\|ico\)\(_large\)*$" |
+              setsid -f sxiv -aio 2>/dev/null | while read -r file; do
+              [ -z "$file" ] && continue
+              lf -remote "send select \"$file\""
+              lf -remote "send toggle"
+              done &
+              ;;
+              audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
+              video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+              application/pdf|application/vnd.djvu|application/epub*) setsid -f zathura "$fx" >/dev/null 2>&1 ;;
+              application/pgp-encrypted) $EDITOR "$fx" ;;
+             *) for f in "$fx"; do setsid -f $OPENER "$f" >/dev/null 2>&1; done;;
+             esac
+             }}
 
 # Archive bindings
 cmd unarchive ${{
   case "$f" in
-      *.zip) unzip "$f" ;;
-      *.tar.gz) tar -xzvf "$f" ;;
-      *.tar.bz2) tar -xjvf "$f" ;;
-      *.tar) tar -xvf "$f" ;;
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;
       *) echo "Unsupported format" ;;
   esac
 }}
@@ -56,6 +89,14 @@ cmd restore_trash ${{
   trash-restore
 }}
 
+cmd rm ${{
+    files=$(printf "$fx" | tr '\n' ';')
+    rm -rf $files
+}}
+
+cmd info ${{
+    notify-send "File Information" "$(du -sh $fx)"
+}}
 # Bindings
 map d
 map m
@@ -66,6 +107,7 @@ map au unarchive
 # Basic Functions
 map . set hidden!
 map dd trash
+map dD delete
 map dr restore_trash
 map p paste
 map x cut
@@ -74,11 +116,18 @@ map <enter> open
 map R reload
 map a mkfile
 map A mkdir
-# map bg setwallpaper
+map bg setwallpaper
 map C clear
+map sxiv &sxiv -tr .
+map du info
 
 # Movement
-map gD cd ~/documents
-map gd cd ~/downloads
-map gp cd ~/pictures
+map gU cd /run/media
+map doc cd ~/Documents
+map dow cd ~/Downloads
+map gp cd ~/Documents/Wallpapers
 map gc cd ~/.config
+map Tr cd ~/.local/share/Trash/files
+map dot cd ~/DotFiles
+map ~ cd ~
+

@@ -28,11 +28,13 @@ def powermenu_key(qtile):
     script = os.path.expanduser('~/.config/rofi/powermenu')
     subprocess.call([script])
 
-screenshot = "flameshot gui -s -c"
-wallpaper_image = '~/Downloads/wallpaperflare.com_wallpaper.jpg'
-browser = "firefox"
-whatsapp = 'firefox --new-window "https://web.whatsapp.com/"'
-terminal = guess_terminal()
+
+# Clipboard = """rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'"""
+# screenshot = "flameshot gui -s -c"
+# wallpaper_image = '~/Downloads/wallpaperflare.com_wallpaper.jpg'
+# browser = "firefox"
+# whatsapp = 'firefox --new-window "https://web.whatsapp.com/"'
+# terminal = guess_terminal()
 
 
 #---------------#
@@ -42,26 +44,26 @@ terminal = guess_terminal()
 keys = [
 
     # Open Browser
-    Key([mod], "b", lazy.spawn(browser), desc="Open set browser"),
+    # Key([mod], "b", lazy.spawn(browser), desc="Open set browser"),
 
     # Take a screenshot
-    Key([mod, "shift"], "s",lazy.spawn(screenshot)),
+    # Key([mod, "shift"], "s",lazy.spawn(screenshot)),
 
     # Open Whatsapp
-    Key([mod, "shift"], "w",lazy.spawn(whatsapp)),
+    # Key([mod, "shift"], "w",lazy.spawn(whatsapp)),
 
     # Open Clipboard manager
-    Key([mod], "c",lazy.spawn("copyq menu")),
+    # Key([mod], "c",lazy.spawn(Clipboard)),
 
     # File Manager
-    Key([mod, "shift"], "e",lazy.spawn("thunar")),
+    # Key([mod, "shift"], "e",lazy.spawn("thunar")),
 
     # Run
-    Key([mod], "r", lazy.spawn("rofi -show run")),
+    # Key([mod], "r", lazy.spawn("rofi -show run")),
     Key([mod, "shift"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-    
+
     # Power Menu
-    Key(["control", "mod1"], "delete", lazy.function(powermenu_key) ),
+    # Key(["control", "mod1"], "delete", lazy.function(powermenu_key) ),
 
 
     # Switch between windows
@@ -70,10 +72,15 @@ keys = [
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    
+    Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+    # Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
-
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
+    #
+    #
+    # # Move windows between left/right columns or move up/down in current stack.
+    # # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
@@ -93,39 +100,40 @@ keys = [
     Key([mod, "shift"], "t", lazy.window.toggle_floating(), desc='Toggle floating'),
 
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    
-    # Media Keys
-    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), desc="Play/Pause player"),
-    Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc="Skip to next"),
-    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), desc="Skip to previous"),
-
-    #---    Brightness    ---#
-    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
-    
-    #---    Sleep machine ---#
-    Key([], "XF86Sleep", lazy.spawn("systemctl suspend")),
-    
-    #---    Volume        ---#
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
-    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
-
-
-    # ScratchPads
+    # Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    # 
+    # # Media Keys
+    # Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), desc="Play/Pause player"),
+    # Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc="Skip to next"),
+    # Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), desc="Skip to previous"),
+    #
+    # #---    Brightness    ---#
+    # Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
+    # Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
+    # 
+    # #---    Sleep machine ---#
+    # Key([], "XF86Sleep", lazy.spawn("systemctl suspend")),
+    # 
+    # #---    Volume        ---#
+    # Key([mod], "o", lazy.function(volume_set,"up")),
+    # Key([], "XF86AudioRaiseVolume", lazy.function(volume_set,"up")),
+    # Key([], "XF86AudioLowerVolume", lazy.function(volume_set,"down")),
+    # Key([], "XF86AudioMute", lazy.function(volume_set, "mute")),
+    # # Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
+    # # Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
+    # # Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+    #
+    #
+    # # ScratchPads
     Key([mod], "t", lazy.group['scratchpad'].dropdown_toggle('term')),
     Key([mod], "e", lazy.group['scratchpad'].dropdown_toggle('lf')),
-    Key([mod], "v", lazy.group['scratchpad'].dropdown_toggle('volume')),
-    Key([mod], "m", lazy.group['scratchpad'].dropdown_toggle('mus')),
-    Key(["control", "shift"], "Escape", lazy.group['scratchpad'].dropdown_toggle('htop')),
-
+    Key(["control", "shift"], "Escape", lazy.group['scratchpad'].dropdown_toggle('btop')),
+    # Key([mod], "v", lazy.group['scratchpad'].dropdown_toggle('volume')),
+    # Key([mod], "m", lazy.group['scratchpad'].dropdown_toggle('mus')),
+    #
 ]
 
 
@@ -159,10 +167,10 @@ groups.append(ScratchPad("scratchpad", [
     DropDown("lf", "kitty --class=lf -e lf", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("volume", "kitty --class=volume -e pulsemixer", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("mus", "kitty --class=mus -e ncmpcpp", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
-    DropDown("htop", "kitty htop", width=0.55, height=0.8, x=0.22, y=0.1, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("btop", "kitty btop", width=0.55, height=0.8, x=0.22, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("pavu", "pavucontrol", width=0.4, height=0.4, x=0.55, y=0.005, opacity=0.95, on_focus_lost_hide=True),
+    DropDown("calender", "kitty --hold -e cal", width=0.106, height=0.16, x=0.8595, y=0.005, opacity=0.95, on_focus_lost_hide=False),
 ]))
-
 
 # colors = [["#91A2AA", "#91A2AA"], # 0
 #           ["#E86864", "#E86864"], # 1
@@ -377,7 +385,7 @@ screens = [
                 foreground = colors[2],
                 fontsize = 18,
                 padding = 1,
-                mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('htop')},
+                mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('btop')},
                 ),
               widget.Memory(
                 background = colors[0],
@@ -440,6 +448,7 @@ screens = [
                 background = colors[0],
                 fontsize = 18,
                 padding = 1,
+                mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('calender')},
                 ),
              widget.Clock(
                 format='%d/%m/%Y',
