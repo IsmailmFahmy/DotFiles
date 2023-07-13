@@ -75,6 +75,7 @@ process "fish"
 process "rofi"
 
 read -n1 -rep 'Would you like to change your gh folder? (y,N) ' CFG
+printf '\n'
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     process "gh"
 fi
@@ -104,13 +105,18 @@ process "mimeapps.list"
 
 process ".gtkrc-2.0"
 
+process ".Xresources"
+
+
 process "pavucontrol.ini"
 
 read -n1 -rep 'Would you like to download the required packages? (y,N) ' CFG
+printf '\n'
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     sudo pacman -Syu --noconfirm 
     sudo pacman -S --needed --noconfirm - < pacman.txt
     pip install Pillow iwlib
-fi
+fi 
 
+xrdb $conf/.Xresources
 }

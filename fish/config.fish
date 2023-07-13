@@ -8,6 +8,11 @@ set -gx GTK2_RC_FILES ~/.config/.gtkrc-2.0
 set -gx XINITRC ~/.config/.xinitrc
 set -g fish_prompt_suffix_root '#'
 
+fish_vi_key_bindings
+fzf_key_bindings
+# fish_default_key_bindings
+
+
 
 
 ### SETTING OTHER ENVIRONMENT VARIABLES

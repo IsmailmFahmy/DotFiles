@@ -43,56 +43,56 @@ def powermenu_key(qtile):
 
 keys = [
 
-    # Open Browser
-    # Key([mod], "b", lazy.spawn(browser), desc="Open set browser"),
+        # Open Browser
+        # Key([mod], "b", lazy.spawn(browser), desc="Open set browser"),
 
-    # Take a screenshot
-    # Key([mod, "shift"], "s",lazy.spawn(screenshot)),
+        # Take a screenshot
+        # Key([mod, "shift"], "s",lazy.spawn(screenshot)),
 
-    # Open Whatsapp
-    # Key([mod, "shift"], "w",lazy.spawn(whatsapp)),
+        # Open Whatsapp
+        # Key([mod, "shift"], "w",lazy.spawn(whatsapp)),
 
-    # Open Clipboard manager
-    # Key([mod], "c",lazy.spawn(Clipboard)),
+        # Open Clipboard manager
+        # Key([mod], "c",lazy.spawn(Clipboard)),
 
-    # File Manager
-    # Key([mod, "shift"], "e",lazy.spawn("thunar")),
+        # File Manager
+        # Key([mod, "shift"], "e",lazy.spawn("thunar")),
 
-    # Run
-    # Key([mod], "r", lazy.spawn("rofi -show run")),
-    Key([mod, "shift"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+        # Run
+        # Key([mod], "r", lazy.spawn("rofi -show run")),
+        Key([mod, "shift"], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
-    # Power Menu
-    # Key(["control", "mod1"], "delete", lazy.function(powermenu_key) ),
+        # Power Menu
+        # Key(["control", "mod1"], "delete", lazy.function(powermenu_key) ),
 
 
-    # Switch between windows
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
-    
-    Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    # Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+        # Switch between windows
+        Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+        Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+        Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+        Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+        Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
 
-    #
-    #
-    # # Move windows between left/right columns or move up/down in current stack.
-    # # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+        Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
+        Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+        # Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod, "control"], "left", lazy.layout.grow_left(), desc="Grow window to the left"),
+        #
+        #
+        # # Move windows between left/right columns or move up/down in current stack.
+        # # Moving out of range in Columns layout will create new column.
+        Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+        Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+        Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+        Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+
+        # Grow windows. If current window is on the edge of screen and direction
+        # will be to screen edge - window would shrink.
+        Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
+        Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
+        Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
+        Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+Key([mod, "control"], "left", lazy.layout.grow_left(), desc="Grow window to the left"),
     Key([mod, "control"], "right", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "down", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "up", lazy.layout.grow_up(), desc="Grow window up"),
@@ -141,23 +141,23 @@ keys = [
 groups = [Group(i) for i in "123456789"]
 for i in groups:
     keys.extend(
-        [
-            # mod1 + letter of group = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
-            ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
-            ),
-        ]
-    )
+            [
+                # mod1 + letter of group = switch to group
+                Key(
+                    [mod],
+                    i.name,
+                    lazy.group[i.name].toscreen(),
+                    desc="Switch to group {}".format(i.name),
+                    ),
+                # mod1 + shift + letter of group = switch to & move focused window to group
+                Key(
+                    [mod, "shift"],
+                    i.name,
+                    lazy.window.togroup(i.name, switch_group=True),
+                    desc="Switch to & move focused window to group {}".format(i.name),
+                    ),
+                ]
+            )
 
 
 group_labels = ["", "", "", "", "﨣", "", "", ""]
@@ -170,7 +170,7 @@ groups.append(ScratchPad("scratchpad", [
     DropDown("btop", "kitty btop", width=0.55, height=0.8, x=0.22, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("pavu", "pavucontrol", width=0.4, height=0.4, x=0.55, y=0.005, opacity=0.95, on_focus_lost_hide=True),
     DropDown("calender", "kitty --hold -e cal", width=0.106, height=0.16, x=0.8595, y=0.005, opacity=0.95, on_focus_lost_hide=False),
-]))
+    ]))
 
 # colors = [["#91A2AA", "#91A2AA"], # 0
 #           ["#E86864", "#E86864"], # 1
@@ -203,7 +203,7 @@ colors =  [
         ["#81658C", "#81658C", "#81658C"], # color 6
         ["#614C69", "#614C69", "#614C69"], # color 8
         ["#0ee9af", "#0ee9af", "#0ee9af"]] # color 9
-        # ["#5aec79", "#5aec79", "#5aec79"]] # color 9
+# ["#5aec79", "#5aec79", "#5aec79"]] # color 9
 
 layout_theme = {"border_width": 2,
                 "margin": 8,
@@ -214,9 +214,9 @@ layout_theme = {"border_width": 2,
 
 
 layouts = [
-    layout.Columns(**layout_theme),
-    layout.Max(),
-    ]
+        layout.Columns(**layout_theme),
+        layout.Max(),
+        ]
 
 
 
@@ -230,13 +230,13 @@ layouts = [
 
 # =================================== BAR ===================================  
 widget_defaults = dict(
-    font="Caskaydia Cove Nerd Font Bold",
-    # font = "JetBrainsMonoNerdFont Bold",
-    fontsize=14,
-    padding=8,
-    background=colors[3],
+        font="Caskaydia Cove Nerd Font Bold",
+        # font = "JetBrainsMonoNerdFont Bold",
+        fontsize=14,
+        padding=8,
+        background=colors[3],
 
-)
+        )
 
 extension_defaults = widget_defaults.copy()
 
@@ -307,100 +307,101 @@ extension_defaults = widget_defaults.copy()
 
 # Shutdown
 def shutdown_now():
-  qtile.cmd_spawn('shutdown now')
+    qtile.cmd_spawn('shutdown now')
 # Reboot
 def reboot_now():
-  qtile.cmd_spawn('reboot')
+    qtile.cmd_spawn('reboot')
 # Brightness Up 
 def brightup():
-  qtile.cmd_spawn('brightnessctl set +5%')
+    qtile.cmd_spawn('brightnessctl set +5%')
 # Brightness Down
 def brightdown():
-  qtile.cmd_spawn('brightnessctl set 5%-')
+    qtile.cmd_spawn('brightnessctl set 5%-')
 def powermenu():
     script = os.path.expanduser('~/.config/rofi/powermenu')
     subprocess.call([script])
 
 
 screens = [
-    Screen(
-        top=bar.Bar(
-            [
-              widget.Spacer(
-                length = 6,
-                background = colors[0],
-                ),                
-              widget.GroupBox(
-                fontsize = 20,
-                margin_x = 1,
-                margin_y = 4,
-                padding_y = 0,
-                padding_x = 1,
-                borderwidth = 2.5,
-                active = colors[2],
-                inactive = colors[1],
-                rounded = True,
-                highlight_color = colors[0],
-                highlight_method = "line",
-                this_current_screen_border = colors[8],
-                this_screen_border = colors [0],
-                foreground = colors[2],
-                center_aligned = True,
-                disable_drag = True,
-                background = colors[0]
-                ),
-              widget.Systray(
-                background = colors[0],
-                icon_size = 16,
-                foreground = colors[1],
-                padding = 3),
-              widget.Spacer(
-                background = colors[0],
-                ),
+        Screen(
+            top=bar.Bar(
+                [
+                    widget.Spacer(
+                        length = 6,
+                        background = colors[0],
+                        ),                
+                    widget.GroupBox(
+                        fontsize = 20,
+                        margin_x = 1,
+                        margin_y = 4,
+                        padding_y = 0,
+                        padding_x = 1,
+                        borderwidth = 2.5,
+                        active = colors[2],
+                        inactive = colors[1],
+                        rounded = True,
+                        highlight_color = colors[0],
+                        highlight_method = "line",
+                        this_current_screen_border = colors[8],
+                        this_screen_border = colors [0],
+                        foreground = colors[2],
+                        center_aligned = True,
+                        disable_drag = True,
+                        background = colors[0]
+                        ),
+                    widget.Systray(
+                        background = colors[0],
+                        icon_size = 16,
+                        foreground = colors[1],
+                        padding = 3),
+                    widget.Spacer(
+                        background = colors[0],
+                        ),
+                    widget.TextBox(
+                        text=' ',
+                        foreground = colors[2],
+                        background = colors[0],
+                        fontsize = 18,
+                        padding = 0,
+                        mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('pavu')},
+                        ),
+                    widget.PulseVolume(
+                        background = colors[0],
+                        foreground = colors[2],
+                        limit_max_volume = True,
+                        padding_y = 1,
+                        fontsize = 14
+                        ),
+                    widget.TextBox(
+                        text='⏽',
+                        background = colors[0],
+                        foreground = colors[8],
+                        fontsize = 35,
+                        padding = 2
+                        ),
               widget.TextBox(
-                text=' ',
-                foreground = colors[2],
-                background = colors[0],
-                fontsize = 18,
-                padding = 0,
-                mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('pavu')},
-                ),
-              widget.PulseVolume(
-                background = colors[0],
-                foreground = colors[2],
-                limit_max_volume = True,
-                padding_y = 1,
-                fontsize = 14
-                ),
-              widget.TextBox(
-                text='⏽',
-                background = colors[0],
-                foreground = colors[8],
-                fontsize = 35,
-                padding = 2
-                ),
-              widget.TextBox(
-                text=' ',
-                background = colors[0],
-                foreground = colors[2],
-                fontsize = 18,
-                padding = 1,
-                mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('btop')},
-                ),
+                      text=' ',
+                      background = colors[0],
+                      foreground = colors[2],
+                      fontsize = 18,
+                      padding = 1,
+                      mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('btop')},
+                      ),
               widget.Memory(
-                background = colors[0],
-                foreground = colors[2],
-                format = '{MemUsed: .0f}{mm} /{MemTotal: .0f}{mm}',
-                padding = 0,
-                fontsize = 14
-                ),
+                      background = colors[0],
+                      foreground = colors[2],
+                      format = '{MemUsed: .0f}{mm} /{MemTotal: .0f}{mm}',
+                      padding = 0,
+                      fontsize = 14
+                      ),
               widget.TextBox(
-                text='⏽',
-                background = colors[0],
-                foreground = colors[8],
-                fontsize = 35,
-                padding = 2
-                ),
+                      text='⏽',
+                      background = colors[0],
+                      foreground = colors[8],
+                      fontsize = 35,
+                      padding = 2
+                      ),
+
               #   text='',
               #   background = colors[0],
               #   foreground = colors[2],
@@ -422,60 +423,77 @@ screens = [
               #   fontsize = 35,
               #   padding = 2
               #   ),
+
+             # widget.Wlan(
+             #        disconnected_message = '',
+             #        background = colors[0],
+             #        foreground = colors[2],
+             #        format = ' {percent:2.0%}',
+             #        fontsize = 12,
+             #         ),
+             #
+              # widget.TextBox(
+              #   text='⏽',
+              #   background = colors[0],
+              #   foreground = colors[8],
+              #   fontsize = 35,
+              #   padding = 2
+              #   ),
+
              widget.TextBox(
-                text=' ',
-                foreground = colors[2],
-                background = colors[0],
-                fontsize = 18,
-                padding = 1,
-                ),
+                     text=' ',
+                     foreground = colors[2],
+                     background = colors[0],
+                     fontsize = 18,
+                     padding = 1,
+                     ),
              widget.Clock(
-                format='%H:%M',
-                foreground = colors[2],
-                background = colors[0],
-                fontsize = 14,
-                ),
+                     format='%H:%M',
+                     foreground = colors[2],
+                     background = colors[0],
+                     fontsize = 14,
+                     ),
              widget.TextBox(
-                text='⏽',
-                background = colors[0],
-                foreground = colors[8],
-                fontsize = 35,
-                padding = 2
-                ),
+                     text='⏽',
+                     background = colors[0],
+                     foreground = colors[8],
+                     fontsize = 35,
+                     padding = 2
+                     ),
              widget.TextBox(
-                text='󰃭 ',
-                foreground = colors[2],
-                background = colors[0],
-                fontsize = 18,
-                padding = 1,
-                mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('calender')},
-                ),
+                     text='󰃭 ',
+                     foreground = colors[2],
+                     background = colors[0],
+                     fontsize = 18,
+                     padding = 1,
+                     mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('calender')},
+                     ),
              widget.Clock(
-                format='%d/%m/%Y',
-                foreground = colors[2],
-                background = colors[0],
-                fontsize = 14,
-                ),
+                     format='%d/%m/%Y',
+                     foreground = colors[2],
+                     background = colors[0],
+                     fontsize = 14,
+                     ),
              widget.TextBox(
-                text='⏽',
-                background = colors[0],
-                foreground = colors[8],
-                fontsize = 35,
-                padding = 2
-                ),
+                     text='⏽',
+                     background = colors[0],
+                     foreground = colors[8],
+                     fontsize = 35,
+                     padding = 2
+                     ),
              widget.TextBox(
-                text=' ',
-                foreground = colors[2],
-                background = colors[0],
-                fontsize = 16,
-                padding = 1,
-                mouse_callbacks = {'Button1': powermenu},
-                ),
+                     text=' ',
+                     foreground = colors[2],
+                     background = colors[0],
+                     fontsize = 16,
+                     padding = 1,
+                     mouse_callbacks = {'Button1': powermenu},
+                     ),
              widget.Spacer(
-                length = 6,
-                background = colors[0],
-                ),                
-            ],
+                     length = 6,
+                     background = colors[0],
+                     ),                
+             ],
             25,
             margin = [0,0,0,0],
         ),
@@ -490,31 +508,31 @@ screens = [
 #-----------------------#
 
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
-]
+        Drag([mod], "Button1", lazy.window.set_position_floating(),
+             start=lazy.window.get_position()),
+        Drag([mod], "Button3", lazy.window.set_size_floating(),
+             start=lazy.window.get_size()),
+        Click([mod], "Button2", lazy.window.bring_to_front()),
+        ]
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
-    float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
-    ],
-    border_focus="#9ccfd8",
-    border_normal="#31748f"
-)
+        float_rules=[
+            # Run the utility of `xprop` to see the wm class and name of an X client.
+            *layout.Floating.default_float_rules,
+            Match(wm_class="confirmreset"),  # gitk
+            Match(wm_class="makebranch"),  # gitk
+            Match(wm_class="maketag"),  # gitk
+            Match(wm_class="ssh-askpass"),  # ssh-askpass
+            Match(title="branchdialog"),  # gitk
+            Match(title="pinentry"),  # GPG key password entry
+            ],
+        border_focus="#9ccfd8",
+        border_normal="#31748f"
+        )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True

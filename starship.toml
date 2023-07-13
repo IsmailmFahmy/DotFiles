@@ -21,6 +21,8 @@ style = "bold #ffb86c"
 # success_symbol = "[λ](bold #50fa7b)"
 error_symbol = "[λ](bold #E1E1D9)"
 success_symbol = "[λ](bold #E1E1D9)"
+vimcmd_symbol = "[](bold #50fa7b)"
+
 
 [cmd_duration]
 disabled = true

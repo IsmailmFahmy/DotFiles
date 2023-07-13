@@ -10,6 +10,7 @@ dialog
 discord
 dmenu
 dosfstools
+dpkg
 dunst
 efibootmgr
 exa
@@ -20,8 +21,10 @@ flameshot
 fzf
 git
 github-cli
+go
 grub
 gtk-layer-shell
+gvfs
 htop
 iw
 kguiaddons
@@ -43,6 +46,7 @@ nitrogen
 noto-fonts
 noto-fonts-emoji
 npm
+ntfs-3g
 ntp
 obsidian
 os-prober
@@ -57,12 +61,15 @@ python-pip
 python-pywlroots
 qt5ct
 qtile
+qutebrowser
+rmlint
 rofi
 rsync
 rustup
 scrot
 slock
 starship
+sxhkd
 sxiv
 syncthing
 system-config-printer
@@ -75,6 +82,7 @@ ttf-jetbrains-mono-nerd
 ttf-nerd-fonts-symbols
 udiskie
 udisks2
+ueberzug
 unclutter
 unzip
 vim

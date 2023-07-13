@@ -1,3 +1,15 @@
+# SCRIPTS
+
+control + alt + Delete
+    ~/.config/rofi/powermenu
+
+F10
+    ~/.local/bin/mntdev
+
+
+
+#########################
+
 super + shift + z
     pkill -USR1 -x sxhkd && notify-send 'sxhkd' 'Reloaded config'
 
@@ -8,8 +20,6 @@ super + shift + s
     maim -s | xclip -selection clipboard -t image/png && \
     notify-send "Screenshot taken"
 
-control + alt + Delete
-    ~/.config/rofi/powermenu
 
 super + shift + w
     firefox --new-window "https://web.whatsapp.com/"
