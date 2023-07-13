@@ -1,0 +1,19 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/sda2
+UUID=51223090-0b26-408b-9829-8ac7c8593bfd	/         	ext4      	rw,relatime	0 1
+
+# /dev/sda3
+UUID=ecfc2d1d-b4bf-4ddc-b976-cf2b6ab8d088	/home     	ext4      	rw,relatime	0 2
+
+# /dev/nvme0n1p3	aka windows
+UUID=6032ECD732ECB368				/windows 	ntfs		rw,relatime	0 2	
+
+# /dev/sdb2	aka Hard drive
+UUID=AA86D11386D0E13D				/run/media/Fahmy/Hard-Drive	ntfs	rw,relatime	0 2
+
+# /dev/sda1
+UUID=3CD0-0B6B      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+

@@ -48,6 +48,15 @@ function backup {
     fi
 }
 
+function service {
+{
+    ln -s /etc/sv/$1 /var/service/$1 >> /dev/null 2>&1 &&
+    echo -e "Created link for ${File}$1${Color_Off}\n"
+} || {
+    echo -e "${Error}Error creating link for ${File}$1${Color_Off}\n"
+}
+
+}
 function process {
 
 {
@@ -116,6 +125,14 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     sudo pacman -Syu --noconfirm 
     sudo pacman -S --needed --noconfirm - < pacman.txt
     pip install Pillow iwlib
+fi 
+
+read -n1 -rep 'Would you like to Enable the services ( runit )? (y,N) ' CFG
+printf '\n'
+if [[ $CFG == "Y" || $CFG == "y" ]]; then
+    service "NetworkManager"
+    service "cups"
+    service "udisks2"
 fi 
 
 xrdb $conf/.Xresources
