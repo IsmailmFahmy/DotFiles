@@ -46,9 +46,12 @@ sudo pacman -S xf86-video-vesa         # generic drivers
 
 sudo pacman -S kitty efibootmgr networkmanager dosfstools mtools os-prober exa unzip winrar zip p7zip starship fish git github-cli xorg xorg-server xorg-xinit xorg-apps picom nitrogen unclutter pulseaudio pulsemixer alsa-utils
 
+# install networkmanager-runit -> for runit
+
 sudo pacman -S dialog netctl iw
 
 systemctl enable NetworkManager
+ls -s /etc/
 passwd
 useradd -mG wheel Fahmy
 passwd Fahmy
@@ -60,7 +63,7 @@ visudo
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 
 # FOR LEGACY BIOS
-grub-install --target=x86_64-efi --boot-directory=/boot --bootloader-id=GRUB
+grub-install --target=i386-pc /dev/sdX
 
 # mount Windows boot directory if dual-booting
 

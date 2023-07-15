@@ -40,7 +40,6 @@ mpv
 mtools
 neofetch
 neovim
-netctl
 networkmanager
 nitrogen
 noto-fonts

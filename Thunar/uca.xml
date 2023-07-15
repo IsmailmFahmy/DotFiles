@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Terminal</name>
+	<submenu></submenu>
+	<unique-id>1687467586740502-1</unique-id>
+	<command>kitty .</command>
+	<description>Open Kitty in Working Direcotry</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>image-x-generic</icon>
+	<name>Open Sxiv</name>
+	<submenu></submenu>
+	<unique-id>1688927217410327-1</unique-id>
+	<command>sxiv .</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<image-files/>
+</action>
+</actions>

@@ -1,4 +1,5 @@
 #!/bin/sh
+
 User_Home=$(eval echo -e ~${SUDO_USER})
 conf=$User_Home/.config
 date=$(date +%d-%m)
@@ -30,6 +31,13 @@ File='\033[0;34m'
 
 function backup {
 
+        # create ~/.config file if it does not exits
+        [ -e $conf ]   ||    { mkdir $conf && echo -e "${Success}Created $conf${Color_Off}\n" ;}
+
+    # { # create Backup Folder
+    #     [ -e "$conf/BackupOf-$date"] || { mkdir $conf/BackupOf-$date >> /dev/null 2>&1 && \
+    #                                     echo -e "${Success}Created $conf/BackupOf-$date${Color_Off}\n" }               
+    # }
     if [[ ! -e "$conf/BackupOf-$date" ]]; then
         mkdir $conf/BackupOf-$date >> /dev/null 2>&1
         echo -e "${Success}Created $conf/BackupOf-$date${Color_Off}\n"
@@ -91,7 +99,6 @@ fi
 
 process "kitty"
 
-
 process "lf"
 
 process "starship.toml"
@@ -116,24 +123,35 @@ process ".gtkrc-2.0"
 
 process ".Xresources"
 
+process "Thunar"
+
+process "btop"
+
+process "nitrogen"
+
+process "neofetch"
 
 process "pavucontrol.ini"
+
+process "zathura"
 
 read -n1 -rep 'Would you like to download the required packages? (y,N) ' CFG
 printf '\n'
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     sudo pacman -Syu --noconfirm 
     sudo pacman -S --needed --noconfirm - < pacman.txt
+    # xbps-install -Su
+    # xbps-install -S $(cat pacman.txt)
     pip install Pillow iwlib
 fi 
 
-read -n1 -rep 'Would you like to Enable the services ( runit )? (y,N) ' CFG
-printf '\n'
-if [[ $CFG == "Y" || $CFG == "y" ]]; then
-    service "NetworkManager"
-    service "cups"
-    service "udisks2"
-fi 
+# read -n1 -rep 'Would you like to Enable the services ( runit )? (y,N) ' CFG
+# printf '\n'
+# if [[ $CFG == "Y" || $CFG == "y" ]]; then
+#     service "NetworkManager"
+#     service "cups"
+#     service "udisks2"
+# fi 
 
 xrdb $conf/.Xresources
 }
