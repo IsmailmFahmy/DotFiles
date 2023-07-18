@@ -1,14 +1,12 @@
 #!/bin/sh
 
-cd "$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
-
-
 User_Home=$(eval echo -e ~${SUDO_USER})
 conf=$User_Home/.config
 date=$(date +%d-%m)
 
 # Reset
 Color_Off='\033[0m'       # Text Reset
+
 # Regular Colors
 Black='\033[0;30m'        # Black
 Red='\033[0;31m'          # Red
@@ -81,7 +79,6 @@ function process {
 }
 
 # create ~/.config file if it does not exits
-[ -e $conf ]   ||    { mkdir $conf && echo -e "${Success}Created $conf${Color_Off}\n" ;}
 
 files=(
 ".xinitrc"
@@ -107,6 +104,7 @@ files=(
 
 )
 
+[ -e $conf ]   ||    { mkdir $conf && echo -e "${Success}Created $conf${Color_Off}\n" ;}
 for config_file in ${files[@]}
 do
     process $config_file
@@ -117,6 +115,34 @@ read -n1 -rep 'Would you like to change your gh folder? (y,N) ' CFG
 printf '\n'
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     process "gh"
+fi
+
+# ADD ARCH PACKAGES
+read -n1 -rep 'Would you like to add the arch repos? (y,N) ' CFG
+printf '\n'
+if [[ $CFG == "Y" || $CFG == "y" ]]; then
+    sudo pacman -Syu --noconfirm 
+
+    sudo pacman -S wget --needed --noconfirm
+    sudo wget "https://github.com/archlinux/svntogit-packages/raw/packages/pacman-mirrorlist/trunk/mirrorlist" -O /etc/pacman.d/mirrorlist-arch
+
+    sudo echo "[universe]" >> /etc/pacman.conf
+    sudo echo "Server = https://universe.artixlinux.org/$arch" >> /etc/pacman.conf
+    sudo echo "Server = https://mirror1.artixlinux.org/universe/$arch" >> /etc/pacman.conf
+    sudo pacman -Syu --noconfirm 
+    sudo pacman -S artix-archlinux-support --noconfirm --needed
+
+    sudo echo "# Arch" >> /etc/pacman.conf
+    sudo echo "[extra]" >> /etc/pacman.conf
+    sudo echo "Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
+    sudo echo "" >> /etc/pacman.conf
+    sudo echo "[community]" >> /etc/pacman.conf
+    sudo echo "Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
+    sudo echo "" >> /etc/pacman.conf
+    sudo echo "#[multilib]" >> /etc/pacman.conf
+    sudo echo "Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
+    sudo pacman -Syu --noconfirm 
+
 fi
 
 # INSTALLING PACKAGES
