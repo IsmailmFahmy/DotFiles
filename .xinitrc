@@ -9,7 +9,7 @@ exec dunst &
 exec nitrogen --restore &
 exec unclutter --timeout 4 &
 
-exec dbus-launch --exit-with-session sxhkd &
+exec sxhkd &
 
-exec dbus-launch --exit-with-session qtile start
+exec qtile start
 # exec dbus-launch --exit-with-session dwm

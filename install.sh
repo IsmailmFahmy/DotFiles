@@ -119,6 +119,13 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     process "gh"
 fi
 
+read -n1 -rep 'Would you like to add scripts to .local/bin? (y,N) ' CFG
+printf '\n'
+if [[ $CFG == "Y" || $CFG == "y" ]]; then
+    [ -e $User_Home/.local/bin ]   ||    { mkdir -p $User_Home/.local/bin && echo -e "${Success}Created ~/.local/bin ${Color_Off}\n" ;}
+    ln -rs ./bin/* $User_Home/.local/bin >> /dev/null 2>&1 &&
+fi
+
 # INSTALLING PACKAGES
 read -n1 -rep 'Would you like to download the required packages? (y,N) ' CFG
 printf '\n'
