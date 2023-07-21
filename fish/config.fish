@@ -25,16 +25,18 @@ end
 if [ -z "$XDG_CACHE_HOME" ] ; 
     set -gx XDG_CACHE_HOME "$HOME/.cache"
 end
-#======================================= Profile ============================================
+#===================================== Profile ==========================================
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
         exec startx -- -keeptty
     end
 end
-#======================================= ALIASES ============================================
+#===================================== ALIASES ==========================================
 
 abbr conf 'nvim ~/.config/fish/config.fish'
 abbr Sconf 'source ~/.config/fish/config.fish'
+abbr lfrc "nvim ~/.config/lf/lfrc"
+abbr binds "nvim ~/.config/sxhkd/sxhkdrc"
 
 alias vim='nvim'
 # Changing "ls" to "exa"
@@ -44,7 +46,7 @@ alias ll='exa -l --color=always --group-directories-first --icons'  # long forma
 alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
 alias l.='exa -al --color=always --group-directories-first --icons | grep -E "\W\.\w" '
 
-#============================================================================================
+#========================================================================================
 
 function meow 
 echo "              ＿＿"
@@ -60,12 +62,12 @@ echo "　＼二つ"
 end
 export meow
 
-function chbg
-    feh --bg-scale $argv[1]
-end
-function killtty
-    systemctl stop getty@tty$argv[1].service
-end
+# function chbg
+#     feh --bg-scale $argv[1]
+# end
+# function killtty
+#     systemctl stop getty@tty$argv[1].service
+# end
 
 function view
     for i in $argv
@@ -78,9 +80,6 @@ function SObs
 end
 
 
-#============================================================================================
+#========================================================================================
 starship init fish | source
-#============================================================================================
-
-# source "$HOME/.cargo/env"
-
+#========================================================================================

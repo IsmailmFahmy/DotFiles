@@ -1,0 +1,5 @@
+#!/bin/sh
+
+udiskie -Tan || notify-send "mntdev script" "could not start udiskie" &
+sleep 1 &&
+killall -e udiskie

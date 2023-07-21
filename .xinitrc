@@ -10,6 +10,7 @@ exec nitrogen --restore &
 exec unclutter --timeout 4 &
 
 exec sxhkd &
-
 exec qtile start
+
+# exec dbus-launch --exit-with-session sxhkd &
 # exec dbus-launch --exit-with-session dwm

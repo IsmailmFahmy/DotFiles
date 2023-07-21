@@ -123,7 +123,9 @@ read -n1 -rep 'Would you like to add scripts to .local/bin? (y,N) ' CFG
 printf '\n'
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     [ -e $User_Home/.local/bin ]   ||    { mkdir -p $User_Home/.local/bin && echo -e "${Success}Created ~/.local/bin ${Color_Off}\n" ;}
-    ln -rs ./bin/* $User_Home/.local/bin >> /dev/null 2>&1 &&
+    ln -rs ./bin/* $User_Home/.local/bin/ >> /dev/null 2>&1
+    echo -e "Created link for ${File}~/.local/bin${Color_Off}\n"
+    
 fi
 
 # INSTALLING PACKAGES

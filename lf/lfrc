@@ -129,12 +129,14 @@ map sxiv &sxiv -tr .
 map du info
 
 # Movement
+map e
 map gU cd /run/media
 map doc cd ~/Documents
 map dow cd ~/Downloads
 map gp cd ~/Documents/Wallpapers
 map gc cd ~/.config
 map Tr cd ~/.local/share/Trash/files
+map edu cd ~/Documents/Education/
 map dot cd ~/DotFiles
 map ~ cd ~
 
