@@ -104,6 +104,7 @@ files=(
 "neofetch"
 "pavucontrol.ini"
 "zathura"
+"mimeapps.list"
 
 )
 

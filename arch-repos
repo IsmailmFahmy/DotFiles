@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# ONLY RUN THIS SCRIPT ON ARTIX LINUX
+
+
+sudo pacman -Syu --noconfirm 
+
+sudo pacman -S wget --needed --noconfirm
+sudo wget "https://github.com/archlinux/svntogit-packages/raw/packages/pacman-mirrorlist/trunk/mirrorlist" -O /etc/pacman.d/mirrorlist-arch
+
+sudo echo "[universe]" >> /etc/pacman.conf
+sudo echo "Server = https://universe.artixlinux.org/$arch" >> /etc/pacman.conf
+sudo echo "Server = https://mirror1.artixlinux.org/universe/$arch" >> /etc/pacman.conf
+sudo pacman -Syu --noconfirm 
+sudo pacman -S artix-archlinux-support --noconfirm --needed
+
+sudo echo "# Arch" >> /etc/pacman.conf
+sudo echo "[extra]" >> /etc/pacman.conf
+sudo echo "Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
+sudo echo "" >> /etc/pacman.conf
+sudo echo "[community]" >> /etc/pacman.conf
+sudo echo "Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
+sudo echo "" >> /etc/pacman.conf
+sudo echo "#[multilib]" >> /etc/pacman.conf
+sudo echo "Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
+sudo pacman -Syu --noconfirm 
