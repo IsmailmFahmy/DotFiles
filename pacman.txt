@@ -6,6 +6,7 @@ base-devel
 bat
 bridge-utils
 btop
+cmatrix
 cups
 dialog
 discord
@@ -29,6 +30,11 @@ grub
 gtk-layer-shell
 gvfs
 htop
+hyprland
+i3-wm
+i3blocks
+i3lock
+i3status
 iw
 kguiaddons
 kitty
@@ -78,11 +84,14 @@ rustup
 scrot
 slock
 starship
+sway
 sxhkd
 sxiv
 syncthing
 system-config-printer
 thunar
+thunderbird
+thunderbird-dark-reader
 tldr
 tmux
 trash-cli

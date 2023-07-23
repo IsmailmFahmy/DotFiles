@@ -75,8 +75,12 @@ function view
     end
 end
 
-function SObs
-     rsync -rau ~/Documents/Obsidian/ /run/media/Fahmy/4062/Documents/Obsidian/; and notify-send "RSYNC" "Local Obsidian synced with usb"; or notify-send "RSYNC" "Failed Sync"
+function ptf
+        eval (xclip -se c -o > "$1")
+end
+
+function sobs
+     rsync -Prau ~/Documents/Obsidian/ /run/media/Fahmy/4062/Documents/Obsidian/; and notify-send "RSYNC" "Local Obsidian synced with usb"; or notify-send "RSYNC" "Failed Sync"
 end
 
 
