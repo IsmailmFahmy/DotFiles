@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd "$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 
@@ -34,17 +34,13 @@ File='\033[0;34m'
 function backup {
 
 
-    # { # create Backup Folder
-    #     [ -e "$conf/BackupOf-$date"] || { mkdir $conf/BackupOf-$date >> /dev/null 2>&1 && \
-    #                                     echo -e "${Success}Created $conf/BackupOf-$date${Color_Off}\n" }               
-    # }
-    if [[ ! -e "$conf/BackupOf-$date" ]]; then
+    if [ ! -e "$conf/BackupOf-$date" ]; then
         mkdir $conf/BackupOf-$date >> /dev/null 2>&1
         echo -e "${Success}Created $conf/BackupOf-$date${Color_Off}\n"
     fi
 
     
-    if [[ -e $conf/BackupOf-$date/$1 ]] ||[[ -L $conf/BackupOf-$date/$1 ]] ; then
+    if [ -e $conf/BackupOf-$date/$1 ] || [ -L $conf/BackupOf-$date/$1 ] ; then
         echo -e "${File}$1 ${Error}is already backed up"
     else
         {
@@ -57,6 +53,7 @@ function backup {
 }
 
 function service {
+
 {
     # sudo ln -s /etc/sv/$1 /var/service/$1 >> /dev/null 2>&1 &&
     # sudo rc-update add $1
@@ -70,7 +67,7 @@ function service {
 
 function process {
 {
-    if [[ -e $conf/$1 ]]; then 
+    if [ -e $conf/$1 ]; then 
         backup "$1"
     fi
     ln -rs $1 $conf/ >> /dev/null 2>&1 &&
@@ -87,6 +84,9 @@ files=(
 ".xinitrc"
 "nvim"
 "qtile"
+"sxhkd"
+"sxiv"
+"qt5ct"
 "dunst"
 "fish"
 "rofi"
@@ -105,6 +105,9 @@ files=(
 "pavucontrol.ini"
 "zathura"
 "mimeapps.list"
+"alacritty"
+"i3"
+"i3status"
 
 )
 

@@ -166,7 +166,7 @@ groups.append(ScratchPad("scratchpad", [
     DropDown("term", "kitty --class=scratch", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("lf", "kitty --class=lf -e lf", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("volume", "kitty --class=volume -e pulsemixer", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
-    DropDown("mus", "kitty --class=mus -e ncmpcpp", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
+    # DropDown("mus", "kitty --class=mus -e ncmpcpp", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("btop", "kitty btop", width=0.55, height=0.8, x=0.22, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("pavu", "pavucontrol", width=0.4, height=0.4, x=0.55, y=0.005, opacity=0.95, on_focus_lost_hide=True),
     DropDown("calender", "kitty --hold -e cal", width=0.106, height=0.16, x=0.8595, y=0.005, opacity=0.95, on_focus_lost_hide=False),
@@ -202,12 +202,12 @@ colors =  [
         ["#bb94cc", "#AB87BB", "#bb94cc"], # color 3
         ["#81658C", "#81658C", "#81658C"], # color 6
         ["#614C69", "#614C69", "#614C69"], # color 8
-        ["#0ee9af", "#0ee9af", "#0ee9af"]] # color 9
-# ["#5aec79", "#5aec79", "#5aec79"]] # color 9
+        ["#0ee9af", "#0ee9af", "#0ee9af"], # color 9
+        ["#5aec79", "#5aec79", "#5aec79"]] # color 10
 
 layout_theme = {"border_width": 2,
-                "margin": 8,
-                "border_focus": colors[6],
+                "margin": 4,
+                "border_focus": colors[9],
                 "border_normal": "#1D2330",
                 "font" : "JetBrainsMonoNerdFont"
                 }

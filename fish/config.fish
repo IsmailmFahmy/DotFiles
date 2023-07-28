@@ -3,6 +3,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 fish_add_path -a ~/.cargo/bin
 fish_add_path -a ~/.local/bin
+fish_add_path -a ~/.nix-profile/bin
 set -gx GIT_CONFIG_GLOBAL ~/.config/gh/.gitconfig
 set -gx GTK2_RC_FILES ~/.config/.gtkrc-2.0
 set -gx XINITRC ~/.config/.xinitrc
@@ -26,10 +27,11 @@ if [ -z "$XDG_CACHE_HOME" ] ;
     set -gx XDG_CACHE_HOME "$HOME/.cache"
 end
 #===================================== Profile ==========================================
-if status is-login
-    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        exec startx -- -keeptty
-    end
+# Start X at login
+if status --is-login
+  if test -z "$DISPLAY" -a $XDG_VTNR = 1
+    exec startx -- -keeptty
+  end
 end
 #===================================== ALIASES ==========================================
 

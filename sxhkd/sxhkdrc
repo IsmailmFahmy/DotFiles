@@ -29,11 +29,15 @@ super + shift + e
     thunar
 
 super + r
-    rofi -show run
+    rofi -show drun
 
 super + Return
-    kitty
+    alacritty
+    # kitty
 
+super + shift + Return
+    st
+    
 super + v
     rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
