@@ -116,12 +116,6 @@ do
     process $config_file
 done
 
-# ADD GITHUB CONFIG
-read -n1 -rep 'Would you like to change your gh folder? (y,N) ' CFG
-printf '\n'
-if [[ $CFG == "Y" || $CFG == "y" ]]; then
-    process "gh"
-fi
 
 read -n1 -rep 'Would you like to add scripts to .local/bin? (y,N) ' CFG
 printf '\n'
