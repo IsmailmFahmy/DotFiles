@@ -1,0 +1,7 @@
+#! /bin/bash
+        xclip -se c -o > $1
+
+# function file-link
+#         cat $1 |  curl -F 'f:1=<-' ix.io
+# end
+

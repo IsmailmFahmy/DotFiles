@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+
+############################ HELP FLAG ############################
+
+if [[ $1 == "-h" ]] || [[ $1 == "--help" ]]
+then
+        
+echo '
+        This is a Front-End for the NIX Package Manager
+
+
+        # Installing Packages
+          - make sure you have a channel aliased "nixpkgs" 
+
+        nixlist         displays an fzf menu of packages you can install, upon picking one it
+                        shoud start the install and notify you when it has completed
+
+        # Flags / Options
+
+        -r / --remove   displays an fzf menu of packages installed by nix
+                        when you pick one, it uninstalls the packages and removes its application files
+                        (icon files require root privelages to be removed from ~/.local/share/icons)
+
+        -u / --update   updates channels, ensures there is a channel and adds one if there isnt,
+                        also updates the package list stored at ~/.config/nixpkgs/packages.list .
+                        then updates the installed packages
+
+        -h / --help     displays this menu
+
+        Credit : Ismail Fahmy
+                https://github.com/ismailmfahmy
+'
+        exit
+fi
+
+############################ CHECKS ############################
+
+if [[ -z $(nix-channel --list) ]]
+then
+        echo "no channels found"
+        echo "adding stable channel 'nixos-23.05'"
+        nix-channel --add https://nixos.org/channels/nixos-23.05 nixpkgs
+        nix-channel --update
+fi
+
+if [[ ! -e ~/.cache/nix/packages.list ]] || [[ ! -s ~/.cache/nix/packages.list ]]
+then
+        if [ ! -e ~/.config/nixpkgs ];then
+                mkdir -p ~/.cache/nix/
+                echo "created ~/.cache/nix"
+        fi
+        echo "Caching Nix Packages locally @~/.cache/nix/packages.list"
+        nix-env -qaP | awk '{print $1}' | sed 's/^\w*\.//'  > ~/.cache/nix/packages.list
+fi
+
+if [[ ! -s ~/.cache/nix/packages.list ]]
+then 
+                printf "\n|==========================================================================================|\n\n"
+        echo "ERROR : could not writ to ~/.cache/nix/packages.list OR nix-env -qaP returns an empty string"
+        echo "Please run nixlist -u . if this does not work manual intervention may be required"
+                printf "\n|==========================================================================================|\n"
+                exit
+fi
+
+
+############################ REMOVE FLAG ############################
+
+if [[ $1 == "-r" ]] || [[ $1 == "--remove" ]]
+then
+        pkg="$(nix-env -q | sed -e 's/-[[:digit:]].*$//g' | fzf --prompt="Search Nix pkgs : " --border=rounded --margin=5% --color='fg:104,fg+:255,pointer:12,hl:255,hl+:12,header:12,prompt:255' --height 70% --reverse --header="                    Packages " --info=hidden --header-first)" 
+        if [ $pkg ]
+        then 
+                notify-send "Uninstalling $pkg" 
+                nix-env -e "$pkg" 
+                printf "\n|==========================================================================================|\n\n"
+                rm  $(find ~/.local/share/icons/ -name "*$pkg*")  2>/dev/null  && echo "Removing Application Icons"
+                rm  $(find ~/.local/share/applications/ -name "*$pkg*")  2>/dev/null  && echo "Removing Application Files"
+                printf "\n|==========================================================================================|\n"
+                notify-send "$pkg uninstalled =D"
+                exit
+
+        else
+                exit
+        fi
+
+fi
+
+############################ UPDATE FLAG ############################
+
+if [[ $1 == "-u" ]] || [[ $1 == "--update" ]]
+then
+        echo "Updating Channels"
+        if [[ -z $(nix-channel --list) ]]
+        then
+                echo "no channels found"
+                echo "adding stable channel 'nixos-23.05'"
+                nix-channel --add https://nixos.org/channels/nixos-23.05 nixpkgs
+        fi
+        nix-channel --update
+
+        echo "Caching Nix Packages locally @~/.cache/nix/packages.list"
+        if [ ! -e ~/.cache/nix/ ];then
+                mkdir -p ~/.cache/nix/
+                echo "created ~/.cache/nix"
+        fi
+        nix-env -qaP | awk '{print $1}' | sed 's/^\w*\.//'  > ~/.cache/nix/packages.list
+
+        echo "Updating Nix Packages"
+        nix-env -u 
+        echo "Done"
+        exit
+fi
+
+
+
+############################ PACKAGE INSTALLATION ############################
+
+
+pkg="$(cat ~/.cache/nix/packages.list | fzf --prompt="Search Nix pkgs : " --border=rounded --margin=5% --color='fg:104,fg+:255,pointer:12,hl:255,hl+:12,header:12,prompt:255' --height 70% --reverse --header="                    Packages " --info=hidden --header-first)" 
+
+CHECK="$(nix-env -q |grep "$pkg" | wc -l)"
+
+
+## CHANGE THIS DEPENDING ON YOUR DISTROBUTION
+CHECK2="$(xbps-query -s "$pkg" | wc -l)"
+
+
+
+if [ "$pkg" ]
+then
+    if [ "$CHECK" -eq "1" -o "$CHECK2" -eq "1" ]
+    then
+        notify-send "$pkg is already installed"
+        exit 1
+    else
+            notify-send "Installing $pkg" 
+            nix-env -iA nixpkgs."$pkg" 
+            printf "\n|==========================================================================================|\n\n"
+            rsync -auP ~/.nix-profile/share/applications/* ~/.local/share/applications/  && echo "Syncing Application Files"
+            rsync -auP ~/.nix-profile/share/icons/* ~/.local/share/icons/  && echo "Syncing Icon Files"
+            printf "\n|==========================================================================================|\n"
+            notify-send "$pkg installed =D"
+            exit
+    fi
+else
+    exit
+fi
+

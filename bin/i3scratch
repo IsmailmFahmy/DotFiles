@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# REFRESH I3 SCRATCHPADS
+pgrep -f '^alacritty --class dropdown_term' || alacritty --class dropdown_term !& disown
+pgrep -f '^kitty --class dropdown_lf' || kitty --class dropdown_lf -e lf !& disown
+pgrep -f '^alacritty --class dropdown_mixer' || alacritty --class dropdown_mixer -e pulsemixer !& disown
+

@@ -29,9 +29,9 @@ end
 #===================================== Profile ==========================================
 # Start X at login
 if status --is-login
-  if test -z "$DISPLAY" -a $XDG_VTNR = 1
+  # if test -z "$DISPLAY" -a $XDG_VTNR = 1
     exec startx -- -keeptty
-  end
+  # end
 end
 #===================================== ALIASES ==========================================
 
@@ -77,12 +77,10 @@ function view
     end
 end
 
-function ptf
-        eval (xclip -se c -o > "$1")
-end
+
 
 function sobs
-     rsync -Prau ~/Documents/Obsidian/ /run/media/Fahmy/4062/Documents/Obsidian/; and notify-send "RSYNC" "Local Obsidian synced with usb"; or notify-send "RSYNC" "Failed Sync"
+     rsync -Pauv ~/Documents/Obsidian/ /run/media/Fahmy/4062/Documents/Obsidian/; and notify-send "RSYNC" "Local Obsidian synced with usb"; or notify-send "RSYNC" "Failed Sync"
 end
 
 
