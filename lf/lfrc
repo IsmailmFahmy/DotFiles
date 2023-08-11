@@ -29,7 +29,7 @@ cmd mkfile ${{
 }}
 
 cmd setwallpaper ${{
-    nitrogen --set-scaled $f 
+    nitrogen --set-scaled --save $f 
     echo $f  |awk '{print $(NF)}'|xargs -I {} \
     notify-send "Changed wallpaper to" -i "$f" "{}"
 }}

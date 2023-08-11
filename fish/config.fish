@@ -35,12 +35,15 @@ if status --is-login
 end
 #===================================== ALIASES ==========================================
 
-abbr conf 'nvim ~/.config/fish/config.fish'
-abbr Sconf 'source ~/.config/fish/config.fish'
-abbr lfrc "nvim ~/.config/lf/lfrc"
-abbr binds "nvim ~/.config/sxhkd/sxhkdrc"
+abbr    conf    "nvim ~/.config/fish/config.fish"
+abbr    Sconf   "source ~/.config/fish/config.fish"
+abbr    lfrc    "nvim ~/.config/lf/lfrc"
+abbr    binds   "nvim ~/.config/sxhkd/sxhkdrc"
+abbr    drv     "pushd /run/media/fahmy"
+
 
 alias vim='nvim'
+
 # Changing "ls" to "exa"
 alias ls='exa -al --color=always --group-directories-first --icons' # my preferred listing
 alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
@@ -80,7 +83,7 @@ end
 
 
 function sobs
-     rsync -Pauv ~/Documents/Obsidian/ /run/media/Fahmy/4062/Documents/Obsidian/; and notify-send "RSYNC" "Local Obsidian synced with usb"; or notify-send "RSYNC" "Failed Sync"
+    rsync -auvP ~/Documents/Obsidian/ /run/media/fahmy/4062/Obsidian ; and notify-send "RSYNC" "Local Obsidian synced with usb"; or notify-send "RSYNC" "Failed Sync"
 end
 
 

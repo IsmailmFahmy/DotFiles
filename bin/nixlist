@@ -35,6 +35,14 @@ fi
 
 ############################ CHECKS ############################
 
+# which fzf
+### Check required packages
+[[ -z $(which fzf) ]] && echo fzf  is not instlled && exit 1
+[[ -z $(which rsync) ]] && echo rsync  is not installed && exit 1
+####
+
+
+
 if [[ -z $(nix-channel --list) ]]
 then
         echo "no channels found"

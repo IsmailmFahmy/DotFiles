@@ -1,0 +1,4 @@
+#! /bin/bash
+{ maim -s && notify-send "Screenshot taken" || exit ; } | xclip -selection clipboard -t image/png
+    
+

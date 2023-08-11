@@ -3,12 +3,12 @@
 exec --no-startup-id autotiling
 
 # #---Basic Definitions---# #
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 3
 gaps inner 5
 gaps outer 5
 set $mod Mod4
 font pango:CaskaydiaCoveNerdFont 10, NerdFontSymbols
-#focused_workspace  #5aec79
+client.focused  #F9FAF9 #16a085 #292F34 #F9FAF9 #F9FAF9
 
 # #---Dropdown Windows---# #
 # General dropdown window traits. The order can matter.
@@ -66,8 +66,8 @@ bindsym $mod+l			focus right
 bindsym $mod+Shift+l		move right 30
 # bindsym $mod+Ctrl+l		move workspace to output right
 
-bindsym $mod+z			gaps outer current plus 5
-bindsym $mod+Shift+z		gaps outer current minus 5
+# bindsym $mod+z			gaps outer current plus 5
+# bindsym $mod+Shift+z		gaps outer current minus 5
 
 # bindsym $mod+b			bar mode toggle
 # bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id hover left

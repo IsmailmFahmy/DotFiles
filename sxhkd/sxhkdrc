@@ -11,15 +11,14 @@ F10
 
 #########################
 
-super + shift + z
+super + control + shift + z
     pkill -USR1 -x sxhkd && notify-send 'sxhkd' 'Reloaded config'
 
 super + b
     firefox
 
 super + shift + s
-    maim -s | xclip -selection clipboard -t image/png && \
-    notify-send "Screenshot taken"
+    screenshot
 
 
 super + shift + w
