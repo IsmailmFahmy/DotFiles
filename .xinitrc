@@ -14,7 +14,7 @@ exec dbus-launch --exit-with-session dunst &
 exec unclutter -idle 3 -grab &
 exec syncthing --no-browser &
 rsync -au --partial ~/Documents/Obsidian ~/.backup/ &   # Backup Obsidian Vault
-
+pamixer --set-volume 100 &
 # exec sxhkd &
 
 exec dbus-launch --exit-with-session sxhkd &
