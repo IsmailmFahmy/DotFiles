@@ -50,19 +50,19 @@ bindsym $mod+f			fullscreen toggle
 
 bindsym $mod+g			workspace prev
 
-bindsym $mod+h			focus left
+bindsym $mod+h			    focus left
 bindsym $mod+Shift+h		move left 30
 # bindsym $mod+Ctrl+h		move workspace to output left
 
-bindsym $mod+j			focus down
+bindsym $mod+j			    focus down
 bindsym $mod+Shift+j		move down 30
 # bindsym $mod+Ctrl+j		move workspace to output down
 
-bindsym $mod+k			focus up
+bindsym $mod+k			    focus up
 bindsym $mod+Shift+k		move up 30
 # bindsym $mod+Ctrl+k		move workspace to output up
 
-bindsym $mod+l			focus right
+bindsym $mod+l			    focus right
 bindsym $mod+Shift+l		move right 30
 # bindsym $mod+Ctrl+l		move workspace to output right
 

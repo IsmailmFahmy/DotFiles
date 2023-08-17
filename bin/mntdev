@@ -1,5 +1,5 @@
 #!/bin/sh
 
-udiskie -Tan || notify-send "mntdev script" "could not start udiskie" &
+udiskie -Tan & notify-send "mntdev script running"  &
 sleep 1 &&
 pkill -e udiskie
