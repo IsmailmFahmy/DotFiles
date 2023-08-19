@@ -1,5 +1,5 @@
 #!/bin/sh
 
-udiskie -Tan & notify-send "mntdev script running"  &
+{ notify-send "mount script started" && udiskie -Tan & } || { notify-send "mntdev script" "could not start udiskie"; } &
 sleep 1 &&
 pkill -e udiskie
