@@ -1,7 +1,18 @@
-rsync -Pauv ~/Documents/Education/ /run/media/fahmy/4062/Education && notify-send "Local Education Directory synced with USB" || notify-send "RSYNC" "Failed to Sync Education"
+#!/bin/sh
+mntdev
 
-rsync -Pauv ~/Documents/Obsidian/ /run/media/fahmy/4062/Obsidian && notify-send "Local Obsidian Directory synced with USB" || notify-send "RSYNC" "Failed to Sync Obsidian"
+if [ $1 == "-r" ]; then
 
-rsync -Pauv ~/Convenience/ /run/media/fahmy/4062/Convenience && notify-send "Local Convenience Directory synced with USB" || notify-send "RSYNC" "Failed to Sync Convenience"
+rsync -Pauv     /run/media/fahmy/4062/Education/    ~/Documents/Education               && notify-send "Local Education Directory synced with USB"      || notify-send "RSYNC" "Failed to Sync Education"
+rsync -Pauv     /run/media/fahmy/4062/Convenience/  ~/Convenience                       && notify-send "Local Convenience Directory synced with USB"    || notify-send "RSYNC" "Failed to Sync Convenience"
+rsync -Pauv     /run/media/fahmy/4062/Wallpapers/   ~/Documents/Wallpapers              && notify-send "Local Wallpapers Directory synced with USB"     || notify-send "RSYNC" "Failed to Sync Wallpapers"
 
-rsync -Pauv ~/Documents/Wallpapers/ /run/media/fahmy/4062/Wallpapers && notify-send "Local Wallpapers Directory synced with USB" || notify-send "RSYNC" "Failed to Sync Wallpapers"
+else
+
+rsync -Pauv     ~/Documents/Education/              /run/media/fahmy/4062/Education     && notify-send "Local Education Directory synced with USB"      || notify-send "RSYNC" "Failed to Sync Education"
+rsync -Pauv     ~/Documents/Obsidian/               /run/media/fahmy/4062/Obsidian      && notify-send "Local Obsidian Directory synced with USB"       || notify-send "RSYNC" "Failed to Sync Obsidian"
+rsync -Pauv     ~/Convenience/                      /run/media/fahmy/4062/Convenience   && notify-send "Local Convenience Directory synced with USB"    || notify-send "RSYNC" "Failed to Sync Convenience"
+rsync -Pauv     ~/Documents/Wallpapers/             /run/media/fahmy/4062/Wallpapers    && notify-send "Local Wallpapers Directory synced with USB"     || notify-send "RSYNC" "Failed to Sync Wallpapers"
+
+fi
+

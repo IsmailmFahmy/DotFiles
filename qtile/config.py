@@ -97,7 +97,8 @@ Key([mod, "control"], "left", lazy.layout.grow_left(), desc="Grow window to the 
     Key([mod, "control"], "down", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "up", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([mod, "shift"], "t", lazy.window.toggle_floating(), desc='Toggle floating'),
+    Key([mod, "shift"], "t",    lazy.window.toggle_floating(), desc='Toggle floating'),
+    Key([mod], "f",             lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window" ),
 
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
 

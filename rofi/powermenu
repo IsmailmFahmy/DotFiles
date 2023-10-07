@@ -3,10 +3,10 @@
 chosen=$(printf "  Power Off\n  Restart\n  Suspend\n  Hibernate\n  Log Out\n  Lock" | rofi -dmenu -i -show "Power Menu" -p "Power Menu")
 
 case "$chosen" in
-	"  Power Off") sudo poweroff ;;
-	"  Restart") sudo reboot ;;
-	"  Suspend") suspend ;;
-	"  Hibernate") hibernate ;;
+	"  Power Off") poweroff ;;
+	"  Restart") reboot ;;
+	"  Suspend") systemctl suspend ;;
+	"  Hibernate") systemctl hibernate ;;
 	"  Log Out") pkill xinit;;
 	"  Lock") playerctl -a pause & slock ;;
 	*) exit 1 ;;

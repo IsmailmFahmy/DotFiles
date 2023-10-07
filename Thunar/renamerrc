@@ -1,0 +1,16 @@
+[Configuration]
+LastActiveMode=THUNAR_RENAMER_MODE_BOTH
+LastActiveRenamer=ThunarSbrRemoveRenamer
+
+[ThunarSbrInsertRenamer]
+Offset=4
+Text=.mp4
+Mode=THUNAR_SBR_INSERT_MODE_OVERWRITE
+OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+
+[ThunarSbrRemoveRenamer]
+StartOffset=15
+EndOffset=4
+EndOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+StartOffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+
