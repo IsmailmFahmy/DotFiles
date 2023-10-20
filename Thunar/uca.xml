@@ -5,7 +5,7 @@
 	<name>Terminal</name>
 	<submenu></submenu>
 	<unique-id>1687467586740502-1</unique-id>
-	<command>alacritty .</command>
+	<command>alacritty</command>
 	<description>Open Alacritty in Working Direcotry</description>
 	<range></range>
 	<patterns>*</patterns>
@@ -15,12 +15,28 @@
 <action>
 	<icon>package-x-generic</icon>
 	<name>Extract</name>
-	<submenu></submenu>
+	<submenu>Compress</submenu>
 	<unique-id>1696694159213994-1</unique-id>
 	<command>7z x %F</command>
 	<description>Extracts Compressed Files</description>
 	<range>*</range>
 	<patterns>*.zip;*.7z;*.rar</patterns>
 	<other-files/>
+</action>
+<action>
+	<icon>package-x-generic</icon>
+	<name>Archive</name>
+	<submenu>Compress</submenu>
+	<unique-id>1696708904845566-1</unique-id>
+	<command>7z a %f.zip %F</command>
+	<description>Archive File/s</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
 </action>
 </actions>

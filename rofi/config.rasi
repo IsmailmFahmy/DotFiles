@@ -1,3 +1,5 @@
+/* vim: filetype=css        
+ */
 /*******************************************************************************
  * ROFI SQUARED THEME USING THE MATERIAL DARKER PALETTE 
  * User                 : LR-Tech               
@@ -36,6 +38,16 @@ configuration {
     kb-remove-char-back: "BackSpace";
     kb-entry-history-up: "Control+Up";
     kb-entry-history-down: "Control+Down";
+
+    kb-select-1 : "1";
+    kb-select-2 : "2";
+    kb-select-3 : "3";
+    kb-select-4 : "4";
+    kb-select-5 : "5";
+    kb-select-6 : "6";
+    kb-select-7 : "7";
+    kb-select-8 : "8";
+    kb-select-9 : "9";
 
 }
 

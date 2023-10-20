@@ -1,13 +1,13 @@
 #! /bin/sh
 
-chosen=$(printf "  Power Off\n  Restart\n  Suspend\n  Hibernate\n  Log Out\n  Lock" | rofi -dmenu -i -show "Power Menu" -p "Power Menu")
+chosen=$(printf "1. ⏻  Power Off\n2.   Restart\n3. 󰒲  Suspend\n4.   Hibernate\n5. 󰍃  Log Out\n6. 󰌾  Lock" | rofi -dmenu -i -show "Power Menu" -p "Power Menu")
 
 case "$chosen" in
-	"  Power Off") poweroff ;;
-	"  Restart") reboot ;;
-	"  Suspend") systemctl suspend ;;
-	"  Hibernate") systemctl hibernate ;;
-	"  Log Out") pkill xinit;;
-	"  Lock") playerctl -a pause & slock ;;
+	"1. ⏻  Power Off") poweroff ;;
+	"2.   Restart") reboot ;;
+	"3. 󰒲  Suspend") slock & systemctl suspend ;;
+	"4.   Hibernate") systemctl hibernate ;;
+	"5. 󰍃  Log Out") pkill xinit;;
+	"6. 󰌾  Lock") playerctl -a pause & slock ;;
 	*) exit 1 ;;
 esac
