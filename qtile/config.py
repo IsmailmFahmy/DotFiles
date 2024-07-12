@@ -11,9 +11,12 @@ from libqtile.utils import guess_terminal
 # import subprocess
 # from typing import List  # noqa: F401
 # from libqtile import bar, layout, widget
-# from libqtile import hook
+from libqtile import hook
 
-
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.Popen([home]) 
 
 #---------------#
 #   SUPER KEY   #
@@ -165,49 +168,54 @@ group_labels = ["", "", "", "", "﨣", "", "", ""]
 
 groups.append(ScratchPad("scratchpad", [
     DropDown("term", "kitty --class=scratch", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
-    DropDown("lf", "kitty --class=lf -e lf", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("lf", "kitty --class=lf -e yazi", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("volume", "kitty --class=volume -e pulsemixer", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     # DropDown("mus", "kitty --class=mus -e ncmpcpp", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("btop", "kitty btop", width=0.55, height=0.8, x=0.22, y=0.1, opacity=0.95, on_focus_lost_hide=False),
-    DropDown("pavu", "pavucontrol", width=0.4, height=0.4, x=0.55, y=0.005, opacity=0.95, on_focus_lost_hide=True),
+    DropDown("pavu", "pavucontrol", width=0.4, height=0.4, x=0.55, y=0.000, opacity=0.95, on_focus_lost_hide=True),
     DropDown("calender", "kitty --hold -e cal", width=0.106, height=0.16, x=0.8595, y=0.005, opacity=0.95, on_focus_lost_hide=False),
     ]))
 
-# colors = [["#91A2AA", "#91A2AA"], # 0
-#           ["#E86864", "#E86864"], # 1
-#           ["#282c34", "#282c34"], # 2
-#           ["#1c1f24", "#1c1f24"], # 3
-#           ["#dfdfdf", "#dfdfdf"], # 4
-#           ["#ff6c6b", "#ff6c6b"], # 5
-#           ["#98be65", "#98be65"], # 6
-#           ["#da8548", "#da8548"], # 7
-#           ["#51afef", "#51afef"], # 8
-#           ["#c678dd", "#c678dd"], # 9
-#           ["#46d9ff", "#46d9ff"], # 10
-#           ["#a9a1e1", "#a9a1e1"], # 11
-#           ["#282a36", "#282a36"], # 12
-#           ["#434758", "#434758"], # 13
-#           ["#ffffff", "#ffffff"], # 14
-#           ["#ff5555", "#ff5555"], # 15
-#           ["#8d62a9", "#8d62a9"], # 16
-#           ["#668bd7", "#668bd7"], # 17
-#           ["#e1acff", "#e1acff"]] # 18
-#
 colors =  [
-        ["#00000000", "#00000000", "#00000000"],     # color 0
-        ["#2e3440", "#2e3440", "#2e3440"], # color 1
-        ["#B591B0", "#B591B0", "#B591B0"], # color 2
-        ["#A480B2", "#A480B2", "#A480B2"], # color 3
-        ["#aed1dc", "#98B7C0", "#aed1dc"], # color 4
-        ["#f3f4f5", "#f3f4f5", "#f3f4f5"], # color 5
-        ["#bb94cc", "#AB87BB", "#bb94cc"], # color 3
-        ["#81658C", "#81658C", "#81658C"], # color 6
-        ["#614C69", "#614C69", "#614C69"], # color 8
-        ["#0ee9af", "#0ee9af", "#0ee9af"], # color 9
-        ["#5aec79", "#5aec79", "#5aec79"]] # color 10
+            ["#000000", "#000000", "#000000"],  # color 0
+            ["#2e3440", "#2e3440", "#2e3440"],  # color 1
+            ["#B591B0", "#B591B0", "#B591B0"],  # color 2
+            ["#A480B2", "#A480B2", "#A480B2"],  # color 3
+            ["#aed1dc", "#98B7C0", "#aed1dc"],  # color 4
+            ["#f3f4f5", "#f3f4f5", "#f3f4f5"],  # color 5
+            ["#bb94cc", "#AB87BB", "#bb94cc"],  # color 3
+            ["#81658C", "#81658C", "#81658C"],  # color 6
+            ["#614C69", "#614C69", "#614C69"],  # color 8
+            ["#0ee9af", "#0ee9af", "#0ee9af"],  # color 9
+            ["#5aec79", "#5aec79", "#5aec79"],  # color 10
+            ["#91A2AA", "#91A2AA"],             # color 11
+            ["#E86864", "#E86864"],             # color 12
+            ["#282c34", "#282c34"],             # color 13
+            ["#1c1f24", "#1c1f24"],             # color 14
+            ["#dfdfdf", "#dfdfdf"],             # color 15
+            ["#ff6c6b", "#ff6c6b"],             # color 16
+            ["#98be65", "#98be65"],             # color 17
+            ["#da8548", "#da8548"],             # color 18
+            ["#51afef", "#51afef"],             # color 19
+            ["#c678dd", "#c678dd"],             # color 20
+            ["#46d9ff", "#46d9ff"],             # color 21
+            ["#a9a1e1", "#a9a1e1"],             # color 22
+            ["#282a36", "#282a36"],             # color 23
+            ["#434758", "#434758"],             # color 24
+            ["#ffffff", "#ffffff"],             # color 25
+            ["#ff5555", "#ff5555"],             # color 26
+            ["#8d62a9", "#8d62a9"],             # color 27
+            ["#668bd7", "#668bd7"],             # color 28
+            ["#e1acff", "#e1acff"]]             # color 29
 
-layout_theme = {"border_width": 2,
-                "margin": 4,
+
+bg = 24
+fg = 25
+bar_color = 28
+
+
+layout_theme = {"border_width": 4,
+                "margin": 6,
                 "border_focus": colors[9],
                 "border_normal": "#1D2330",
                 "font" : "JetBrainsMonoNerdFont"
@@ -221,90 +229,6 @@ layouts = [
 
 
 
-
-
-
-
-
-
-
-
-# =================================== BAR ===================================  
-widget_defaults = dict(
-        font="Caskaydia Cove Nerd Font Bold",
-        # font = "JetBrainsMonoNerdFont Bold",
-        fontsize=14,
-        padding=8,
-        background=colors[3],
-
-        )
-
-extension_defaults = widget_defaults.copy()
-
-# screens = [
-#         Screen(
-#             top=bar.Bar(
-#                 [
-#                 widget.Sep(
-#                         linewidth = 0,
-#                         padding = 6,
-#                         ),
-#                widget.GroupBox(font="Ubuntu Bold",
-#                         # fontsize = 10,
-#                        fontsize=13,
-#                        margin_y=4,
-#                        margin_x=4,
-#                        padding_y=5,
-#                        padding_x=3,
-#                        borderwidth=7,
-#                        highlight_method="block",
-#                         this_current_screen_border=colors[1],
-#                        rounded=True,
-#                         ),
-#                 widget.Sep(
-#                         linewidth = 0,
-#                         padding = 6,
-#                         ),
-#
-#                     widget.Prompt(),
-#                     widget.WindowName(
-#                         format="{name}",
-#                         max_chars=90,
-#                         ),
-#                     widget.Volume(
-#                         fmt="\uf026 {}",
-#                         mouse_callbacks={
-#                             "Button3": lambda: qtile.cmd_spawn("pulsemixer")
-#                             }
-#                         ),
-#                     widget.Systray(
-#                         icon_size=22,
-#                         margin=8,
-#                         padding=8
-#                         ),
-#                     widget.Net(
-#                         interface="enp1s0",
-#                         format=" {interface}: {down} ↓↑ {up}",
-#                         background="#9ccfd8",
-#                         foreground="#191724",
-#                         update_interval=1.0
-#                         ),
-#
-#                     widget.Clock(format="󰃭 %d/%m/%Y   %H:%M"),
-#
-#                     # widget.CurrentLayout(),
-#                     # widget.WindowName(),
-#                     # widget.TextBox("default config", name="default"),
-#                     ],
-#                 24,
-#                 border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-#                 border_color=["#000000", "#000000", "#E86864", "#000000"]  # Borders are magenta
-#                 ),
-#             # wallpaper = wallpaper_image,
-#             # wallpaper_mode = 'fill',
-#             ),
-#
-# ]
 
 # Shutdown
 def shutdown_now():
@@ -323,180 +247,212 @@ def powermenu():
     subprocess.call([script])
 
 
+
+
+
+
+
+
+# =================================== BAR ===================================  
+widget_defaults = dict(
+        font="Caskaydia Cove Nerd Font Bold",
+        # font = "JetBrainsMonoNerdFont Bold",
+        fontsize=28,
+        padding=16,
+        background=colors[3],
+        )
+
+
+extension_defaults = widget_defaults.copy()
+
+
+
 screens = [
         Screen(
             top=bar.Bar(
                 [
                     widget.Spacer(
                         length = 6,
-                        background = colors[0],
+                        background = colors[bg],
                         ),                
                     widget.GroupBox(
-                        fontsize = 20,
-                        margin_x = 1,
-                        margin_y = 4,
+                        fontsize = 40,
+                        margin_x = 2,
+                        margin_y = 8,
                         padding_y = 0,
-                        padding_x = 1,
-                        borderwidth = 2.5,
-                        active = colors[2],
+                        padding_x = 2,
+                        borderwidth = 5,
+                        active = colors[fg],
                         inactive = colors[1],
                         rounded = True,
-                        highlight_color = colors[0],
+                        highlight_color = colors[bg],
                         highlight_method = "line",
-                        this_current_screen_border = colors[8],
-                        this_screen_border = colors [0],
-                        foreground = colors[2],
+                        this_current_screen_border = colors[bar_color],
+                        this_screen_border = colors[bg],
+                        foreground = colors[fg],
                         center_aligned = True,
                         disable_drag = True,
-                        background = colors[0]
+                        background = colors[bg]
+                        ),
+                    widget.Spacer(
+                        background = colors[bg],
                         ),
                     widget.Systray(
-                        background = colors[0],
-                        icon_size = 16,
-                        foreground = colors[1],
-                        padding = 3),
-                    widget.Spacer(
-                        background = colors[0],
+                        background = colors[bg],
+                        icon_size = 32,
+                        foreground = colors[fg],
+                        padding = 6
                         ),
                     widget.TextBox(
                         text=' ',
-                        foreground = colors[2],
-                        background = colors[0],
-                        fontsize = 18,
+                        foreground = colors[fg],
+                        background = colors[bg],
+                        fontsize = 36,
                         padding = 0,
                         mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('pavu')},
                         ),
-                    widget.PulseVolume(
-                        background = colors[0],
-                        foreground = colors[2],
+                    widget.Volume(
+                        background = colors[bg],
+                        foreground = colors[fg],
                         limit_max_volume = True,
-                        padding_y = 1,
-                        fontsize = 14
+                        padding_y = 2,
+                        fontsize = 28
                         ),
                     widget.TextBox(
                         text='⏽',
-                        background = colors[0],
-                        foreground = colors[8],
-                        fontsize = 35,
-                        padding = 2
+                        background = colors[bg],
+                        foreground = colors[bar_color],
+                        fontsize = 70,
+                        padding = 4
                         ),
-              widget.TextBox(
-                      text=' ',
-                      background = colors[0],
-                      foreground = colors[2],
-                      fontsize = 18,
-                      padding = 1,
-                      mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('btop')},
-                      ),
-              widget.Memory(
-                      background = colors[0],
-                      foreground = colors[2],
-                      format = '{MemUsed: .0f}{mm} /{MemTotal: .0f}{mm}',
-                      padding = 0,
-                      fontsize = 14
-                      ),
-              widget.TextBox(
-                      text='⏽',
-                      background = colors[0],
-                      foreground = colors[8],
-                      fontsize = 35,
-                      padding = 2
-                      ),
-
-              #   text='',
-              #   background = colors[0],
-              #   foreground = colors[2],
-              #   fontsize = 27,
-              #   padding = 0,
-              #   ),
-              # widget.Battery(
-              #   background = colors[0],
-              #   foreground = colors[2],
-              #   format = '{percent:2.0%}',
-              #   full_char = "100%",
-              #   update_interval = 1,
-              #   fontsize = 12,
-              #   ),
               # widget.TextBox(
-              #   text='⏽',
-              #   background = colors[0],
-              #   foreground = colors[8],
-              #   fontsize = 35,
-              #   padding = 2
-              #   ),
-
-             # widget.Wlan(
-             #        disconnected_message = '',
-             #        background = colors[0],
-             #        foreground = colors[2],
-             #        format = ' {percent:2.0%}',
-             #        fontsize = 12,
-             #         ),
-             #
+              #         text=' ',
+              #         background = colors[bg],
+              #         foreground = colors[fg],
+              #         fontsize = 36,
+              #         padding = 2,
+              #         mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('btop')},
+              #         ),
+              # widget.Memory(
+              #         background = colors[bg],
+              #         foreground = colors[fg],
+              #         format = '{MemUsed: .0f}{mm} /{MemTotal: .0f}{mm}',
+              #         padding = 0,
+              #         fontsize =28 
+              #         ),
               # widget.TextBox(
-              #   text='⏽',
-              #   background = colors[0],
-              #   foreground = colors[8],
-              #   fontsize = 35,
-              #   padding = 2
-              #   ),
+              #         text='⏽',
+              #         background = colors[bg],
+              #         foreground = colors[bar_color],
+              #         fontsize = 70,
+              #         padding = 4
+              #         ),
 
-             widget.TextBox(
-                     text=' ',
-                     foreground = colors[2],
-                     background = colors[0],
-                     fontsize = 18,
-                     padding = 1,
-                     ),
-             widget.Clock(
-                     format='%H:%M',
-                     foreground = colors[2],
-                     background = colors[0],
-                     fontsize = 14,
-                     ),
-             widget.TextBox(
-                     text='⏽',
-                     background = colors[0],
-                     foreground = colors[8],
-                     fontsize = 35,
-                     padding = 2
-                     ),
-             widget.TextBox(
-                     text='󰃭 ',
-                     foreground = colors[2],
-                     background = colors[0],
-                     fontsize = 18,
-                     padding = 1,
-                     mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('calender')},
-                     ),
-             widget.Clock(
-                     format='%d/%m/%Y',
-                     foreground = colors[2],
-                     background = colors[0],
-                     fontsize = 14,
-                     ),
-             widget.TextBox(
-                     text='⏽',
-                     background = colors[0],
-                     foreground = colors[8],
-                     fontsize = 35,
-                     padding = 2
-                     ),
-             widget.TextBox(
-                     text=' ',
-                     foreground = colors[2],
-                     background = colors[0],
-                     fontsize = 16,
-                     padding = 1,
-                     mouse_callbacks = {'Button1': powermenu},
-                     ),
-             widget.Spacer(
-                     length = 6,
-                     background = colors[0],
-                     ),                
+                widget.BatteryIcon(
+                        theme_path='~/.config/qtile/Assets/Battery/',
+                        background = colors[bg],
+                        foreground = colors[fg],
+                        scale=0.7,
+                        ),
+
+                widget.Battery(
+                        background = colors[bg],
+                        foreground = colors[fg],
+                        format = '{percent:2.0%}',
+                        full_char = "100%",
+                        update_interval = 1,
+                        fontsize = 24,
+                        ),
+
+                widget.TextBox(
+                        text='⏽',
+                        background = colors[bg],
+                        foreground = colors[bar_color],
+                        fontsize = 70,
+                        padding = 4
+                        ),
+
+                widget.Wlan(
+                        disconnected_message = '󰖪 ',
+                        interface="wlan0",
+                        ethernet_message = '󰈁 ',
+                        background = colors[bg],
+                        foreground = colors[fg],
+                        format = '  {percent:2.0%}',
+                        ),
+
+                widget.TextBox(
+                        text='⏽',
+                        background = colors[bg],
+                        foreground = colors[bar_color],
+                        fontsize = 70,
+                        padding = 4
+                        ),
+
+                widget.TextBox(
+                        text=' ',
+                        foreground = colors[fg],
+                        background = colors[bg],
+                        fontsize = 36,
+                        padding = 2,
+                        ),
+
+                widget.Clock(
+                        format='%H:%M',
+                        foreground = colors[fg],
+                        background = colors[bg],
+                        fontsize = 28,
+                        ),
+
+                widget.TextBox(
+                        text='⏽',
+                        background = colors[bg],
+                        foreground = colors[bar_color],
+                        fontsize = 70,
+                        padding = 4
+                        ),
+                
+                widget.TextBox(
+                        text='󰃭 ',
+                        foreground = colors[fg],
+                        background = colors[bg],
+                        fontsize = 36,
+                        padding = 2,
+                        mouse_callbacks = {'Button1': lazy.group['scratchpad'].dropdown_toggle('calender')},
+                        ),
+
+                widget.Clock(
+                        format='%d/%m',
+                        #format='%d/%m/%Y',
+                        foreground = colors[fg],
+                        background = colors[bg],
+                        fontsize = 28,
+                        ),
+
+                widget.TextBox(
+                        text='⏽',
+                        background = colors[bg],
+                        foreground = colors[bar_color],
+                        fontsize = 70,
+                        padding = 4
+                        ),
+
+                widget.TextBox(
+                        text=' ',
+                        foreground = colors[fg],
+                        background = colors[bg],
+                        fontsize = 32,
+                        padding = 2,
+                        mouse_callbacks = {'Button1': powermenu},
+                        ),
+
+                widget.Spacer(
+                        length = 12,
+                        background = colors[bg],
+                        ),                
              ],
-            25,
-            margin = [0,0,0,0],
+            50,
+            margin = [8,50,8,50],
         ),
     ),
 ]

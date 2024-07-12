@@ -134,7 +134,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     sudo pacman -S --needed --noconfirm - < pacman.txt
     # xbps-install -Su
     # xbps-install -S $(cat pacman.txt)
-    sudo pacman -S pyton-pillow python-iwlib
+    # sudo pacman -S pyton-pillow python-iwlib
 fi 
 
 # read -n1 -rep 'Would you like to Enable the services ( runit )? (y,N) ' CFG

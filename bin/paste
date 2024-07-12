@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Uploads file or text to a shortened link you can share
+
+#  Usage:
+
+#  paste file.txt
+
+#  OR
+
+#  echo "hi" | paste
+
+
+function paste() {
+    local file=${1:-/dev/stdin}
+    m=$(curl --silent --data-binary @${file} https://paste.rs) &&
+    echo $m &&
+    echo $m | xclip -sel clip &&
+    notify-send "Uploaded and link copied to clipboard"
+}
+paste $*

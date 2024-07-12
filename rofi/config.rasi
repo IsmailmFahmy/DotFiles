@@ -7,7 +7,7 @@
  *******************************************************************************/
 
 * {
-    font:   "FiraCode Nerd Font Medium 12";
+    font:   "FiraCode Nerd Font Medium 18";
 
     bg0:     #212121;
     bg1:     #404040;
@@ -53,13 +53,13 @@ configuration {
 
 window {
     location:   center;
-    width:      480;
+    width:      960;
 
 }
 
 inputbar {
-    spacing:    8px; 
-    padding:    8px;
+    spacing:    16px; 
+    padding:    16px;
 }
 
 prompt, entry, element-icon, element-text {
@@ -71,11 +71,11 @@ prompt {
 }
 
 textbox {
-    padding:            8px;
+    padding:            16px;
 }
 
 listview {
-    padding:    4px 0;
+    padding:    8px 0;
     lines:      8;
     columns:    1;
 
@@ -83,12 +83,12 @@ listview {
 }
 
 element {
-    padding:    8px;
-    spacing:    8px;
+    padding:    16px;
+    spacing:    16px;
 }
 
 element-icon {
-    size:   0.8em;
+    size:   1.6em;
 }
 * {
     /* Theme settings */
