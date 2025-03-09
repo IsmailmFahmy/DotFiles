@@ -1,7 +1,12 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export --path CPLUS_INCLUDE_PATH:/home/fahmy/\x2ewasmedge/include
+SETUVAR --export --path C_INCLUDE_PATH:/home/fahmy/\x2ewasmedge/include
 SETUVAR --export GIT_CONFIG_GLOBAL:/home/fahmy/\x2econfig/gh/\x2egitconfig
-SETUVAR __fish_initialized:3400
+SETUVAR --export --path LD_LIBRARY_PATH:/home/fahmy/\x2ewasmedge/lib
+SETUVAR --export --path LIBRARY_PATH:/home/fahmy/\x2ewasmedge/lib
+SETUVAR --export WASMEDGE_LIB_DIR:/home/fahmy/\x2ewasmedge/lib
+SETUVAR __fish_initialized:3800
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:blue
@@ -19,7 +24,7 @@ SETUVAR fish_color_operator:brcyan
 SETUVAR fish_color_param:cyan
 SETUVAR fish_color_quote:yellow
 SETUVAR fish_color_redirection:cyan\x1e\x2d\x2dbold
-SETUVAR fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_search_match:white\x1e\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
@@ -30,4 +35,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/home/fahmy/\x2efzf/bin\x1e/home/Fahmy/\x2ecargo/bin\x1e/home/Fahmy/\x2elocal/bin\x1e/home/fahmy/\x2elocal/bin\x1e/home/fahmy/\x2enix\x2dprofile/bin\x1e/home/fahmy/\x2ecargo/bin\x1e/homw/fahmy/\x2enix\x2dprofile/bin
+SETUVAR fish_user_paths:/home/fahmy/\x2efzf/bin\x1e/home/Fahmy/\x2ecargo/bin\x1e/home/Fahmy/\x2elocal/bin\x1e/home/fahmy/\x2elocal/bin\x1e/home/fahmy/\x2enix\x2dprofile/bin\x1e/home/fahmy/\x2ecargo/bin\x1e/homw/fahmy/\x2enix\x2dprofile/bin\x1e/home/fahmy/\x2ewasmedge/bin

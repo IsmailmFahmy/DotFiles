@@ -1,13 +1,32 @@
 set fish_greeting
 export EDITOR="nvim"
 export VISUAL="nvim"
+export QT_QPA_PLATFORMTHEME="qt6ct"
+export TERM="xterm-256color"
+export AV_Key="3BQB3PXZOQM53VO9"
+export FH_Key="cv16fspr01qhkk811a80cv16fspr01qhkk811a8g"
+export PG_Key="7EMSUyISR7SPJGxHT7fNPUSWHepW3vIl"
+export FZ_Key="bbaecf9db70248168bb09d6fcd42e0ddog"
+
+
 fish_add_path -a ~/.cargo/bin
 fish_add_path -a ~/.local/bin
+fish_add_path -a /home/xda/platform-tools
 fish_add_path -a ~/.nix-profile/bin
+fish_add_path -a /home/fahmy/.wasmedge/bin
+
 set -gx GIT_CONFIG_GLOBAL ~/.config/gh/.gitconfig
 set -gx GTK2_RC_FILES ~/.config/.gtkrc-2.0
 set -gx XINITRC ~/.config/.xinitrc
 set -g fish_prompt_suffix_root '#'
+
+
+set -Ux LIBRARY_PATH /home/fahmy/.wasmedge/lib
+set -Ux WASMEDGE_LIB_DIR /home/fahmy/.wasmedge/lib
+set -Ux C_INCLUDE_PATH /home/fahmy/.wasmedge/include
+set -Ux LD_LIBRARY_PATH /home/fahmy/.wasmedge/lib
+set -Ux CPLUS_INCLUDE_PATH /home/fahmy/.wasmedge/include
+
 
 fish_vi_key_bindings
 fzf_key_bindings
@@ -90,3 +109,16 @@ end
 #========================================================================================
 starship init fish | source
 #========================================================================================
+
+
+
+
+
+
+
+function gp
+    set dir (find ~/Code -maxdepth 2 -type d | fzf +m)
+    if test -n "$dir"
+        cd "$dir"
+    end
+end

@@ -80,8 +80,8 @@ keys = [
         Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
         # Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
-        #
-        #
+        
+        
         # # Move windows between left/right columns or move up/down in current stack.
         # # Moving out of range in Columns layout will create new column.
         Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
@@ -95,7 +95,8 @@ keys = [
         Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
         Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
         Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-Key([mod, "control"], "left", lazy.layout.grow_left(), desc="Grow window to the left"),
+
+    Key([mod, "control"], "left", lazy.layout.grow_left(), desc="Grow window to the left"),
     Key([mod, "control"], "right", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "down", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "up", lazy.layout.grow_up(), desc="Grow window up"),
@@ -133,16 +134,31 @@ Key([mod, "control"], "left", lazy.layout.grow_left(), desc="Grow window to the 
     #
     # # ScratchPads
     Key([mod], "t", lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([mod], "k", lazy.group['scratchpad'].dropdown_toggle('keyboard')),
+    Key([mod], "n", lazy.group['scratchpad'].dropdown_toggle('though_bursts')),
     Key([mod], "e", lazy.group['scratchpad'].dropdown_toggle('lf')),
     Key(["control", "shift"], "Escape", lazy.group['scratchpad'].dropdown_toggle('btop')),
     # Key([mod], "v", lazy.group['scratchpad'].dropdown_toggle('volume')),
-    # Key([mod], "m", lazy.group['scratchpad'].dropdown_toggle('mus')),
+    Key([mod], "m", lazy.group['scratchpad'].dropdown_toggle('music')),
+    # Key([mod], "u", lazy.group['scratchpad'].dropdown_toggle('ramboxx')),
     #
 ]
 
 
 
-groups = [Group(i) for i in "123456789"]
+# groups = [Group(i) for i in "123456789"]
+groups = [
+    Group("1", label="  "),  # Add other groups similarly
+    Group("2", label="  ", matches=[Match(wm_class="firefox")]),  # Add firefox to group 8
+    Group("3", label="  "),
+    Group("4", label=" 4 "),
+    Group("5", label=" 5"),
+    Group("6", label=" 6 "),
+    Group("7", label="  "),
+    Group("8", label="  ", matches=[Match(wm_class="obsidian")]),  # Add Obsidian to group 8
+    Group("9", label=" 9 ", matches=[Match(wm_class="rambox")]),  # Add Rambox to group 9
+]
+
 for i in groups:
     keys.extend(
             [
@@ -168,12 +184,15 @@ group_labels = ["", "", "", "", "﨣", "", "", ""]
 
 groups.append(ScratchPad("scratchpad", [
     DropDown("term", "kitty --class=scratch", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
-    DropDown("lf", "kitty --class=lf -e yazi", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("keyboard", "feh /home/fahmy/.local/German_Keyboard.png", width=0.38, height=0.31, x=0.3, y=0.3, opacity=1, on_focus_lost_hide=False),
+    DropDown("though_bursts", 'alacritty -e "nvim ~/Documents/Obsidian/Thought_Bursts.md"', width=0.38, height=0.9, x=0.6, y=0.05, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("lf", "kitty --class=lf -e lf", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("volume", "kitty --class=volume -e pulsemixer", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
-    # DropDown("mus", "kitty --class=mus -e ncmpcpp", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
-    DropDown("btop", "kitty btop", width=0.55, height=0.8, x=0.22, y=0.1, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("music", "spotify", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
+    # DropDown("ramboxx", "rambox", width=0.99, height=0.99, x=0.005, y=0.0045, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("btop", "kitty btop", width=0.6, height=0.8, x=0.2, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     DropDown("pavu", "pavucontrol", width=0.4, height=0.4, x=0.55, y=0.000, opacity=0.95, on_focus_lost_hide=True),
-    DropDown("calender", "kitty --hold -e cal", width=0.106, height=0.16, x=0.8595, y=0.005, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("calender", "alacritty --hold -e cal", width=0.156, height=0.16, x=0.84, y=0.005, opacity=0.95, on_focus_lost_hide=False),
     ]))
 
 colors =  [
@@ -304,6 +323,13 @@ screens = [
                         padding = 6
                         ),
                     widget.TextBox(
+                        text='⏽',
+                        background = colors[bg],
+                        foreground = colors[bar_color],
+                        fontsize = 70,
+                        padding = 4
+                        ),
+                    widget.TextBox(
                         text=' ',
                         foreground = colors[fg],
                         background = colors[bg],
@@ -372,22 +398,24 @@ screens = [
                         padding = 4
                         ),
 
-                widget.Wlan(
-                        disconnected_message = '󰖪 ',
-                        interface="wlan0",
-                        ethernet_message = '󰈁 ',
-                        background = colors[bg],
-                        foreground = colors[fg],
-                        format = '  {percent:2.0%}',
-                        ),
-
-                widget.TextBox(
-                        text='⏽',
-                        background = colors[bg],
-                        foreground = colors[bar_color],
-                        fontsize = 70,
-                        padding = 4
-                        ),
+                # widget.Wlan(
+                #         disconnected_message = '󰖪 ',
+                #         interface="wlan0",
+                #         ethernet_interface = 'enp4s0f4u1u3',
+                #         use_ethernet = True,
+                #         ethernet_message = '󰈁 ',
+                #         background = colors[bg],
+                #         foreground = colors[fg],
+                #         format = '  {percent:2.0%}',
+                #         ),
+                #
+                # widget.TextBox(
+                #         text='⏽',
+                #         background = colors[bg],
+                #         foreground = colors[bar_color],
+                #         fontsize = 70,
+                #         padding = 4
+                #         ),
 
                 widget.TextBox(
                         text=' ',
@@ -472,7 +500,7 @@ mouse = [
         Click([mod], "Button2", lazy.window.bring_to_front()),
         ]
 dgroups_key_binder = None
-dgroups_app_rules = []  # type: List
+dgroups_app_rules = []
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False

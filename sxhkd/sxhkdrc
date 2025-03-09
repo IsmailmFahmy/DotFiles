@@ -3,8 +3,8 @@
 control + alt + Delete
     ~/.config/rofi/powermenu
 
-F10
-    ~/.local/bin/mntdev
+# F10
+#     ~/.local/bin/mntdev
 
 
 # slock & xset dpms force off; mpc pause; pauseallmpv
@@ -17,6 +17,12 @@ super + control + shift + z
 super + b
     firefox
 
+super + u
+    /usr/bin/rambox
+
+super + o
+    obsidian
+
 super + shift + s
     screenshot
 
@@ -25,7 +31,7 @@ super + shift + w
     firefox --new-window "https://web.whatsapp.com/"
 
 super + shift + e
-    thunar
+    dolphin
 
 super + r
     rofi -show drun
@@ -37,8 +43,24 @@ super + Return
 super + shift + Return
     st
     
+super + p
+    kdeconnect-cli --name "Pixel 6" --send-clipboard && notify-send "Clipboard sent to Pixel 6"
+
+super shift + p
+    send_screenshot
+
 super + v
     rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+
+alt + @Shift_L
+    switch_layout
+
+control + @Alt_L
+    xdotool key shift+F10
+    
+
+
 
 # MEDIA KEYS
 XF86AudioPlay
@@ -50,22 +72,23 @@ XF86AudioNext
 XF86AudioPrev
     playerctl previous
 
-XF86MonBrightnessUp
-    xbacklight -inc 10
-
-XF86MonBrightnessDown
-    xbacklight -dec 10
-
-XF86Sleep
-    systemctl suspend
-
 XF86AudioRaiseVolume
     volume up
+
 XF86AudioLowerVolume
     volume down
+
+
 XF86AudioMute
     volume mute
 
+XF86MonBrightnessUp
+    backlight up
 
+XF86MonBrightnessDown
+    backlight down
+
+XF86Sleep
+    systemctl suspend
 ###############################################################################
 
