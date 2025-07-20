@@ -1,0 +1,10 @@
+#!/bin/sh
+
+
+# sends file to my phone using kdeconnect-cli
+function skd() {
+    kdeconnect-cli --name "Pixel 6" --share "$1" &&
+    notify-send "File sent to Pixel 6"
+
+}
+skd "$@"

@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# File gets decrypted from ${file} to ${TMPfile}, then it you edit it, then ${TMPfile} 
+# is encrypted back to ${file} and ${TMPfile} is deleted.
+DIR="${ENCRYPTED_FILE/#\~/$HOME}"
+DIR="${DIR:-${TMPDIR:-/tmp}}"
+
+TMPfile="${TMPDIR:-/tmp}/secret"
+
+file="$DIR/secret"
+editor="${EDITOR:-nvim}"
+
+if [ "$1" = "-n" ]; then
+    if [ -f "${file}.encrypt" ]; then
+        echo "An encrypted file already exists"
+        exit 1
+    fi
+
+    echo "Enter encryption key"
+    read -rsp 'Key: ' key
+    echo
+
+    touch "${TMPfile}.decrypt" &&
+    "$editor" "${TMPfile}.decrypt" &&
+    openssl aes-256-cbc -a -e -pbkdf2 -k "$key" -salt -in "${TMPfile}.decrypt" -out "${file}.encrypt"
+    rm "${TMPfile}.decrypt" &&
+    echo "File encrypted"
+    exit 0
+fi
+
+if [ ! -f "${file}.encrypt" ]; then
+    echo "${file}.encrypt not found!" >&2
+    exit 1
+fi
+
+echo "Enter encryption key"
+read -rsp 'Key: ' key
+echo
+
+# DECRYPTING
+openssl aes-256-cbc -a -d -pbkdf2 -k "$key" -salt -in "${file}.encrypt" -out "${TMPfile}.decrypt"
+error=$?
+
+# Check if it errored
+if [ $error -ne 0 ]; then
+    echo "Error: Failed to decrypt file (code $error)" >&2
+    rm -f "${TMPfile}.decrypt"
+    exit 1
+fi
+
+# Edit the file
+"$editor" "${TMPfile}.decrypt" &&
+
+# ENCRYPT it back
+openssl aes-256-cbc -a -e -pbkdf2 -k "$key" -salt -in "${TMPfile}.decrypt" -out "${file}.encrypt"
+
+# Delete the decrypted file
+rm "${TMPfile}.decrypt"
+echo "File encrypted"
+exit 0
