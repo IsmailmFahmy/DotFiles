@@ -191,8 +191,8 @@ groups.append(ScratchPad("scratchpad", [
     DropDown("music", "spotify", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.95, on_focus_lost_hide=False),
     # DropDown("ramboxx", "rambox", width=0.99, height=0.99, x=0.005, y=0.0045, opacity=0.95, on_focus_lost_hide=False),
     DropDown("btop", "kitty btop", width=0.6, height=0.8, x=0.2, y=0.1, opacity=0.95, on_focus_lost_hide=False),
-    DropDown("pavu", "pavucontrol", width=0.4, height=0.4, x=0.55, y=0.000, opacity=0.95, on_focus_lost_hide=True),
-    DropDown("calender", "alacritty --hold -e cal", width=0.156, height=0.16, x=0.84, y=0.005, opacity=0.95, on_focus_lost_hide=False),
+    DropDown("pavu", "pavucontrol -t 3", width=0.4, height=0.4, x=0.55, y=0.000, opacity=0.95, on_focus_lost_hide=True),
+    DropDown("calender", "kitty --hold -e cal -3", width=0.478, height=0.20, x=0.5, y=0.007, opacity=0.95, on_focus_lost_hide=False),
     ]))
 
 colors =  [
@@ -225,17 +225,54 @@ colors =  [
             ["#ff5555", "#ff5555"],             # color 26
             ["#8d62a9", "#8d62a9"],             # color 27
             ["#668bd7", "#668bd7"],             # color 28
-            ["#e1acff", "#e1acff"]]             # color 29
+            ["#e1acff", "#e1acff"],             # color 29
+            ["#24273a"],             # color 30
+            ["#545AA7"],             # color 31
+            ["#CDD6F4"],             # color 32
+            ["#F38BA8"],             # color 33
+            ["#668bd7", "#668bd7"],             # color 34
+            ["#668bd7", "#668bd7"],             # color 35
+        ]
+CATPPUCCIN = {
+    "rosewater": "#F5E0DC",
+    "flamingo": "#F2CDCD",
+    "pink": "#F5C2E7",
+    "mauve": "#CBA6F7",
+    "red": "#F38BA8",
+    "maroon": "#EBA0AC",
+    "peach": "#FAB387",
+    "yellow": "#F9E2AF",
+    "green": "#A6E3A1",
+    "teal": "#94E2D5",
+    "sky": "#89DCEB",
+    "sapphire": "#74C7EC",
+    "blue": "#89B4FA",
+    "darkblue": "#545AA7",
+    "lavender": "#B4BEFE",
+    "text": "#CDD6F4",
+    "subtext1": "#BAC2DE",
+    "subtext0": "#A6ADC8",
+    "overlay2": "#9399b2",
+    "overlay1": "#7F849C",
+    "surface2": "#585B70",
+    "surface1": "#45475A",
+    "surface0": "#313244",
+    "base": "#1E1E2E",
+    "mantle": "#181825",
+    "crust": "#11111B",
+    "transparent": "#00000000",
+}
 
 
-bg = 24
-fg = 25
-bar_color = 28
+bg = 30
+fg = 32 # text
+bar_color = 33
+border_color = 33
 
 
 layout_theme = {"border_width": 4,
                 "margin": 6,
-                "border_focus": colors[9],
+                "border_focus": colors[border_color],
                 "border_normal": "#1D2330",
                 "font" : "JetBrainsMonoNerdFont"
                 }

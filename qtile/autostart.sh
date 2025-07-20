@@ -11,7 +11,8 @@ xset -b
 
 xinput set-prop "ASUE140D:00 04F3:31B9 Touchpad" "libinput Natural Scrolling Enabled" 1
 
-xrdb -merge ~/.config/.Xresources
+# xrdb -merge ~/.config/.Xresources
+xrdb -merge ~/.config/theming/macchiato.Xresources
 
 exec unclutter -idle 3 -grab &
 exec nitrogen --restore &
@@ -32,4 +33,4 @@ exec /usr/lib/polkit-kde-authentication-agent-1 &
 
 
 exec syncthing --no-browser &
-# rsync -au --partial ~/Documents/Obsidian ~/.backup/ &   # Backup Obsidian Vault
+rsync -au --partial ~/Documents/Obsidian ~/.backup/ &   # Backup Obsidian Vault

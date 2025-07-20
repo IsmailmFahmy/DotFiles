@@ -7,7 +7,7 @@ case "$chosen" in
 	"2.   Restart") reboot ;;
 	"3. 󰒲  Suspend") slock & systemctl suspend ;;
 	"4.   Hibernate") systemctl hibernate ;;
-	"5. 󰍃  Log Out") pkill xinit;;
+	"5. 󰍃  Log Out") loginctl terminate-user $USER;;
 	"6. 󰌾  Lock") playerctl -a pause & slock ;;
 	*) exit 1 ;;
 esac
