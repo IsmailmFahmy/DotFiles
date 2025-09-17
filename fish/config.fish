@@ -15,6 +15,7 @@ set -gx GIT_CONFIG_GLOBAL ~/.config/gh/.gitconfig
 set -gx GTK2_RC_FILES ~/.config/theming/.gtkrc-2.0
 set -gx GTK3_RC_FILES ~/.config/theming/.gtkrc-3.0
 set -gx XINITRC ~/.config/.xinitrc
+set -gx ZDOOTDIR ~/.config/zsh
 set -g fish_prompt_suffix_root '#'
 set -gx ENCRYPTED_FILE $HOME/.local
 set -gx ENCRYPTED_FILE "~/Documents/Important_Files/Less Important"

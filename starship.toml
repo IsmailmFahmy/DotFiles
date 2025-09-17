@@ -17,10 +17,12 @@ right_format = """$time"""
 style = "bold #ffb86c"
 
 [character]
+error_symbol = "\\$"
+success_symbol = "\\$"
 # error_symbol = "[λ](bold #ff5555)"
 # success_symbol = "[λ](bold #50fa7b)"
-error_symbol = "[λ](bold #E1E1D9)"
-success_symbol = "[λ](bold #E1E1D9)"
+# error_symbol = "[λ](bold #E1E1D9)"
+# success_symbol = "[λ](bold #E1E1D9)"
 # success_symbol = "[󰇹](bold #50fa7b)"
 vimcmd_symbol = "[](bold #50fa7b)"
 
