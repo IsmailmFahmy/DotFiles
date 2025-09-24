@@ -1,12 +1,16 @@
 [user]
-	email = ismailmn05@gmail.com
 	name = Ismail Fahmy
+	email = ismail.fahmy@omc.com
+[user "https://github.com"]
+	name = Ismail Fahmy
+	email = ismailmn05@gmail.com
 [credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [status]
 	showUntrackedFiles = no
 [sendpack]
 	sideband = false
 [http]
 	postBuffer = 524288000
+[rerere]
+	enabled = true
