@@ -29,11 +29,11 @@ path+=('/home/fahmy/.wasmedge/bin')
 #======================================= ALIASES ============================================
 
 alias vim='nvim'
-alias ls="exa -la --color=always --group-directories-first --icons" # my preferred listing
-alias la="exa -a --color=always --group-directories-first --icons"  # all files and dirs
-alias ll="exa -l --color=always --group-directories-first --icons"  # long format
-alias lt="exa -aT --color=always --group-directories-first --icons" # tree listing
-# alias l.="exa -al --color=always --group-directories-first --icons | grep -E "\W\.\w" "
+alias ls="eza -la --color=always --group-directories-first --icons" # my preferred listing
+alias la="eza -a --color=always --group-directories-first --icons"  # all files and dirs
+alias ll="eza -l --color=always --group-directories-first --icons"  # long format
+alias lt="eza -aT --color=always --group-directories-first --icons" # tree listing
+alias l.="eza -al --color=always --group-directories-first --icons | grep -E "\W\.\w" "
 
 if test -f "$HOME/.config/zsh/.zshrc" ; then
   alias rc='vim $HOME/.config/zsh/.zshrc'
@@ -84,7 +84,7 @@ bindkey -v # enable vi mode
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=white'
 
 eval "$(starship init zsh)"
-source "$HOME/.cargo/env"
+# source "$HOME/.cargo/env"
 # zprof    # startup time test
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
