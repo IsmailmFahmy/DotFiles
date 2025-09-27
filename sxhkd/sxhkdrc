@@ -26,10 +26,6 @@ super + o
 super + shift + s
     screenshot
 
-
-super + shift + w
-    firefox --new-window "https://web.whatsapp.com/"
-
 super + shift + e
     dolphin
 
@@ -44,7 +40,7 @@ super + shift + Return
     st
     
 super + p
-    kdeconnect-cli --name "Pixel 9" --send-clipboard && notify-send "Clipboard sent to Pixel 9"
+    kdeconnect-cli --name "Pixel 6" --send-clipboard && notify-send "Clipboard sent to Pixel 6"
 
 super shift + p
     send_screenshot
