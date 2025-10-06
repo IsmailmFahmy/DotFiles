@@ -40,7 +40,7 @@ super + shift + Return
     st
     
 super + p
-    kdeconnect-cli --name "Pixel 6" --send-clipboard && notify-send "Clipboard sent to Pixel 6"
+    kdeconnect-cli --name "Pixel 9" --send-clipboard && notify-send "Clipboard sent to Pixel 9"
 
 super shift + p
     send_screenshot
