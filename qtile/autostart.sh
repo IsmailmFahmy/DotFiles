@@ -1,6 +1,5 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
-exec  sxhkd &
 xset -b
 
 # exec xrandr --output DisplayPort-3 --mode 1920x1080 --rate 144.00 &
@@ -9,18 +8,18 @@ xset -b
 
 #xinput set-prop '9' 'libinput Accel Speed' -0.5
 
-xinput set-prop "ASUE140D:00 04F3:31B9 Touchpad" "libinput Natural Scrolling Enabled" 1
+xinput set-prop "ASUE140D:00 04F3:31B9 Touchpad" "libinput Natural Scrolling Enabled" 1 # Invert scroll direction
 
 # xrdb -merge ~/.config/.Xresources
 xrdb -merge ~/.config/theming/macchiato.Xresources
 
-exec unclutter -idle 3 -grab &
-exec nitrogen --restore &
-exec greenclip daemon &
-exec picom -b &
+exec unclutter -idle 3 -grab & # fade cursor after 3 seconds
+exec nitrogen --restore & # Wallpaper manager
+exec greenclip daemon & # Clipboard manager
+exec picom -b & # window blur/animations/rounded corners
 exec kdeconnectd &
-exec otd-daemon &
-
+exec otd-daemon & # OpenTabletDriver Daemon
+exec sxhkd & # Keybinds
 
 exec dunst & # Notifications config
 exec nm-applet    2>&1 > /dev/null & # Network manager icon
@@ -34,3 +33,5 @@ exec /usr/lib/polkit-kde-authentication-agent-1 &
 
 exec syncthing --no-browser &
 rsync -au --partial ~/Documents/Obsidian ~/.backup/ &   # Backup Obsidian Vault
+notify-send "Startup Script Completed at $(realpath $0)"
+
