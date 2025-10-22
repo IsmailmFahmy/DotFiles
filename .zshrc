@@ -58,7 +58,6 @@ zinit light joshskidmore/zsh-fzf-history-search
 
 # =================================================
 
-
 autoload -Uz zkbd # Advanced Keybindings
 
 # Ignore case
@@ -72,10 +71,11 @@ zmodload zsh/complist # enable menuselect
 bindkey -M menuselect '^[[Z' reverse-menu-complete  # optional: Shift-Tab to go backwards
 
 
-
 bindkey -v # enable vi mode
+KEYTIMEOUT=1 # remove vi mode delay
+
+which cargo 2>&1 > /dev/null && source "$HOME/.cargo/env"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(starship init zsh)"
-which cargo 2>&1 > /dev/null && source "$HOME/.cargo/env"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ ! -z $TMUX] || tmux a || tmux # run in tmux!
