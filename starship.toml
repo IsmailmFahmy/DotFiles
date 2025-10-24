@@ -34,7 +34,8 @@ style = "bold #f1fa8c"
 [directory] 
 truncation_length = 8
 truncation_symbol = "…/"
-style = "bold #50fa7b"
+# style = "bold #50fa7b"
+style = "bold #f0efe7"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -44,7 +45,8 @@ style = "bold #50fa7b"
 
 [git_branch]
 symbol = ""
-style = "bold #ff79c6"
+# style = "bold #ff79c6"
+style = "bold #F1502F"
 format = '[$symbol $branch ]($style)'
 
 [git_status]
