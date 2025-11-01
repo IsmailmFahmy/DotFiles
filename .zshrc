@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERM="xterm-256color"
@@ -46,11 +44,14 @@ fi
 source "$ZINIT_HOME/zinit.zsh"
 
 ### Plugins
+zinit ice depth=1
+
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
 # zinit light kutsan/zsh-system-clipboard # Aparently doesn't work with X11
+zinit light jeffreytse/zsh-vi-mode
 zinit light zsh-vi-more/vi-motions
 zinit light junegunn/fzf
 zinit light joshskidmore/zsh-fzf-history-search
@@ -73,6 +74,7 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete  # optional: Shift-Tab to go 
 
 bindkey -v # enable vi mode
 KEYTIMEOUT=1 # remove vi mode delay
+bindkey -v '^?' backward-delete-char # fix backspace in vi mode
 
 which cargo 2>&1 > /dev/null && source "$HOME/.cargo/env"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
