@@ -75,8 +75,11 @@ echo '\e[5 q' # Change insert-mode curser to |
 KEYTIMEOUT=1 # remove vi mode delay
 bindkey -v '^?' backward-delete-char # fix backspace in vi mode
 
+which fzf 2>&1 > /dev/null && source <(fzf --zsh) # Enable fzf integration
 which cargo 2>&1 > /dev/null && source "$HOME/.cargo/env"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+which kubectl 2>&1 > /dev/null && source <(kubectl completion zsh) # Enable kubectl completion
+which helm 2>&1 > /dev/null && source <(helm completion zsh) # Enable helm completion
+
 
 eval "$(starship init zsh)"
 # [ ! -z $TMUX] || tmux a || tmux # run in tmux!
