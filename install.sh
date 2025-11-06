@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /usr/bin/env bash
 
 cd "$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 
@@ -108,6 +108,7 @@ files=(
 "alacritty"
 "i3"
 "i3status"
+"tmux"
 
 )
 
