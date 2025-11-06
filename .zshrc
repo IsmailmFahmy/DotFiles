@@ -65,14 +65,13 @@ autoload -Uz zkbd # Advanced Keybindings
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-
 zstyle ':completion:*' menu select # Enable menu selection with arrow keys
 
 zmodload zsh/complist # enable menuselect
 bindkey -M menuselect '^[[Z' reverse-menu-complete  # optional: Shift-Tab to go backwards
 
-
 bindkey -v # enable vi mode
+echo '\e[5 q' # Change insert-mode curser to |
 KEYTIMEOUT=1 # remove vi mode delay
 bindkey -v '^?' backward-delete-char # fix backspace in vi mode
 
