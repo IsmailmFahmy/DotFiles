@@ -1,3 +1,6 @@
+# [ ! -z $TMUX] || tmux a || tmux # run in tmux!
+
+# ==============================
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERM="xterm-256color"
@@ -63,6 +66,8 @@ autoload -Uz zkbd # Advanced Keybindings
 
 # Ignore case
 autoload -Uz compinit && compinit
+autoload bashcompinit && bashcompinit
+
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 zstyle ':completion:*' menu select # Enable menu selection with arrow keys
@@ -75,11 +80,14 @@ echo '\e[5 q' # Change insert-mode curser to |
 KEYTIMEOUT=1 # remove vi mode delay
 bindkey -v '^?' backward-delete-char # fix backspace in vi mode
 
-which fzf 2>&1 > /dev/null && source <(fzf --zsh) # Enable fzf integration
-which cargo 2>&1 > /dev/null && source "$HOME/.cargo/env"
-which kubectl 2>&1 > /dev/null && source <(kubectl completion zsh) # Enable kubectl completion
-which helm 2>&1 > /dev/null && source <(helm completion zsh) # Enable helm completion
-
-
 eval "$(starship init zsh)"
-# [ ! -z $TMUX] || tmux a || tmux # run in tmux!
+
+autoload -Uz add-zsh-hook
+_cmp_init() {
+    source <(fzf --zsh)                 > /dev/null 2>&1   # Enable fzf integration
+    source "$HOME/.cargo/env"           > /dev/null 2>&1 
+    source <(kubectl completion zsh)    > /dev/null 2>&1   # Enable kubectl completion
+    source <(helm completion zsh)       > /dev/null 2>&1   # Enable helm completion
+    complete -C $(which aws_completer) aws > /dev/null 2>&1   # Enable aws completion
+}
+add-zsh-hook -Uz precmd _cmp_init # run the _cmp_init function once the shell has fully initialized and zle is ready
