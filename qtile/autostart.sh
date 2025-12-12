@@ -13,25 +13,34 @@ xinput set-prop "ASUE140D:00 04F3:31B9 Touchpad" "libinput Natural Scrolling Ena
 # xrdb -merge ~/.config/.Xresources
 xrdb -merge ~/.config/theming/macchiato.Xresources
 
-exec unclutter -idle 3 -grab & # fade cursor after 3 seconds
-exec nitrogen --restore & # Wallpaper manager
-exec greenclip daemon & # Clipboard manager
-exec picom -b & # window blur/animations/rounded corners
+exec unclutter -idle 3 -grab &    # Fade cursor after 3 seconds
+exec nitrogen --restore &         # Wallpaper Manager
+exec greenclip daemon &           # Clipboard Manager
+#exec picom -b &                   # window blur/animations/rounded corners
 exec kdeconnectd &
-exec otd-daemon & # OpenTabletDriver Daemon
-exec sxhkd & # Keybinds
+exec otd-daemon &                 # OpenTabletDriver Daemon
+exec sxhkd &                      # Keybinds
 
-exec dunst & # Notifications config
-exec nm-applet    2>&1 > /dev/null & # Network manager icon
-exec blueman-applet    2>&1 > /dev/null & # Bluetooth icon
-exec xss-lock slock & # Run slock on suspend
+exec dunst &                      # Notification Manager
+exec nm-applet                    # Network Manager icon
+exec blueman-applet               # Bluetooth icon
+exec xss-lock slock &             # Run slock on suspend
+# powertop & auto-cpufreq are configured as services in systemd
+# Idle Lock, dim after 5 min, suspend after another 30s
+xidlehook \
+    --not-when-fullscreen \
+    --not-when-audio \
+    --timer 300 \
+    'light -O;light -U 30' \
+    'light -I' \
+    --timer 30 \
+    'light -I; systemctl suspend' \
+    '' & 
+
 # pamixer --set-volume 100 &
-# exec udiskie -ans &       # mount script bound to "F10"
+# exec udiskie -ans &             # mount script bound to "F10"
 
-exec /usr/lib/polkit-kde-authentication-agent-1 &
-
+exec /usr/lib/polkit-kde-authentication-agent-1 & # Polkit for running root services in userspace
 
 exec syncthing --no-browser &
 rsync -au --partial ~/Documents/Obsidian ~/.backup/ &   # Backup Obsidian Vault
-notify-send "Startup Script Completed at $(realpath $0)"
-
