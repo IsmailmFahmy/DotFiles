@@ -314,7 +314,7 @@ widget_defaults = dict(
         font="Caskaydia Cove Nerd Font Bold",
         # font = "JetBrainsMonoNerdFont Bold",
         fontsize=28,
-        padding=16,
+        padding=8,
         background=colors[3],
         )
 
