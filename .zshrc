@@ -1,5 +1,3 @@
-# [ ! -z $TMUX] || tmux a || tmux # run in tmux!
-
 # ==============================
 export EDITOR="nvim"
 export VISUAL="nvim"
