@@ -1,18 +1,24 @@
-[Default Applications]
-application/xml=nvim.desktop
-text/plain=userapp-kitty nvim-5SMA71.desktop
-image/jpeg=sxiv.desktop
-inode/directory=thunar.desktop
-application/octet-stream=userapp-kitty nvim-5SMA71.desktop
-
 [Added Associations]
+application/octet-stream=userapp-kitty nvim-5SMA71.desktop;
+application/pdf=org.pwmt.zathura-pdf-poppler.desktop;
+application/x-shellscript=userapp-kitty nvim-5SMA71.desktop;
 application/xml=nvim.desktop;
+application/zip=org.gnome.FileRoller.desktop;
+audio/mpeg=mpv.desktop;
+audio/x-vorbis+ogg=mpv.desktop;
+image/webp=sxiv.desktop;
 text/plain=userapp-kitty nvim-5SMA71.desktop;
 video/mp4=mpv.desktop;
-application/octet-stream=userapp-kitty nvim-5SMA71.desktop;
-application/x-shellscript=userapp-kitty nvim-5SMA71.desktop;
-image/webp=sxiv.desktop;
-application/pdf=org.pwmt.zathura-pdf-poppler.desktop;
+
+[Default Applications]
+application/octet-stream=userapp-kitty nvim-5SMA71.desktop
+application/xml=nvim.desktop
+application/zip=org.gnome.FileRoller.desktop;
+audio/mpeg=mpv.desktop;
+audio/x-vorbis+ogg=mpv.desktop;
+image/jpeg=sxiv.desktop
+inode/directory=thunar.desktop
+text/plain=userapp-kitty nvim-5SMA71.desktop
 
 [Removed Associations]
 application/x-7z-compressed=org.freedesktop.Xwayland.desktop;
