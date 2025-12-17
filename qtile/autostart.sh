@@ -22,8 +22,8 @@ exec otd-daemon &                 # OpenTabletDriver Daemon
 exec sxhkd &                      # Keybinds
 
 exec dunst &                      # Notification Manager
-exec nm-applet                    # Network Manager icon
-exec blueman-applet               # Bluetooth icon
+exec nm-applet &                  # Network Manager icon
+exec blueman-applet &             # Bluetooth icon
 exec xss-lock slock &             # Run slock on suspend
 # powertop & auto-cpufreq are configured as services in systemd
 # Idle Lock, dim after 5 min, suspend after another 30s
@@ -31,7 +31,7 @@ xidlehook \
     --not-when-fullscreen \
     --not-when-audio \
     --timer 300 \
-    'light -O;light -U 30' \
+    'light -O; light -U 30' \
     'light -I' \
     --timer 30 \
     'light -I; systemctl suspend' \
